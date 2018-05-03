@@ -1,0 +1,816 @@
+fileFormatVersion: 2
+guid: 68e542e5824569d45943c580880745e3
+timeCreated: 1525208795
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Group000
+    100002: //RootNode
+    100004: Humanoid:Head
+    100006: Humanoid:Hips
+    100008: Humanoid:LeftArm
+    100010: Humanoid:LeftArmR~2
+    100012: Humanoid:LeftFoot
+    100014: Humanoid:LeftFore~3
+    100016: Humanoid:LeftFore~4
+    100018: Humanoid:LeftHand
+    100020: Humanoid:LeftIndex1
+    100022: Humanoid:LeftIndex2
+    100024: Humanoid:LeftIndex3
+    100026: Humanoid:LeftLeg
+    100028: Humanoid:LeftLeg~25
+    100030: Humanoid:LeftMidd~5
+    100032: Humanoid:LeftMidd~6
+    100034: Humanoid:LeftMidd~7
+    100036: Humanoid:LeftPinky1
+    100038: Humanoid:LeftPinky2
+    100040: Humanoid:LeftPinky3
+    100042: Humanoid:LeftRing1
+    100044: Humanoid:LeftRing2
+    100046: Humanoid:LeftRing3
+    100048: Humanoid:LeftShou~1
+    100050: Humanoid:LeftThumb1
+    100052: Humanoid:LeftThumb2
+    100054: Humanoid:LeftThumb3
+    100056: Humanoid:LeftToes
+    100058: Humanoid:LeftUpLeg
+    100060: Humanoid:LeftUpL~24
+    100062: Humanoid:Neck
+    100064: Humanoid:RightArm
+    100066: Humanoid:RightArm~9
+    100068: Humanoid:RightFoot
+    100070: Humanoid:RightFo~10
+    100072: Humanoid:RightFo~11
+    100074: Humanoid:RightHand
+    100076: Humanoid:RightIn~15
+    100078: Humanoid:RightIn~16
+    100080: Humanoid:RightIn~17
+    100082: Humanoid:RightLeg
+    100084: Humanoid:RightLe~27
+    100086: Humanoid:RightMi~18
+    100088: Humanoid:RightMi~19
+    100090: Humanoid:RightMi~20
+    100092: Humanoid:RightPi~21
+    100094: Humanoid:RightPi~22
+    100096: Humanoid:RightPi~23
+    100098: Humanoid:RightRing1
+    100100: Humanoid:RightRing2
+    100102: Humanoid:RightRing3
+    100104: Humanoid:RightSho~8
+    100106: Humanoid:RightTh~12
+    100108: Humanoid:RightTh~13
+    100110: Humanoid:RightTh~14
+    100112: Humanoid:RightToes
+    100114: Humanoid:RightUpLeg
+    100116: Humanoid:RightUp~26
+    100118: Humanoid:Spine
+    100120: Humanoid:Spine1
+    100122: Humanoid:Spine2
+    400000: Group000
+    400002: //RootNode
+    400004: Humanoid:Head
+    400006: Humanoid:Hips
+    400008: Humanoid:LeftArm
+    400010: Humanoid:LeftArmR~2
+    400012: Humanoid:LeftFoot
+    400014: Humanoid:LeftFore~3
+    400016: Humanoid:LeftFore~4
+    400018: Humanoid:LeftHand
+    400020: Humanoid:LeftIndex1
+    400022: Humanoid:LeftIndex2
+    400024: Humanoid:LeftIndex3
+    400026: Humanoid:LeftLeg
+    400028: Humanoid:LeftLeg~25
+    400030: Humanoid:LeftMidd~5
+    400032: Humanoid:LeftMidd~6
+    400034: Humanoid:LeftMidd~7
+    400036: Humanoid:LeftPinky1
+    400038: Humanoid:LeftPinky2
+    400040: Humanoid:LeftPinky3
+    400042: Humanoid:LeftRing1
+    400044: Humanoid:LeftRing2
+    400046: Humanoid:LeftRing3
+    400048: Humanoid:LeftShou~1
+    400050: Humanoid:LeftThumb1
+    400052: Humanoid:LeftThumb2
+    400054: Humanoid:LeftThumb3
+    400056: Humanoid:LeftToes
+    400058: Humanoid:LeftUpLeg
+    400060: Humanoid:LeftUpL~24
+    400062: Humanoid:Neck
+    400064: Humanoid:RightArm
+    400066: Humanoid:RightArm~9
+    400068: Humanoid:RightFoot
+    400070: Humanoid:RightFo~10
+    400072: Humanoid:RightFo~11
+    400074: Humanoid:RightHand
+    400076: Humanoid:RightIn~15
+    400078: Humanoid:RightIn~16
+    400080: Humanoid:RightIn~17
+    400082: Humanoid:RightLeg
+    400084: Humanoid:RightLe~27
+    400086: Humanoid:RightMi~18
+    400088: Humanoid:RightMi~19
+    400090: Humanoid:RightMi~20
+    400092: Humanoid:RightPi~21
+    400094: Humanoid:RightPi~22
+    400096: Humanoid:RightPi~23
+    400098: Humanoid:RightRing1
+    400100: Humanoid:RightRing2
+    400102: Humanoid:RightRing3
+    400104: Humanoid:RightSho~8
+    400106: Humanoid:RightTh~12
+    400108: Humanoid:RightTh~13
+    400110: Humanoid:RightTh~14
+    400112: Humanoid:RightToes
+    400114: Humanoid:RightUpLeg
+    400116: Humanoid:RightUp~26
+    400118: Humanoid:Spine
+    400120: Humanoid:Spine1
+    400122: Humanoid:Spine2
+    4300000: Group000
+    7400000: t-pose
+    7400002: run
+    7400004: punch
+    7400006: shot
+    9500000: //RootNode
+    13700000: Group000
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: t-pose
+      takeName: t-pose
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: Humanoid:Hips
+        weight: 1
+      - path: Humanoid:LeftArm
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2/Humanoid:LeftIndex3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6/Humanoid:LeftMidd~7
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2/Humanoid:LeftPinky3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2/Humanoid:LeftRing3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2/Humanoid:LeftThumb3
+        weight: 1
+      - path: Humanoid:LeftShou~1
+        weight: 1
+      - path: Humanoid:LeftUpLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot/Humanoid:LeftToes
+        weight: 1
+      - path: Humanoid:RightArm
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16/Humanoid:RightIn~17
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19/Humanoid:RightMi~20
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22/Humanoid:RightPi~23
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2/Humanoid:RightRing3
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13/Humanoid:RightTh~14
+        weight: 1
+      - path: Humanoid:RightSho~8
+        weight: 1
+      - path: Humanoid:RightUpLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot/Humanoid:RightToes
+        weight: 1
+      - path: Humanoid:Spine
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck/Humanoid:Head
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: 2
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: Humanoid:Hips
+        weight: 1
+      - path: Humanoid:LeftArm
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2/Humanoid:LeftIndex3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6/Humanoid:LeftMidd~7
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2/Humanoid:LeftPinky3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2/Humanoid:LeftRing3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2/Humanoid:LeftThumb3
+        weight: 1
+      - path: Humanoid:LeftShou~1
+        weight: 1
+      - path: Humanoid:LeftUpLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot/Humanoid:LeftToes
+        weight: 1
+      - path: Humanoid:RightArm
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16/Humanoid:RightIn~17
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19/Humanoid:RightMi~20
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22/Humanoid:RightPi~23
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2/Humanoid:RightRing3
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13/Humanoid:RightTh~14
+        weight: 1
+      - path: Humanoid:RightSho~8
+        weight: 1
+      - path: Humanoid:RightUpLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot/Humanoid:RightToes
+        weight: 1
+      - path: Humanoid:Spine
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck/Humanoid:Head
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: punch
+      takeName: punch
+      firstFrame: 95
+      lastFrame: 189
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: Humanoid:Hips
+        weight: 1
+      - path: Humanoid:LeftArm
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2/Humanoid:LeftIndex3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6/Humanoid:LeftMidd~7
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2/Humanoid:LeftPinky3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2/Humanoid:LeftRing3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2/Humanoid:LeftThumb3
+        weight: 1
+      - path: Humanoid:LeftShou~1
+        weight: 1
+      - path: Humanoid:LeftUpLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot/Humanoid:LeftToes
+        weight: 1
+      - path: Humanoid:RightArm
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16/Humanoid:RightIn~17
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19/Humanoid:RightMi~20
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22/Humanoid:RightPi~23
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2/Humanoid:RightRing3
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13/Humanoid:RightTh~14
+        weight: 1
+      - path: Humanoid:RightSho~8
+        weight: 1
+      - path: Humanoid:RightUpLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot/Humanoid:RightToes
+        weight: 1
+      - path: Humanoid:Spine
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck/Humanoid:Head
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: shot
+      takeName: shot
+      firstFrame: 305
+      lastFrame: 584
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: Humanoid:Hips
+        weight: 1
+      - path: Humanoid:LeftArm
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftIndex1/Humanoid:LeftIndex2/Humanoid:LeftIndex3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftMidd~5/Humanoid:LeftMidd~6/Humanoid:LeftMidd~7
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftPinky1/Humanoid:LeftPinky2/Humanoid:LeftPinky3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftRing1/Humanoid:LeftRing2/Humanoid:LeftRing3
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2
+        weight: 1
+      - path: Humanoid:LeftArm/Humanoid:LeftArmR~2/Humanoid:LeftFore~3/Humanoid:LeftFore~4/Humanoid:LeftHand/Humanoid:LeftThumb1/Humanoid:LeftThumb2/Humanoid:LeftThumb3
+        weight: 1
+      - path: Humanoid:LeftShou~1
+        weight: 1
+      - path: Humanoid:LeftUpLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot
+        weight: 1
+      - path: Humanoid:LeftUpLeg/Humanoid:LeftUpL~24/Humanoid:LeftLeg/Humanoid:LeftLeg~25/Humanoid:LeftFoot/Humanoid:LeftToes
+        weight: 1
+      - path: Humanoid:RightArm
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightIn~15/Humanoid:RightIn~16/Humanoid:RightIn~17
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightMi~18/Humanoid:RightMi~19/Humanoid:RightMi~20
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightPi~21/Humanoid:RightPi~22/Humanoid:RightPi~23
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightRing1/Humanoid:RightRing2/Humanoid:RightRing3
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13
+        weight: 1
+      - path: Humanoid:RightArm/Humanoid:RightArm~9/Humanoid:RightFo~10/Humanoid:RightFo~11/Humanoid:RightHand/Humanoid:RightTh~12/Humanoid:RightTh~13/Humanoid:RightTh~14
+        weight: 1
+      - path: Humanoid:RightSho~8
+        weight: 1
+      - path: Humanoid:RightUpLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot
+        weight: 1
+      - path: Humanoid:RightUpLeg/Humanoid:RightUp~26/Humanoid:RightLeg/Humanoid:RightLe~27/Humanoid:RightFoot/Humanoid:RightToes
+        weight: 1
+      - path: Humanoid:Spine
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck
+        weight: 1
+      - path: Humanoid:Spine/Humanoid:Spine1/Humanoid:Spine2/Humanoid:Neck/Humanoid:Head
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

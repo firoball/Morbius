@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 7e47f47539932b44eb8e2ca253ff281f
+timeCreated: 1525128783
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bowl_tr30
+    100002: ButterKnife_tr1
+    100004: Cup_tr4
+    100006: CupHandle_tr31
+    100008: Fork_tr0
+    100010: Group000
+    100012: Group001
+    100014: Group002
+    100016: Group003
+    100018: Group004
+    100020: Group005
+    100022: Group006
+    100024: Handle_tr8
+    100026: Knife_tr11
+    100028: KnifeHandle_tr10
+    100030: Main_tr13
+    100032: MetalPart_tr12
+    100034: Pan_tr5
+    100036: PanMetal_tr6
+    100038: PanThing_tr7
+    100040: Plate_tr3
+    100042: Pot_handleLf_tr23
+    100044: Pot_handleRt_tr16
+    100046: Pot_thing10_tr24
+    100048: Pot_thing11_tr25
+    100050: Pot_thing1_tr17
+    100052: Pot_thing2_tr18
+    100054: Pot_thing3_tr19
+    100056: Pot_thing4_tr20
+    100058: Pot_thing5_tr21
+    100060: Pot_thing6_tr27
+    100062: Pot_thing7_tr28
+    100064: Pot_thing8_tr26
+    100066: Pot_thing9_tr22
+    100068: Pot_thing_tr15
+    100070: Pot_tr14
+    100072: Scoop1_tr32
+    100074: ScoopStuff_tr29
+    100076: Screw_tr9
+    100078: Spoon_tr2
+    100080: Thing_tr33
+    100082: //RootNode
+    400000: Bowl_tr30
+    400002: ButterKnife_tr1
+    400004: Cup_tr4
+    400006: CupHandle_tr31
+    400008: Fork_tr0
+    400010: Group000
+    400012: Group001
+    400014: Group002
+    400016: Group003
+    400018: Group004
+    400020: Group005
+    400022: Group006
+    400024: Handle_tr8
+    400026: Knife_tr11
+    400028: KnifeHandle_tr10
+    400030: Main_tr13
+    400032: MetalPart_tr12
+    400034: Pan_tr5
+    400036: PanMetal_tr6
+    400038: PanThing_tr7
+    400040: Plate_tr3
+    400042: Pot_handleLf_tr23
+    400044: Pot_handleRt_tr16
+    400046: Pot_thing10_tr24
+    400048: Pot_thing11_tr25
+    400050: Pot_thing1_tr17
+    400052: Pot_thing2_tr18
+    400054: Pot_thing3_tr19
+    400056: Pot_thing4_tr20
+    400058: Pot_thing5_tr21
+    400060: Pot_thing6_tr27
+    400062: Pot_thing7_tr28
+    400064: Pot_thing8_tr26
+    400066: Pot_thing9_tr22
+    400068: Pot_thing_tr15
+    400070: Pot_tr14
+    400072: Scoop1_tr32
+    400074: ScoopStuff_tr29
+    400076: Screw_tr9
+    400078: Spoon_tr2
+    400080: Thing_tr33
+    400082: //RootNode
+    4300000: Group000
+    4300002: Group001
+    4300004: Group002
+    4300006: Group003
+    4300008: Group004
+    4300010: Group005
+    4300012: Group006
+    9500000: //RootNode
+    13700000: Group000
+    13700002: Group001
+    13700004: Group002
+    13700006: Group003
+    13700008: Group004
+    13700010: Group005
+    13700012: Group006
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 30
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: cbf262602a8b86e488638b2151f2ae5e
+timeCreated: 1525208799
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bauch
+    100002: Cube_001_tr0
+    100004: fusshinten_l
+    100006: fusshinten_r
+    100008: fussvorne_l
+    100010: fussvorne_r
+    100012: Group000
+    100014: hueftehinten_l
+    100016: hueftehinten_r
+    100018: hueftevorne_l
+    100020: hueftevorne_r
+    100022: kiefer
+    100024: kopf
+    100026: //RootNode
+    100028: ohr_l
+    100030: ohr_r
+    100032: oschenkelhinten_l
+    100034: oschenkelhinten_r
+    100036: oschenkelvorne_l
+    100038: oschenkelvorne_r
+    100040: root
+    100042: ruessel_0
+    100044: ruessel_1
+    100046: ruessel_2
+    100048: ruessel_3
+    100050: ruessel_4
+    400000: bauch
+    400002: Cube_001_tr0
+    400004: fusshinten_l
+    400006: fusshinten_r
+    400008: fussvorne_l
+    400010: fussvorne_r
+    400012: Group000
+    400014: hueftehinten_l
+    400016: hueftehinten_r
+    400018: hueftevorne_l
+    400020: hueftevorne_r
+    400022: kiefer
+    400024: kopf
+    400026: //RootNode
+    400028: ohr_l
+    400030: ohr_r
+    400032: oschenkelhinten_l
+    400034: oschenkelhinten_r
+    400036: oschenkelvorne_l
+    400038: oschenkelvorne_r
+    400040: root
+    400042: ruessel_0
+    400044: ruessel_1
+    400046: ruessel_2
+    400048: ruessel_3
+    400050: ruessel_4
+    4300000: Group000
+    7400000: t-pose
+    7400002: jump
+    7400004: action
+    7400006: walk
+    7400008: pose
+    9500000: //RootNode
+    13700000: Group000
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
