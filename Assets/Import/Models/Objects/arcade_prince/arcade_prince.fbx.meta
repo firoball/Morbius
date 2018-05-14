@@ -19,6 +19,8 @@ ModelImporter:
     3300004: Group001
     4300000: Group000
     4300002: Group001
+    6400000: Group000
+    6400002: Group001
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +49,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

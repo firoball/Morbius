@@ -327,8 +327,72 @@ ModelImporter:
     4300122: Group061
     4300124: Group062
     4300126: Group063
+    6400000: Group000
+    6400002: Group001
+    6400004: Group002
+    6400006: Group003
+    6400008: Group004
+    6400010: Group005
+    6400012: Group006
+    6400014: Group007
+    6400016: Group008
+    6400018: Group009
+    6400020: Group010
+    6400022: Group011
+    6400024: Group012
+    6400026: Group013
+    6400028: Group014
+    6400030: Group015
+    6400032: Group016
+    6400034: Group017
+    6400036: Group018
+    6400038: Group019
+    6400040: Group020
+    6400042: Group021
+    6400044: Group022
+    6400046: Group023
+    6400048: Group024
+    6400050: Group025
+    6400052: Group026
+    6400054: Group027
+    6400056: Group028
+    6400058: Group029
+    6400060: Group030
+    6400062: Group031
+    6400064: Group032
+    6400066: Group033
+    6400068: Group034
+    6400070: Group035
+    6400072: Group036
+    6400074: Group037
+    6400076: Group038
+    6400078: Group039
+    6400080: Group040
+    6400082: Group041
+    6400084: Group042
+    6400086: Group043
+    6400088: Group044
+    6400090: Group045
+    6400092: Group046
+    6400094: Group047
+    6400096: Group048
+    6400098: Group049
+    6400100: Group050
+    6400102: Group051
+    6400104: Group052
+    6400106: Group053
+    6400108: Group054
+    6400110: Group055
+    6400112: Group056
+    6400114: Group057
+    6400116: Group058
+    6400118: Group059
+    6400120: Group060
+    6400122: Group061
+    6400124: Group062
+    6400126: Group063
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 1
     materialSearch: 0
   animations:
@@ -355,10 +419,10 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

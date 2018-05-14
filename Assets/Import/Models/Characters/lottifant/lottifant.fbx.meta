@@ -87,7 +87,407 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: t-pose
+      takeName: t-pose
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cube_001_tr0
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/bauch
+        weight: 1
+      - path: root/bauch/hueftehinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l/fusshinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r/fusshinten_r
+        weight: 1
+      - path: root/hueftevorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l/fussvorne_l
+        weight: 1
+      - path: root/hueftevorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r/fussvorne_r
+        weight: 1
+      - path: root/kopf
+        weight: 1
+      - path: root/kopf/kiefer
+        weight: 1
+      - path: root/kopf/ohr_l
+        weight: 1
+      - path: root/kopf/ohr_r
+        weight: 1
+      - path: root/kopf/ruessel_0
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3/ruessel_4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pose
+      takeName: pose
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cube_001_tr0
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/bauch
+        weight: 1
+      - path: root/bauch/hueftehinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l/fusshinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r/fusshinten_r
+        weight: 1
+      - path: root/hueftevorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l/fussvorne_l
+        weight: 1
+      - path: root/hueftevorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r/fussvorne_r
+        weight: 1
+      - path: root/kopf
+        weight: 1
+      - path: root/kopf/kiefer
+        weight: 1
+      - path: root/kopf/ohr_l
+        weight: 1
+      - path: root/kopf/ohr_r
+        weight: 1
+      - path: root/kopf/ruessel_0
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3/ruessel_4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: jump
+      takeName: jump
+      firstFrame: 2
+      lastFrame: 52
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cube_001_tr0
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/bauch
+        weight: 1
+      - path: root/bauch/hueftehinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l/fusshinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r/fusshinten_r
+        weight: 1
+      - path: root/hueftevorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l/fussvorne_l
+        weight: 1
+      - path: root/hueftevorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r/fussvorne_r
+        weight: 1
+      - path: root/kopf
+        weight: 1
+      - path: root/kopf/kiefer
+        weight: 1
+      - path: root/kopf/ohr_l
+        weight: 1
+      - path: root/kopf/ohr_r
+        weight: 1
+      - path: root/kopf/ruessel_0
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3/ruessel_4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: action
+      takeName: action
+      firstFrame: 52
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cube_001_tr0
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/bauch
+        weight: 1
+      - path: root/bauch/hueftehinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l/fusshinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r/fusshinten_r
+        weight: 1
+      - path: root/hueftevorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l/fussvorne_l
+        weight: 1
+      - path: root/hueftevorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r/fussvorne_r
+        weight: 1
+      - path: root/kopf
+        weight: 1
+      - path: root/kopf/kiefer
+        weight: 1
+      - path: root/kopf/ohr_l
+        weight: 1
+      - path: root/kopf/ohr_r
+        weight: 1
+      - path: root/kopf/ruessel_0
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3/ruessel_4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 72
+      lastFrame: 92
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cube_001_tr0
+        weight: 1
+      - path: Group000
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/bauch
+        weight: 1
+      - path: root/bauch/hueftehinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_l/oschenkelhinten_l/fusshinten_l
+        weight: 1
+      - path: root/bauch/hueftehinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r
+        weight: 1
+      - path: root/bauch/hueftehinten_r/oschenkelhinten_r/fusshinten_r
+        weight: 1
+      - path: root/hueftevorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l
+        weight: 1
+      - path: root/hueftevorne_l/oschenkelvorne_l/fussvorne_l
+        weight: 1
+      - path: root/hueftevorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r
+        weight: 1
+      - path: root/hueftevorne_r/oschenkelvorne_r/fussvorne_r
+        weight: 1
+      - path: root/kopf
+        weight: 1
+      - path: root/kopf/kiefer
+        weight: 1
+      - path: root/kopf/ohr_l
+        weight: 1
+      - path: root/kopf/ohr_r
+        weight: 1
+      - path: root/kopf/ruessel_0
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3
+        weight: 1
+      - path: root/kopf/ruessel_0/ruessel_1/ruessel_2/ruessel_3/ruessel_4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
