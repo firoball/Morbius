@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.3p2</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -93,6 +95,25 @@
     <Compile Include="Assets\Scripts\Ambient\AnimatedDancer.cs" />
     <Compile Include="Assets\Scripts\Ambient\DiscoLight.cs" />
     <Compile Include="Assets\Scripts\Ambient\RandomColor.cs" />
+    <Compile Include="Assets\Scripts\Management\DialogManager.cs" />
+    <Compile Include="Assets\Scripts\Management\CombinationManager.cs" />
+    <Compile Include="Assets\Scripts\Management\ItemManager.cs" />
+    <Compile Include="Assets\Scripts\Management\ChapterManager.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlChapter.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlChapters.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlCombinationElement.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlCombinationLink.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlCombinations.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialog.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialogChoice.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialogChoiceItem.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialogElement.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialogGoto.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialogContent.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlDialogText.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlItem.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlItemSequence.cs" />
+    <Compile Include="Assets\Scripts\XML\XmlItems.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Import\XML\de\Chapters\chapters.xml" />
