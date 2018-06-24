@@ -5,3 +5,5 @@
 /[Tt]emp
 /[Oo]bj
 /meta/*.blend1
+*.bak
+*.bak.meta

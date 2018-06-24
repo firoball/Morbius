@@ -20,11 +20,11 @@ public class PlayerNavigator : MonoBehaviour
         m_pressedTime = 0.0f;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 300, 30), m_pressedTime.ToString());
         GUI.Label(new Rect(10, 50, 300, 30), agent.speed.ToString() + " " + agent.velocity.sqrMagnitude.ToString());
-    }
+    }*/
 
     void Update()
     {
@@ -35,7 +35,6 @@ public class PlayerNavigator : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000))
             {
                 agent.destination = hit.point;
-                Debug.Log(hit.point);
             }
         }
 
