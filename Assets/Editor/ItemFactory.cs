@@ -18,9 +18,9 @@ public class ItemFactory : GenericPrefabFactory<ItemManager>
             XmlItems items = (XmlItems)serializer.Deserialize(reader);
             foreach (XmlItem item in items.Items)
             {
-                if (!m_manager.Items.Exists(i => i.Id == item.Id))
+                if (!m_component.Items.Exists(i => i.Id == item.Id))
                 {
-                    m_manager.Items.Add(item);
+                    m_component.Items.Add(item);
                 }
                 else
                 {

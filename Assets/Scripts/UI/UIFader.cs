@@ -104,6 +104,11 @@ namespace Morbius.Scripts.UI
             }
         }
 
+        public bool IsEnabled()
+        {
+            return m_canvasGroup.interactable;
+        }
+
         //Work around button highlighting bug
         private IEnumerator DelayedDisable()
         {

@@ -20,9 +20,9 @@ public class CombinationFactory : GenericPrefabFactory<CombinationManager>
 
             foreach (XmlCombinationLink link in combinations.Links)
             {
-                if (!m_manager.Links.Exists(i => (i.Id1 == link.Id1) && (i.Id2 == link.Id2)))
+                if (!m_component.Links.Exists(i => (i.Id1 == link.Id1) && (i.Id2 == link.Id2)))
                 {
-                    m_manager.Links.Add(link);
+                    m_component.Links.Add(link);
                 }
                 else
                 {
@@ -32,9 +32,9 @@ public class CombinationFactory : GenericPrefabFactory<CombinationManager>
 
             foreach (XmlCombinationElement failure in combinations.Failures)
             {
-                if (!m_manager.Failures.Exists(i => i.Description == failure.Description))
+                if (!m_component.Failures.Exists(i => i.Description == failure.Description))
                 {
-                    m_manager.Failures.Add(failure);
+                    m_component.Failures.Add(failure);
                 }
                 else
                 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class DialogManager : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private List<XmlDialog> m_dialogs = new List<XmlDialog>();
 
     public List<XmlDialog> Dialogs
@@ -17,6 +17,6 @@ public class DialogManager : MonoBehaviour
         {
             m_dialogs = value;
         }
-    }
+    }*/
 
 }

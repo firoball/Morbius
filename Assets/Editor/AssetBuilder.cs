@@ -22,8 +22,10 @@ public class AssetBuilder
     {
         if (m_isReady)
         {
-            string name = GetPrefabName(type);
-            GameObject prefab = CreateEmptyPrefab(name);
+            //string name = GetPrefabName(type);
+            string name = GetPrefabName(asset);
+//            GameObject prefab = CreateEmptyPrefab(name);
+            GameObject prefab = new GameObject(name);
             switch (type)
             {
                 case XmlType.CHAPTERS:
@@ -49,6 +51,7 @@ public class AssetBuilder
                 default:
                     break;
             }
+            /*GameObject finalPrefab = */CreatePrefab(prefab);
         }
     }
 
@@ -120,12 +123,46 @@ public class AssetBuilder
         return prefab;
     }
 
+    private GameObject CreatePrefab(GameObject obj)
+    {
+        if (!obj)
+        {
+            return null;
+        }
+
+        string prefabName = obj.name;
+        string prefabPath = m_path + "/" + prefabName + ".prefab";
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+
+        //only create new prefab if no matching one was found
+        if (prefab == null)
+        {
+            //make GameObject a prefab, remove it from scene
+            prefab = PrefabUtility.CreatePrefab(prefabPath, obj);
+            GameObject.DestroyImmediate(obj);
+            if (AssetDatabase.Contains(prefab))
+            {
+                Debug.Log("XML Importer: " + prefabName + " created.");
+            }
+        }
+
+        return prefab;
+    }
+
     private string GetPrefabName(XmlType type)
     {
         string name = type.ToString();
         name = name.ToLower();
         name = char.ToUpper(name[0]) + name.Substring(1);
         name += "Config";
+
+        return name;
+    }
+
+    private string GetPrefabName(TextAsset asset)
+    {
+        string name = asset.name;
+        name = char.ToUpper(name[0]) + name.Substring(1);
 
         return name;
     }

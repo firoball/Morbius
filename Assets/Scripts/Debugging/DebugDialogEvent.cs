@@ -1,9 +1,9 @@
-﻿using Morbius.Scripts.UI;
-using System;
-using System.Linq;
+﻿using Morbius.Scripts.Dialog;
+using Morbius.Scripts.UI;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 
 namespace Morbius.Scripts.Debugging
 {
@@ -14,7 +14,7 @@ namespace Morbius.Scripts.Debugging
         [SerializeField]
         private GameObject m_inventoryTarget;
         [SerializeField]
-        private DialogManager m_manager;
+        private DialogPlayer m_dialogPlayer;
 
         private float m_dialogIndex;
         private float m_dialogStep;
@@ -23,30 +23,32 @@ namespace Morbius.Scripts.Debugging
 
         private void OnGUI()
         {
-            if (m_manager)
+            if (m_dialogPlayer)
             {
-                float max;
+                /*float max;
                 GUIStyle style = new GUIStyle();
                 style.normal.textColor = Color.black;
 
                 //pick dialog
-                max = Convert.ToSingle(m_manager.Dialogs.Count - 1);
+                max = 0;// Convert.ToSingle(m_manager.Dialogs.Count - 1);
                 m_dialogIndex = GUI.HorizontalSlider(new Rect(25, 450, 170, 30), m_dialogIndex, 0, max);
                 m_dialogIndexI = Convert.ToInt32(m_dialogIndex);
                 GUI.Label(new Rect(25, 430, 50, 50), "Dialog Id", style);
                 GUI.Label(new Rect(200, 450, 30, 50), m_dialogIndexI.ToString(), style);
 
                 //pick dialog element
-                max = Convert.ToSingle(m_manager.Dialogs[m_dialogIndexI].Elements.Count - 1);
+                max = 0;// Convert.ToSingle(m_manager.Dialogs[m_dialogIndexI].Elements.Count - 1);
                 m_dialogStep = Mathf.Min(max, m_dialogStep);
                 m_dialogStep = GUI.HorizontalSlider(new Rect(25, 500, 170, 30), m_dialogStep, 0, max);
                 m_dialogStepI = Convert.ToInt32(m_dialogStep);
                 GUI.Label(new Rect(25, 480, 50, 50), "Dialog Element", style);
                 GUI.Label(new Rect(200, 500, 30, 50), m_dialogStepI.ToString(), style);
-
-                if (GUI.Button(new Rect(25, 530, 100, 30),"Show"))
+                */
+                if (GUI.Button(new Rect(25, 530, 100, 30),"Show Dialog"))
                 {
-                    XmlDialogContent content = m_manager.Dialogs[m_dialogIndexI].Elements[m_dialogStepI];
+                    m_dialogPlayer.Play();
+                    //TODO: fix me later to use gameobject oriented approach
+                    /*XmlDialogContent content = m_manager.Dialogs[m_dialogIndexI].Elements[m_dialogStepI];
                     //decision
                     if (content.ChoiceItems.Count > 0)
                     {
@@ -62,11 +64,11 @@ namespace Morbius.Scripts.Debugging
                     else
                     {
                         EditorUtility.DisplayDialog("DebugDialogEvent", "Selected Element does not contain data", "Ok");
-                    }
+                    }*/
                     ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryTarget, null, (x, y) => x.OnHide());
                 }
 
-                if (GUI.Button(new Rect(130, 530, 100, 30), "Hide"))
+                if (GUI.Button(new Rect(130, 530, 100, 30), "Hide Dialog"))
                 {
                     ExecuteEvents.Execute<IDialogEventTarget>(m_dialogTarget, null, (x, y) => x.OnHide());
                     ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryTarget, null, (x, y) => x.OnShow());

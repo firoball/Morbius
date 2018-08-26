@@ -28,6 +28,7 @@ public class PlayerNavigator : MonoBehaviour
 
     void Update()
     {
+        //TODO: add touch support
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
