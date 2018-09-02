@@ -3,8 +3,8 @@ using System;
 
 namespace Morbius.Scripts.Level
 {
-    [Serializable]
-    public class Chapter : MonoBehaviour
+    [CreateAssetMenu]
+    public class Chapter : ScriptableObject
     {
         [SerializeField]
         private string m_title;

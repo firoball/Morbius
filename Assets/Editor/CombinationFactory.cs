@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class CombinationFactory : GenericPrefabFactory<CombinationManager>
 {
+    private static bool s_readyForLink;
+
     public CombinationFactory(GameObject prefab) : base(prefab)
     {
+        s_readyForLink = false;
     }
-
 
     protected override void Deserialize(TextAsset xmlAsset)
     {
@@ -45,6 +47,16 @@ public class CombinationFactory : GenericPrefabFactory<CombinationManager>
         catch (Exception ex)
         {
             Debug.LogException(ex);
+        }
+        s_readyForLink = true;
+    }
+
+    public static void LinkItems()
+    {
+        if (s_readyForLink)
+        {
+            //ItemFactory.ItemManager
+            s_readyForLink = false;
         }
     }
 }

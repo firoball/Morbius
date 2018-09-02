@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Morbius.Scripts.Ambient;
 
 namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(UIFader))]
-    public class ChapterUI : MonoBehaviour, IPointerDownHandler, IChapterEventTarget
+    [RequireComponent(typeof(AudioSource))]
+    public class ChapterUI : MonoBehaviour, IPointerClickHandler, IChapterEventTarget
     {
         [SerializeField]
         private AudioClip m_letter;
@@ -25,6 +25,7 @@ namespace Morbius.Scripts.UI
         private string m_titleStr;
         private string[] m_textStr;
         private UIFader m_fader;
+        private AudioSource m_audio;
         private GameObject m_sender;
 
         private const float c_typeDelay = 0.25f;
@@ -35,6 +36,7 @@ namespace Morbius.Scripts.UI
         {
             m_textStr = new string[] { "", "", "" };
             m_fader = GetComponent<UIFader>();
+            m_audio = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -45,7 +47,7 @@ namespace Morbius.Scripts.UI
             }
         }
 
-        public void OnPointerDown(PointerEventData data)
+        public void OnPointerClick(PointerEventData data)
         {
             if (m_fader.IsEnabled())
             {
@@ -92,9 +94,9 @@ namespace Morbius.Scripts.UI
                 fragment += source[i];
                 m_title.text = fragment;
                 if (source[i] == ' ')
-                    AudioManager.Play(m_space);
+                    m_audio.PlayOneShot(m_space);
                 else
-                    AudioManager.Play(m_letter);
+                    m_audio.PlayOneShot(m_letter);
                 yield return new WaitForSeconds(c_typeDelay);
             }
 
@@ -105,7 +107,7 @@ namespace Morbius.Scripts.UI
             else
             {
                 yield return new WaitForSeconds(c_typeDelay);
-                AudioManager.Play(m_newline);
+                m_audio.PlayOneShot(m_newline);
                 yield return new WaitForSeconds(c_typeDelay);
             }
         }
@@ -123,9 +125,9 @@ namespace Morbius.Scripts.UI
                     fragment[text] += line[i];
                     m_text.text = String.Join("\n", fragment);
                     if (line[i] == ' ')
-                        AudioManager.Play(m_space);
+                        m_audio.PlayOneShot(m_space);
                     else
-                        AudioManager.Play(m_letter);
+                        m_audio.PlayOneShot(m_letter);
                     yield return new WaitForSeconds(c_typeDelay);
 
                 }
@@ -135,7 +137,7 @@ namespace Morbius.Scripts.UI
                     yield return new WaitForSeconds(c_typeDelay);
                     if (text < count - 1)
                     {
-                        AudioManager.Play(m_newline);
+                        m_audio.PlayOneShot(m_newline);
                         yield return new WaitForSeconds(c_typeDelay);
                     }
                 }

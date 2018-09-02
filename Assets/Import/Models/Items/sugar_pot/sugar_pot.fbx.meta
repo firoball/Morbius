@@ -92,7 +92,21 @@ ModelImporter:
     400082: //RootNode
     400084: Thing_tr33
     2300000: Group007
+    2300002: Group000
+    2300004: Group001
+    2300006: Group002
+    2300008: Group003
+    2300010: Group004
+    2300012: Group005
+    2300014: Group006
     3300000: Group007
+    3300002: Group000
+    3300004: Group001
+    3300006: Group002
+    3300008: Group003
+    3300010: Group004
+    3300012: Group005
+    3300014: Group006
     4300000: Group000
     4300002: Group001
     4300004: Group002
@@ -101,6 +115,14 @@ ModelImporter:
     4300010: Group005
     4300012: Group006
     4300014: Group007
+    6400000: Group000
+    6400002: Group001
+    6400004: Group002
+    6400006: Group003
+    6400008: Group004
+    6400010: Group005
+    6400012: Group006
+    6400014: Group007
     9500000: //RootNode
     13700000: Group000
     13700002: Group001
@@ -137,7 +159,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -154,7 +176,7 @@ ModelImporter:
     normalSmoothAngle: 30
     normalImportMode: 1
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -170,10 +192,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

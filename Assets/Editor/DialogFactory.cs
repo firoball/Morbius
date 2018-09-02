@@ -22,27 +22,6 @@ public class DialogFactory : GenericPrefabFactory<Dialog>
         m_gotoTable = new Dictionary<string, string>();
     }
 
-    private AudioClip FindClip(string name)
-    {
-        AudioClip clip = null;
-        if (!string.IsNullOrEmpty(name))
-        {
-            string assetname = Path.GetFileNameWithoutExtension(name);
-            string[] matches = AssetDatabase.FindAssets(assetname + " t:AudioClip");
-            if ((matches.Length > 0) && !string.IsNullOrEmpty(matches[0]))
-            {
-                string path = AssetDatabase.GUIDToAssetPath(matches[0]);
-                clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
-            }
-            else
-            {
-                Debug.LogWarning("DialogFactory: AudioClip <" + name + "> not found.");
-            }
-        }
-
-        return clip;
-    }
-
     private string FindTargetId(XmlDialogElement content)
     {
         string result = null;
@@ -77,8 +56,8 @@ public class DialogFactory : GenericPrefabFactory<Dialog>
         DialogText dialogText = element.AddComponent<DialogText>();
 
         dialogText.Speaker = text.Name;
-        dialogText.Text = text.Text;
-        dialogText.Clip = FindClip(text.File);
+        dialogText.Text = text.Text.Replace("\\n", "\n");
+        dialogText.Clip = AssetFinder.FindClip(text.File);
 
         m_objectTable.Add(text.Id, dialogText);
         string targetId = FindTargetId(text);

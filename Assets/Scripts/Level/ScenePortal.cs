@@ -23,6 +23,8 @@ namespace Morbius.Scripts.Level
         private bool m_started;
 
         private const float c_uiDelay = 1.0f;
+        private const float c_fadeSpeedSlow = 0.4f;
+        private const float c_fadeSpeedFast = 3.0f;
 
         private void Start()
         {
@@ -42,7 +44,7 @@ namespace Morbius.Scripts.Level
 
         private void LoadScene()
         {
-            Debug.Log("Loading Scene...");
+            //Debug.Log("Loading Scene...");
             SceneManager.LoadScene(m_sceneId);
         }
 
@@ -50,7 +52,7 @@ namespace Morbius.Scripts.Level
         {
             if (m_chapter)
             {
-                AudioManager.FadeAndStopMusic();
+                AudioManager.FadeAndStop(c_fadeSpeedFast);
                 ExecuteEvents.Execute<IChapterEventTarget>(m_chapterUI, null, (x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
                 ExecuteEvents.Execute<IChapterEventTarget>(m_chapterUI, null, (x, y) => x.OnShow(gameObject));
             }
@@ -68,6 +70,7 @@ namespace Morbius.Scripts.Level
 
         private IEnumerator Pixelate()
         {
+            AudioManager.FadeAndStop(c_fadeSpeedSlow);
             ExecuteEvents.Execute<IPixelProgressEventTarget>(m_camera, null, (x, y) => x.OnPixelate());
             yield return new WaitForSeconds(c_uiDelay);
             StartTypewriter();

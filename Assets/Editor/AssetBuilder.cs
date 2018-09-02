@@ -29,7 +29,8 @@ public class AssetBuilder
             switch (type)
             {
                 case XmlType.CHAPTERS:
-                    ChapterFactory chapterFactory = new ChapterFactory(prefab);
+                    GameObject.DestroyImmediate(prefab);
+                    ChapterFactory chapterFactory = new ChapterFactory(m_path);
                     chapterFactory.Add(asset);
                     break;
 
@@ -44,14 +45,18 @@ public class AssetBuilder
                     break;
 
                 case XmlType.ITEMS:
-                    ItemFactory itemFactory = new ItemFactory(prefab);
+                    ItemFactory itemFactory = new ItemFactory(prefab, m_path);
                     itemFactory.Add(asset);
                     break;
 
                 default:
                     break;
             }
-            /*GameObject finalPrefab = */CreatePrefab(prefab);
+
+            if (prefab)
+            {
+                CreatePrefab(prefab);
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 public class XmlImport : EditorWindow
 {
@@ -194,6 +195,15 @@ public class XmlImport : EditorWindow
                 )
                 {
                     string path = AssetDatabase.GUIDToAssetPath(matches[0]);
+
+                    //ugly patch to skip search in editor folder
+                    int skipCounter = 1;
+                    while (path.Contains("Editor") && matches.Length > skipCounter)
+                    {
+                        path = AssetDatabase.GUIDToAssetPath(matches[skipCounter]);
+                        skipCounter++;
+                    }
+
                     TextAsset asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
                     s_assets.Add(asset);
 

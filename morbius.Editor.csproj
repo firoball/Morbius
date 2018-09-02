@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\AssetBuilder.cs" />
+    <Compile Include="Assets\Editor\AssetFinder.cs" />
     <Compile Include="Assets\Editor\ChapterFactory.cs" />
     <Compile Include="Assets\Editor\CombinationFactory.cs" />
     <Compile Include="Assets\Editor\DialogFactory.cs" />
@@ -166,6 +167,9 @@
     <Compile Include="Assets\Editor\XML\XmlDialogText.cs" />
     <Compile Include="Assets\Editor\XmlImport.cs" />
     <Compile Include="Assets\Editor\XmlType.cs" />
+    <Compile Include="Assets\Editor\XML\XmlItem.cs" />
+    <Compile Include="Assets\Editor\XML\XmlItems.cs" />
+    <Compile Include="Assets\Editor\XML\XmlItemSequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Import\XML\de\Chapters\chapters.xml" />

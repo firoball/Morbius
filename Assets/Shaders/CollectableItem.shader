@@ -2,6 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_HighLightFac ("HighLight Factor", Range(0,1))  = 0.0
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 	}
@@ -17,6 +18,7 @@
 			half _Glossiness;
 			half _Metallic;
 			fixed4 _Color;
+			uniform float _HighLightFac;
 
 			struct vs_in
 			{
@@ -47,7 +49,7 @@
 			float4 frag(vs_out IN) : COLOR
 			{
 				float4 colortex = tex2D(_MainTex, IN.tex);
-				float diffuse = 0.7 + 0.3*saturate(dot(_WorldSpaceLightPos0, IN.normal) *4);
+				float diffuse = 0.7 +1.1*saturate(dot(_WorldSpaceLightPos0, IN.normal) * 4);
 
 				//calculate highlight with screen UVs
 				float timer = _Time.y * 0.3;
@@ -56,10 +58,10 @@
 				float txy = screenUV.y - offsety;
 				float show = sign(saturate(sin(txy * PI)));
 				float highlight = show * saturate(sin(txy * 2 * PI));
-				highlight *= highlight * 0.5;
+				highlight *= highlight * 0.5 * _HighLightFac;
 
 				float4 color;
-				color = saturate(colortex * diffuse * _Color * unity_AmbientSky + highlight);
+				color = saturate(colortex * diffuse * _Color * unity_AmbientSky +highlight);
 				// Metallic and smoothness come from slider variables
 				//o.Metallic = _Metallic;
 				//o.Smoothness = _Glossiness;

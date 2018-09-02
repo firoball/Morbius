@@ -2,33 +2,61 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using UnityEditor;
 using UnityEngine;
 using Morbius.Scripts.Level;
 
-public class ChapterFactory : GenericPrefabFactory<MonoBehaviour>
+public class ChapterFactory
 {
-    public ChapterFactory(GameObject prefab) : base(prefab)
+    private string m_parentFolder;
+    private string m_path;
+
+    public ChapterFactory(string parentFolder)
     {
+        m_parentFolder = parentFolder;
     }
 
-    private void BuildChapter(XmlChapter xmlChapter, string name)
+    public void Add(TextAsset asset)
     {
+        Deserialize(asset);
+    }
+
+    private void CreateFolder(string folder)
+    {
+        string guid = AssetDatabase.CreateFolder(m_parentFolder, folder);
+        m_path = AssetDatabase.GUIDToAssetPath(guid);
+    }
+
+    private void CreateAsset(Chapter chapter)
+    {
+        string path = AssetDatabase.GenerateUniqueAssetPath(m_path + "/" + chapter.name + ".asset");
+        AssetDatabase.CreateAsset(chapter, path);
+    }
+
+    private Chapter BuildChapter(XmlChapter xmlChapter)
+    {
+        Chapter chapter = null;
+
         //get first non-empty string, if any
         string tester = xmlChapter.Text.Where(x => !String.IsNullOrEmpty(x)).FirstOrDefault();
 
-        //don't create child GOs for empty chapter definitions
+        //don't create objects for empty chapter definitions
         if (!String.IsNullOrEmpty(xmlChapter.Title) || !String.IsNullOrEmpty(tester))
         {
-            GameObject element = AddChild(name);
-            Chapter chapter = element.AddComponent<Chapter>();
+            chapter = ScriptableObject.CreateInstance<Chapter>();
 
             chapter.Title = xmlChapter.Title;
+            chapter.name = "Chapter " + chapter.Title;
             Array.Copy(xmlChapter.Text, chapter.Text, chapter.Text.Length);
         }
+
+        return chapter;
     }
 
-    protected override void Deserialize(TextAsset xmlAsset)
+    private void Deserialize(TextAsset xmlAsset)
     {
+        CreateFolder("Chapters");
+
         try
         {
             StringReader reader = new StringReader(xmlAsset.ToString());
@@ -36,9 +64,13 @@ public class ChapterFactory : GenericPrefabFactory<MonoBehaviour>
             XmlChapters chapters = (XmlChapters)serializer.Deserialize(reader);
 
             int chapterCount = 0;
-            foreach (XmlChapter chapter in chapters.Chapters)
+            foreach (XmlChapter xmlChapter in chapters.Chapters)
             {
-                BuildChapter(chapter, "Chapter" + chapterCount);
+                Chapter chapter = BuildChapter(xmlChapter);
+                if (chapter)
+                {
+                    CreateAsset(chapter);
+                }
                 chapterCount++;
             }
         }
