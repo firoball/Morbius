@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Morbius.Scripts.UI
+namespace Morbius.Scripts.Cursor
 {
     [Serializable]
     public class CursorConfig

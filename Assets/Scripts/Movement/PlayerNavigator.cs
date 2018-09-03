@@ -28,6 +28,7 @@ public class PlayerNavigator : MonoBehaviour
 
     void Update()
     {
+        //TODO this code is doubled with CursorManager....
         //TODO: add touch support
         if (Input.GetMouseButtonDown(0))
         {

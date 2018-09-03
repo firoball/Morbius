@@ -1,4 +1,4 @@
-﻿namespace Morbius.Scripts.UI
+﻿namespace Morbius.Scripts.Cursor
 {
     public enum CursorState : int
     {

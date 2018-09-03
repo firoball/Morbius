@@ -129,5 +129,13 @@ namespace Morbius.Scripts.Items
             sequenceCount = Math.Max(0, Math.Min(sequenceCount, m_sequences.Count - 1));
             return m_sequences[sequenceCount];
         }
+
+        public override string ToString()
+        {
+            string str = m_label + " (" + m_id + ") ";
+            if (m_collectable) str += "[D]";
+            if (m_destroyable) str += "[C]";
+            return str;
+        }
     }
 }

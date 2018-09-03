@@ -4,14 +4,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Morbius.Scripts.Items;
+using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.UI
 {
+    [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(UIFader))]
     public class InventoryUI : MonoBehaviour, IButtonEventTarget, IHoverEventTarget, IInventoryEventTarget
     {
         [SerializeField]
         private GameObject m_cursor;
+        [SerializeField]
+        private GameObject m_inventory;
         [SerializeField]
         private GameObject m_itemPrefab;
 
@@ -23,16 +28,17 @@ namespace Morbius.Scripts.UI
         {
             m_items = new List<Image>();
             m_fader = GetComponent<UIFader>();
+            Button button = GetComponent<Button>();
+            button.onClick.AddListener(() => Inventory.DropHandItem());
         }
 
         public void OnButtonNotification(GameObject sender)
         {
-            Debug.Log("item clicked!");
             Image image = sender.GetComponent<Image>();
             if (image)
             {
-                //... image.sprite
-                //send event to m_receiver
+                //TODO use event?
+                Inventory.Interact(image.sprite);
             }
         }
 
@@ -43,7 +49,8 @@ namespace Morbius.Scripts.UI
             {
                 //get name from itemmanager
                 //should not be done here but in manager object
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(image.name));
+                //ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(image.name));
+                Inventory.OnHoverEnter(image.sprite);
             }
         }
 
@@ -53,7 +60,8 @@ namespace Morbius.Scripts.UI
             if (image && m_cursor)
             {
                 //should not be done here but in manager object
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(null));
+                //ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(null));
+                Inventory.OnHoverExit(image.sprite);
             }
         }
 

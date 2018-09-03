@@ -51,7 +51,6 @@ namespace Morbius.Scripts.Events
 
         public static void RaiseEvent(int eventId)
         {
-            Debug.Log("triggered event: " + eventId);
             if (s_singleton)
             {
                 List<DefaultEvent> selectedEvents = s_singleton.m_events.Where(x =>

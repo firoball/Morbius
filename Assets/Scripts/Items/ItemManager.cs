@@ -26,7 +26,6 @@ public class ItemManager : MonoBehaviour
         {
             s_singleton = this;
             m_audio = GetComponent<AudioSource>();
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -156,4 +155,8 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public static void Clear()
+    {
+        s_itemStates.Clear();
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Morbius.Scripts.Items;
 
 namespace Morbius.Scripts.Events
 {
@@ -11,7 +12,10 @@ namespace Morbius.Scripts.Events
     {
         public override IEnumerator Execute(int eventId)
         {
-            yield return new WaitForSeconds(1.0f);
+            Item item = ItemDatabase.GetItemById(eventId);
+            Inventory.Collect(item);
+            ItemManager.CollectEvent(item);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

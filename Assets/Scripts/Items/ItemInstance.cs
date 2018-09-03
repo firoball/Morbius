@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Events;
+using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.Items
 {
@@ -17,6 +18,9 @@ namespace Morbius.Scripts.Items
         private bool m_morphed;
         private bool m_spawned;
         private ItemSaveState m_status;
+        private bool m_readyForCollection;
+        private bool m_hovered;
+        private bool m_playerNear;
 
         public Item Item
         {
@@ -36,6 +40,9 @@ namespace Morbius.Scripts.Items
             SetupMaterials();
             m_destroy = false;
             m_morphed = false;
+            m_playerNear = false;
+            m_readyForCollection = false;
+            m_hovered = false;
         }
 
         private void Start()
@@ -100,15 +107,22 @@ namespace Morbius.Scripts.Items
             }
 
             //remove myself if necessary
-            m_destroy = m_status.Removed;
+            if (!m_destroy)
+                m_destroy = m_status.Removed;
 
             UpdateMaterial();
         }
 
         private void UpdateMaterial()
         {
-            if (m_item.IsReadyForCollection(m_status.SequenceIndex))
+            if (m_item.IsReadyForCollection(m_status.SequenceIndex) && !m_readyForCollection)
             {
+                m_readyForCollection = true;
+                if (m_hovered)
+                {
+                    CursorManager.UpdateCursorItem(m_item.Label, true, false);
+                }
+
                 foreach (Material mat in m_materials)
                 {
                     mat.SetFloat("_HighLightFac", 1.0f);
@@ -156,13 +170,16 @@ namespace Morbius.Scripts.Items
         {
             if (m_destroy)
             {
+                if (m_hovered)
+                {
+                    CursorManager.SetDefaultCursor();
+                }
                 Destroy(gameObject);
             }
         }
 
         private void Collect()
         {
-            ItemManager.CollectEvent(m_item);
             EventManager.RaiseEvent(m_item.Id);
             m_destroy = true;
         }
@@ -197,14 +214,14 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        public void OnPointerClick(PointerEventData data)
+        private void TriggerAction()
         {
-            Debug.Log("Clicked " + gameObject.name);
-            Item handItem = null; //TODO dummy - get from CursorManager
+            Item handItem = Inventory.ItemInHand;
             if (handItem != null)
             {
                 if (ItemManager.Combine(m_item, handItem))
                 {
+                    //TODO this may not be required here and can be handled via ItemSAveState in Combine() directly
                     if (m_item.Destroyable)
                     {
                         m_destroy = true;
@@ -217,18 +234,47 @@ namespace Morbius.Scripts.Items
             }
         }
 
+        public void OnTriggerEnter(Collider other)
+        {
+            //TODO: check if collider is the one of player
+            m_playerNear = true;
+            //TODO: stop player movement
+
+            //TODO check if item is still the selected one
+            TriggerAction();
+            m_playerNear = false;
+        }
+
+        public void OnTriggerExit(Collider other)
+        {
+            //TODO: check if collider is the one of player
+            m_playerNear = false;
+        }
+
+        public void OnPointerClick(PointerEventData data)
+        {
+            
+            //TODO: store clicked object with Cursormanager and evaluate
+            //evaluation here is required in case player is already in trigger range
+            //if (m_playerNear) //temp
+            {
+                TriggerAction();
+                m_playerNear = false;
+            }
+            //TODO player must be near - add "memory" function for cursormanager
+        }
+
         public void OnPointerEnter(PointerEventData data)
         {
-            Debug.Log("Enter " + gameObject.name);
-
-            //TODO inform CursorManager
+            m_hovered = true;
+            bool collectable = m_item.IsReadyForCollection(m_status.SequenceIndex);
+            CursorManager.UpdateCursorItem(m_item.Label, collectable, false);
         }
 
         public void OnPointerExit(PointerEventData data)
         {
-            Debug.Log("Exit " + gameObject.name);
-
-            //TODO inform CursorManager
+            m_hovered = false;
+            CursorManager.SetDefaultCursor();
         }
     }
 }

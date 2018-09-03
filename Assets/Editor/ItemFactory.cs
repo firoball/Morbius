@@ -6,13 +6,13 @@ using UnityEngine;
 using UnityEditor;
 using Morbius.Scripts.Items;
 
-public class ItemFactory : GenericPrefabFactory<ItemList>
+public class ItemFactory : GenericPrefabFactory<ItemDatabase>
 {
     private string m_parentFolder;
     private string m_path;
-    private static ItemList s_itemList;
+    private static ItemDatabase s_itemList;
 
-    public static ItemList ItemList
+    public static ItemDatabase ItemList
     {
         get
         {
@@ -38,11 +38,11 @@ public class ItemFactory : GenericPrefabFactory<ItemList>
             XmlItems items = (XmlItems)serializer.Deserialize(reader);
             foreach (XmlItem xmlItem in items.Items)
             {
-                if(!m_component.ItemDatabase.Exists(i => Convert.ToString(i.Id) == xmlItem.Id))
+                if(!m_component.Items.Exists(i => Convert.ToString(i.Id) == xmlItem.Id))
                 {
                     Item item = BuildItem(xmlItem);
                     CreateAsset(item);
-                    m_component.ItemDatabase.Add(item);
+                    m_component.Items.Add(item);
                 }
                 else
                 {
@@ -84,7 +84,7 @@ public class ItemFactory : GenericPrefabFactory<ItemList>
         item.Sequences = xmlItem.Sequences.Select(x => new ItemSequence
         {
             TriggerId = Convert.ToInt32(x.Result),
-            Description = x.Description.Replace("\\n", "\n"),
+            Description = x.Description != null ? x.Description.Replace("\\n", "\n") : null,
             Audio = AssetFinder.FindClip(x.Sound)
         }
         ).ToList();

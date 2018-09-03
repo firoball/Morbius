@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using Morbius.Scripts.Items;
 
-public class ItemList : MonoBehaviour
+public class ItemDatabase : MonoBehaviour
 {
-    private static ItemList s_singleton;
+    private static ItemDatabase s_singleton;
 
     [SerializeField]
-    private List<Item> m_itemDatabase = new List<Item>();
+    private List<Item> m_items = new List<Item>();
 
-    public List<Item> ItemDatabase
+    public List<Item> Items
     {
         get
         {
-            return m_itemDatabase;
+            return m_items;
         }
 
         set
         {
-            m_itemDatabase = value;
+            m_items = value;
         }
     }
 
@@ -39,9 +39,21 @@ public class ItemList : MonoBehaviour
 
     private void Start()
     {
-        foreach(Item item in m_itemDatabase)
+        foreach(Item item in m_items)
         {
             ItemManager.RegisterItem(item);
+        }
+    }
+
+    public static Item GetItemById(int id)
+    {
+        if (s_singleton)
+        {
+            return s_singleton.m_items.Find(x => x.Id == id);
+        }
+        else
+        {
+            return null;
         }
     }
 }
