@@ -14,6 +14,8 @@ namespace Morbius.Scripts.UI
         private Animator m_cursorTarget;
         [SerializeField]
         private Text m_textTarget;
+        [SerializeField]
+        private bool m_hideCursor;
 
         void Awake()
         {
@@ -24,7 +26,7 @@ namespace Morbius.Scripts.UI
 
         void Update()
         {
-            //Cursor.visible = false;
+            UnityEngine.Cursor.visible = !m_hideCursor;
             Position();
         }
 

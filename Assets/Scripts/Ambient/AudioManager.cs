@@ -19,6 +19,7 @@ namespace Morbius.Scripts.Ambient
         private float m_musicTargetVolume;
         private bool m_delayedStop;
         private float m_fadeSpeed;
+        private float m_musicFadeDelay;
 
         private AudioSource m_audioSource;
         private AudioClip m_nextClip;
@@ -26,8 +27,9 @@ namespace Morbius.Scripts.Ambient
         private float m_audioDefaultVolume;
 
         private const float c_musicfadeSpeedDefault = 1.0f;
+        private const float c_musicfadeDelayTime = 1.0f;
         private const float c_audiofadeSpeedDefault = 2.5f;
-        private const float c_musicBackgroundVolumeFac = 0.4f;
+        private const float c_musicBackgroundVolumeFac = 0.3f;
 
         private const float c_pitchLimit = 5.0f;
 
@@ -84,6 +86,12 @@ namespace Morbius.Scripts.Ambient
             float targetVolume = m_musicTargetVolume;
             if (m_audioSource.isPlaying)
             {
+                m_musicFadeDelay = c_musicfadeDelayTime;
+                targetVolume *= c_musicBackgroundVolumeFac;
+            }
+            else if (m_musicFadeDelay > 0.0f)
+            {
+                m_musicFadeDelay = Mathf.Max(m_musicFadeDelay - Time.deltaTime, 0.0f);
                 targetVolume *= c_musicBackgroundVolumeFac;
             }
 
@@ -185,13 +193,13 @@ namespace Morbius.Scripts.Ambient
         }
 
         //todo: remove?
-        public static void Play(AudioClip clip)
+        /*public static void Play(AudioClip clip)
         {
             if (s_singleton != null)
             {
                 s_singleton.m_audioSource.PlayOneShot(clip);
             }
-        }
+        }*/
 
         public static void ScheduleVoice(AudioClip clip)
         {

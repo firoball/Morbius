@@ -35,7 +35,7 @@ public class AssetBuilder
                     break;
 
                 case XmlType.COMBINATIONS:
-                    CombinationFactory comboFactory = new CombinationFactory(prefab);
+                    CombinationFactory comboFactory = new CombinationFactory(prefab, m_path);
                     comboFactory.Add(asset);
                     break;
 

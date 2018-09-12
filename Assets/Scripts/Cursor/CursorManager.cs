@@ -4,143 +4,192 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Morbius.Scripts.Items;
 using Morbius.Scripts.UI;
 
 namespace Morbius.Scripts.Cursor
 {
     public class CursorManager : MonoBehaviour
     {
-        static CursorManager s_singleton;
-
         [SerializeField]
         private GameObject m_cursorUI;
 
-        private Vector3 m_clickedPosition;
-        private GameObject m_clickedObject;
+        private GameObject m_hoveredObject;
+        private bool m_hoveredObjectwasNull;
+        private bool m_locked;
         private Sprite m_icon;
+        private ICursorObject m_cursorObject;
+        private CursorInfo m_cursorInfo;
 
         private void Awake()
         {
-            if (s_singleton == null)
-            {
-                s_singleton = this;
-            }
-            else
-            {
-                Debug.Log("CursorManager: Multiple instances detected. Destroying...");
-                Destroy(gameObject);
-            }
+            m_hoveredObject = null;
+            m_hoveredObjectwasNull = false;
+            m_locked = false;
         }
 
         private void Update()
         {
-            //TODO add event and make PlayerMovement receiver... or move to playermovement including last clicked object
-            if (Input.GetMouseButtonDown(0))
+            if (!m_locked)
             {
-                RaycastHit hit;
-
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000))
-                {
-                    m_clickedPosition = hit.point;
-                    m_clickedObject = hit.transform.gameObject;
-                }
+                Raycast();
+                //handle hover
+                UpdateCursorInfo();
+                //handle hand icon 
+                UpdateCursorIcon();
             }
-
         }
 
-        public static void UpdateCursorItem(string text, bool collectable, bool inInventory)
+        private void Raycast()
         {
-            if (s_singleton)
+            GameObject lastHoveredObject = m_hoveredObject;
+            PointerEventData pointerData = new PointerEventData(EventSystem.current)
             {
-                GameObject target = s_singleton.m_cursorUI;
-                //already item in hold, indicate combination
-                if (s_singleton.m_icon)
+                position = Input.mousePosition
+            };
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            if (results.Count > 0)
+            {
+                //pick topmost object
+                m_hoveredObject = results[0].gameObject;
+            }
+            else
+            {
+                m_hoveredObject = null;
+            }
+
+            //initiate hover events, if any
+            if (lastHoveredObject != m_hoveredObject || (lastHoveredObject == null && !m_hoveredObjectwasNull))
+            {
+                if (m_hoveredObject)
                 {
-                    ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetCursor(CursorState.COMBINE));
+                    GetCursorObject(m_hoveredObject);
                 }
                 else
                 {
-                    //item may either be taken directly or just investigated.
-                    //items from inventory are not "taken", show default
-                    CursorState state = CursorState.INVESTIGATE;
-                    if (collectable)
-                    {
-                        state = CursorState.GRAB;
-                    }
-                    if(inInventory)
-                    {
-                        state = CursorState.DEFAULT;
-                    }
-
-                    ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetCursor(state));
+                    SetDefaultCursor();
                 }
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetText(text));
             }
+
+            //store null pointer flag in case object is removed next frame.
+            m_hoveredObjectwasNull = (m_hoveredObject == null);
         }
 
-        public static void UpdateCursorText(string text)
+        private void UpdateCursorInfo()
         {
-            if (s_singleton)
-            {
-                GameObject target = s_singleton.m_cursorUI;
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetText(text));
-            }
-        }
+            //cyclically update cursor object
+            //this is not perfect, but performance impact should be little and avoids trigger messages
 
-        public static void UpdateCursorIcon(Sprite sprite)
-        {
-            if (s_singleton)
+            if (m_cursorObject != null)
             {
-                GameObject target = s_singleton.m_cursorUI;
-                s_singleton.m_icon = sprite;
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetIcon(sprite));
-            }
-        }
-
-        public static void UpdateCursorState(CursorState state)
-        {
-            if (s_singleton)
-            {
-                GameObject target = s_singleton.m_cursorUI;
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetCursor(state));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetText(null));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetIcon(null));
-            }
-        }
-
-        public static void SetDefaultCursor()
-        {
-            if (s_singleton)
-            {
-                GameObject target = s_singleton.m_cursorUI;
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetCursor(CursorState.DEFAULT));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetText(null));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(target, null, (x, y) => x.OnSetIcon(s_singleton.m_icon));
-            }
-        }
-
-        public static GameObject LastClickedObject()
-        {
-            if (s_singleton)
-            {
-                return s_singleton.m_clickedObject;
+                CursorInfo info = m_cursorObject.GetCursorInfo();
+                if (info != m_cursorInfo)
+                {
+                    m_cursorInfo = info;
+                    UpdateCursor(info);
+                }
             }
             else
             {
-                return null;
+
             }
         }
 
-        public static Vector3 LastClickedPosition()
+        private void UpdateCursorIcon()
         {
-            if (s_singleton)
+            Sprite icon;
+            if (Inventory.ItemInHand)
             {
-                return s_singleton.m_clickedPosition;
+                icon = Inventory.ItemInHand.Icon;
             }
             else
             {
-                return Vector3.zero;
+                icon = null;
+            }
+            if (icon != m_icon)
+            {
+                m_icon = icon;
+                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(icon));
             }
         }
+
+        private void GetCursorObject(GameObject target)
+        {
+            m_cursorObject = target.GetComponentInParent<ICursorObject>();
+            if (m_cursorObject == null)
+            {
+                //object does not carry any cursor info
+                SetDefaultCursor();
+            }
+        }
+
+        private void UpdateCursor(CursorInfo info)
+        {
+            //Cursor
+            CursorState state;
+            if (m_icon)
+            {
+                //already item in hold, indicate combination
+                state = CursorState.COMBINE;
+            }
+            else
+            {
+                if (info.IsGrabable)
+                {
+                    state = CursorState.GRAB;
+                }
+                else if (info.IsInteractable)
+                {
+                    state = CursorState.INVESTIGATE;
+                }
+                else if (info.IsPortal)
+                {
+                    state = CursorState.LEAVE;
+                }
+                else
+                {
+                    state = CursorState.DEFAULT;
+                }
+            }
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetCursor(state));
+
+            //Icon
+            if (info.Icon)
+            {
+                m_icon = info.Icon;
+                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(info.Icon));
+            }
+
+            //Text
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetText(info.Label));
+        }
+
+        private void SetDefaultCursor()
+        {
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetCursor(CursorState.DEFAULT));
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetText(null));
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(m_icon));
+
+            m_cursorObject = null;
+            m_cursorInfo = new CursorInfo();
+        }
+
+        public void OnDialogBegin()
+        {
+            m_locked = true;
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetCursor(CursorState.TALK));
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetText(null));
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(null));
+        }
+
+        public void OnDialogEnd()
+        {
+            m_locked = false;
+            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(m_icon));
+        }
+
     }
 }

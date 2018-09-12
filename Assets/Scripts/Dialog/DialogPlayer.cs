@@ -16,6 +16,9 @@ namespace Morbius.Scripts.Dialog
         private bool m_stopped;
         private Dialog m_dialog;
 
+        private const float c_minDisplayTime = 1.5f;
+        private const float c_dialogPauseTime = 0.5f;
+
         private void Awake()
         {
             //Dialog requires instance in scene...
@@ -68,10 +71,11 @@ namespace Morbius.Scripts.Dialog
         private void ShowText(DialogText text)
         {
             ExecuteEvents.Execute<IDialogEventTarget>(m_dialogUI, null, (x, y) => x.OnShowText(text.Speaker, text.Text));
-            //AudioManager.ScheduleVoice(text.Clip);
+            AudioManager.ScheduleVoice(text.Clip);
 
+            float delay = Mathf.Max(c_minDisplayTime, text.Clip.length + c_dialogPauseTime);
             //TODO: AudioManager handling
-            StartCoroutine(DummyDelay());
+            StartCoroutine(Delay(delay));
         }
 
         private void ShowChoices (DialogChoices choices)
@@ -96,9 +100,9 @@ namespace Morbius.Scripts.Dialog
             }
         }
 
-        private IEnumerator DummyDelay()
+        private IEnumerator Delay(float delay)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(delay);
             Proceed();
         }
 

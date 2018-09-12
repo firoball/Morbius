@@ -158,6 +158,9 @@
     <Compile Include="Assets\Editor\ItemFactory.cs" />
     <Compile Include="Assets\Editor\XML\XmlChapter.cs" />
     <Compile Include="Assets\Editor\XML\XmlChapters.cs" />
+    <Compile Include="Assets\Editor\XML\XmlCombinationElement.cs" />
+    <Compile Include="Assets\Editor\XML\XmlCombinationLink.cs" />
+    <Compile Include="Assets\Editor\XML\XmlCombinations.cs" />
     <Compile Include="Assets\Editor\XML\XmlDialog.cs" />
     <Compile Include="Assets\Editor\XML\XmlDialogChoice.cs" />
     <Compile Include="Assets\Editor\XML\XmlDialogChoiceItem.cs" />

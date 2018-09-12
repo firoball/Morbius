@@ -73,9 +73,9 @@ namespace Morbius.Scripts.Items
             }
             s_itemInHand = item;
             //TODO inform Cursor
-            CursorManager.UpdateCursorIcon(item.Icon);
+            //CursorManager.UpdateCursorIcon(item.Icon);
             //when item is taken, inventory object is destroyed, hover exit event does not fire anymore. trigger manually
-            CursorManager.UpdateCursorText(null);
+            //CursorManager.UpdateCursorText(null);
             Remove(item);
         }
 
@@ -86,7 +86,7 @@ namespace Morbius.Scripts.Items
                 Add(s_itemInHand);
                 s_itemInHand = null;
                 //TODO inform Cursor
-                CursorManager.UpdateCursorIcon(null);
+                //CursorManager.UpdateCursorIcon(null);
             }
 
         }
@@ -148,24 +148,13 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        //todo make event?
-        public static void OnHoverEnter(Sprite sprite)
+        public static Item Find(Sprite sprite)
         {
-            if (sprite && s_singleton)
-            {
-                Item item = s_items.Find(x => x.Icon == sprite);
-                CursorManager.UpdateCursorItem(item.Label, true, true);
-            }
+            if (sprite == null)
+                return null;
+            else
+                return s_items.Find(x => x.Icon == sprite);
         }
 
-        //todo make event?
-        public static void OnHoverExit(Sprite sprite)
-        {
-            if (sprite && s_singleton)
-            {
-                Item item = s_items.Find(x => x.Icon == sprite);
-                CursorManager.SetDefaultCursor();
-            }
-        }
     }
 }

@@ -31,7 +31,7 @@ public class ItemDatabase : MonoBehaviour
         }
         else
         {
-            Debug.Log("ItemList: Multiple instances detected. Destroying...");
+            Debug.Log("ItemDatabase: Multiple instances detected. Destroying...");
             Destroy(this);
         }
 

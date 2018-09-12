@@ -18,6 +18,10 @@ public class PlayerNavigator : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         m_pressedTime = 0.0f;
+
+        //compensate different scene scaling
+        m_walkSpeed *= transform.localScale.y;
+        m_runSpeed *= transform.localScale.y;
     }
 
     /*private void OnGUI()

@@ -11,7 +11,7 @@ namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(UIFader))]
-    public class InventoryUI : MonoBehaviour, IButtonEventTarget, IHoverEventTarget, IInventoryEventTarget
+    public class InventoryUI : MonoBehaviour, IButtonEventTarget, /*IHoverEventTarget, */IInventoryEventTarget
     {
         [SerializeField]
         private GameObject m_cursor;
@@ -42,7 +42,7 @@ namespace Morbius.Scripts.UI
             }
         }
 
-        public void OnHoverBeginNotification(GameObject sender)
+       /* public void OnHoverBeginNotification(GameObject sender)
         {
             Image image = sender.GetComponent<Image>();
             if (image && m_cursor)
@@ -63,7 +63,7 @@ namespace Morbius.Scripts.UI
                 //ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(null));
                 Inventory.OnHoverExit(image.sprite);
             }
-        }
+        }*/
 
         public void OnAdd(Sprite item)
         {

@@ -2,11 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Events;
-using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.Items
 {
-    public class ItemInstance : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+    public class ItemInstance : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
         private Item m_item;
@@ -19,7 +18,6 @@ namespace Morbius.Scripts.Items
         private bool m_spawned;
         private ItemSaveState m_status;
         private bool m_readyForCollection;
-        private bool m_hovered;
         private bool m_playerNear;
 
         public Item Item
@@ -42,7 +40,6 @@ namespace Morbius.Scripts.Items
             m_morphed = false;
             m_playerNear = false;
             m_readyForCollection = false;
-            m_hovered = false;
         }
 
         private void Start()
@@ -118,10 +115,6 @@ namespace Morbius.Scripts.Items
             if (m_item.IsReadyForCollection(m_status.SequenceIndex) && !m_readyForCollection)
             {
                 m_readyForCollection = true;
-                if (m_hovered)
-                {
-                    CursorManager.UpdateCursorItem(m_item.Label, true, false);
-                }
 
                 foreach (Material mat in m_materials)
                 {
@@ -170,10 +163,6 @@ namespace Morbius.Scripts.Items
         {
             if (m_destroy)
             {
-                if (m_hovered)
-                {
-                    CursorManager.SetDefaultCursor();
-                }
                 Destroy(gameObject);
             }
         }
@@ -264,17 +253,5 @@ namespace Morbius.Scripts.Items
             //TODO player must be near - add "memory" function for cursormanager
         }
 
-        public void OnPointerEnter(PointerEventData data)
-        {
-            m_hovered = true;
-            bool collectable = m_item.IsReadyForCollection(m_status.SequenceIndex);
-            CursorManager.UpdateCursorItem(m_item.Label, collectable, false);
-        }
-
-        public void OnPointerExit(PointerEventData data)
-        {
-            m_hovered = false;
-            CursorManager.SetDefaultCursor();
-        }
     }
 }

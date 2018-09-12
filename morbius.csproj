@@ -98,8 +98,13 @@
     <Compile Include="Assets\Scripts\Ambient\MusicItem.cs" />
     <Compile Include="Assets\Scripts\Ambient\RandomColor.cs" />
     <Compile Include="Assets\Scripts\Cursor\CursorConfig.cs" />
+    <Compile Include="Assets\Scripts\Cursor\CursorInfo.cs" />
     <Compile Include="Assets\Scripts\Cursor\CursorManager.cs" />
+    <Compile Include="Assets\Scripts\Cursor\CursorInventoryItem.cs" />
+    <Compile Include="Assets\Scripts\Cursor\CursorScenePortal.cs" />
+    <Compile Include="Assets\Scripts\Cursor\CursorSceneItem.cs" />
     <Compile Include="Assets\Scripts\Cursor\CursorState.cs" />
+    <Compile Include="Assets\Scripts\Cursor\ICursorObject.cs" />
     <Compile Include="Assets\Scripts\Debugging\DebugCursorEvent.cs" />
     <Compile Include="Assets\Scripts\Debugging\DebugDialogEvent.cs" />
     <Compile Include="Assets\Scripts\Debugging\DebugInfoTextEvent.cs" />
@@ -114,6 +119,8 @@
     <Compile Include="Assets\Scripts\Events\EventManager.cs" />
     <Compile Include="Assets\Scripts\Events\ItemCollectEvent.cs" />
     <Compile Include="Assets\Scripts\Items\Combination.cs" />
+    <Compile Include="Assets\Scripts\Items\CombinationDatabase.cs" />
+    <Compile Include="Assets\Scripts\Items\Failure.cs" />
     <Compile Include="Assets\Scripts\Items\Inventory.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\ItemDatabase.cs" />
@@ -125,7 +132,6 @@
     <Compile Include="Assets\Scripts\Level\Chapter.cs" />
     <Compile Include="Assets\Scripts\Level\CreditsScroller.cs" />
     <Compile Include="Assets\Scripts\Level\ScenePortal.cs" />
-    <Compile Include="Assets\Scripts\Management\CombinationManager.cs" />
     <Compile Include="Assets\Scripts\Management\DialogManager.cs" />
     <Compile Include="Assets\Scripts\Movement\PlayerNavigator.cs" />
     <Compile Include="Assets\Scripts\Shaders\IPixelProgressEventTarget.cs" />
@@ -135,7 +141,6 @@
     <Compile Include="Assets\Scripts\UI\ChapterUI.cs" />
     <Compile Include="Assets\Scripts\UI\DialogDecisionHandler.cs" />
     <Compile Include="Assets\Scripts\UI\DialogUI.cs" />
-    <Compile Include="Assets\Scripts\UI\HoverControl.cs" />
     <Compile Include="Assets\Scripts\UI\IAnimatedCursorEventTarget.cs" />
     <Compile Include="Assets\Scripts\UI\IButtonEventTarget.cs" />
     <Compile Include="Assets\Scripts\UI\IChapterEventTarget.cs" />
@@ -148,9 +153,6 @@
     <Compile Include="Assets\Scripts\UI\InfoTextUI.cs" />
     <Compile Include="Assets\Scripts\UI\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\UI\UIFader.cs" />
-    <Compile Include="Assets\Scripts\XML\XmlCombinationElement.cs" />
-    <Compile Include="Assets\Scripts\XML\XmlCombinationLink.cs" />
-    <Compile Include="Assets\Scripts\XML\XmlCombinations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Import\XML\de\Chapters\chapters.xml" />
