@@ -47,7 +47,7 @@ namespace Morbius.Scripts.Items
             if (!m_item)
                 return;
 
-            m_status = ItemManager.RegisterItem(m_item);
+            m_status = ItemDatabase.GetItemStatus(m_item);
             if (m_spawnOnAwake)
             {
                 m_status.Spawned = true;
@@ -64,7 +64,7 @@ namespace Morbius.Scripts.Items
             if (!m_item)
                 return;
 
-            //ItemSaveState may be updated by ItemManager, so cyclically poll it
+            //ItemSaveState may be updated by ItemDatabase, so cyclically poll it
             UpdateStatus();
             UpdateMorph();
             CheckRemove();
@@ -133,7 +133,7 @@ namespace Morbius.Scripts.Items
             while (morphState != null && morphState.MorphItem != null)
             {
                 morphItem = morphState.MorphItem;
-                morphState = ItemManager.GetItemStatus(morphItem);
+                morphState = ItemDatabase.GetItemStatus(morphItem);
             }
 
             //morphstate was found
@@ -142,7 +142,7 @@ namespace Morbius.Scripts.Items
                 //not yet registered or is active - spawn
                 if (morphState == null || !morphState.Removed)
                 {
-                    ItemManager.SpawnItem(morphItem, transform);
+                    morphItem.Spawn(transform);
                 }
                 m_morphed = true;
             }
@@ -154,7 +154,7 @@ namespace Morbius.Scripts.Items
             //creating the morph item is handled in ItemManager
             if (m_status.MorphItem != null && !m_morphed)
             {
-                ItemManager.SpawnItem(m_status.MorphItem, transform);
+                m_status.MorphItem.Spawn(transform);
                 m_destroy = true;
             }
         }
@@ -176,7 +176,8 @@ namespace Morbius.Scripts.Items
         private void ExecuteSequence()
         {
             ItemSequence sequence = m_item.GetSequence(m_status.SequenceIndex);
-            ItemManager.SequenceEvent(sequence);
+            //ItemManager.SequenceEvent(sequence);
+            EventManager.RaiseEvent(m_item.Id);
             EventManager.RaiseEvent(sequence.TriggerId);
         }
 
@@ -208,9 +209,9 @@ namespace Morbius.Scripts.Items
             Item handItem = Inventory.ItemInHand;
             if (handItem != null)
             {
-                if (ItemManager.Combine(m_item, handItem))
+                if (m_item.Combine(handItem))
                 {
-                    //TODO this may not be required here and can be handled via ItemSAveState in Combine() directly
+                    //TODO this may not be required here and can be handled via ItemSaveState in Combine() directly
                     if (m_item.Destroyable)
                     {
                         m_destroy = true;

@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Items;
 using Morbius.Scripts.UI;
 
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(AudioSource))]
 public class ItemManager : MonoBehaviour
 {
     private static ItemManager s_singleton;
-    private static Dictionary<Item, ItemSaveState> s_itemStates = new Dictionary<Item, ItemSaveState>();
 
     [SerializeField]
     GameObject[] m_receivers;
 
     private float m_displayTime;
-    private AudioSource m_audio;
+//    private AudioSource m_audio;
 
     private const float c_minDisplayTime = 1.5f;
 
@@ -25,7 +23,7 @@ public class ItemManager : MonoBehaviour
         if (s_singleton == null)
         {
             s_singleton = this;
-            m_audio = GetComponent<AudioSource>();
+            //m_audio = GetComponent<AudioSource>();
         }
         else
         {
@@ -56,91 +54,14 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public static ItemSaveState RegisterItem(Item item)
-    {
-        ItemSaveState state = new ItemSaveState();
-        RegisterItem(item, state);
-        return GetItemStatus(item);
-    }
-
-    public static void RegisterItem(Item item, ItemSaveState saveState)
-    {
-        if (!s_itemStates.ContainsKey(item))
-        {
-            s_itemStates.Add(item, saveState);
-        }
-    }
-
-    public static ItemSaveState GetItemStatus(Item item)
-    {
-        ItemSaveState saveState;
-        if (s_itemStates.TryGetValue(item, out saveState))
-        {
-            return saveState;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public static void SetItemStatus(Item item, ItemSaveState saveState)
-    {
-        if (s_itemStates.ContainsKey(item))
-        {
-            s_itemStates[item] = saveState;
-        }
-    }
-
-    public static void SpawnItem(Item item)
-    {
-        ItemSaveState state = GetItemStatus(item);
-        if (state != null)
-        {
-            state.Spawned = true;
-        }
-    }
-
-        public static GameObject SpawnItem(Item item, Transform spawnpoint)
-    {
-        GameObject itemObj = null;
-        if (item)
-        {
-            if (item.Prefab)
-            {
-                ItemSaveState saveState = new ItemSaveState()
-                {
-                    Spawned = true
-                };
-                RegisterItem(item, saveState);
-                itemObj = Instantiate(item.Prefab, spawnpoint.position, spawnpoint.rotation);
-                ItemInstance instance = itemObj.AddComponent<ItemInstance>();
-                instance.Item = item;
-            }
-            else
-            {
-                Debug.LogWarning("ItemManager: No prefab configured for " + item.name);
-            }
-        }
-
-        return itemObj;
-    }
-
-    public static bool Combine(Item item1, Item item2)
-    {
-        //TODO handle combination
-        //TODO set .Morphed and .Removed according to result of combination
-        return false;
-    }
-
-    public static void CollectEvent(Item item)
+    /*public static void CollectEvent(Item item)
     {
         if (s_singleton)
         {
             s_singleton.m_audio.Play();
             //TODO trigger inventory UI event
         }
-    }
+    }*/
 
     public static void SequenceEvent(ItemSequence sequence)
     {
@@ -153,10 +74,5 @@ public class ItemManager : MonoBehaviour
             }
             AudioManager.ScheduleVoice(sequence.Audio);
         }
-    }
-
-    public static void Clear()
-    {
-        s_itemStates.Clear();
     }
 }

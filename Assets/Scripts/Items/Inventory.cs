@@ -57,7 +57,7 @@ namespace Morbius.Scripts.Items
         private bool UpdateStatus(Item item)
         {
             bool destroy = false;
-            ItemSaveState state = ItemManager.GetItemStatus(item);
+            ItemSaveState state = ItemDatabase.GetItemStatus(item);
             if (state.Removed || state.MorphItem)
             {
                 destroy = true;
@@ -139,7 +139,7 @@ namespace Morbius.Scripts.Items
                 Item item = s_items.Find(x => x.Icon == sprite);
                 if (s_itemInHand)
                 {
-                    ItemManager.Combine(s_itemInHand, item);
+                    s_itemInHand.Combine(item);
                 }
                 else
                 {

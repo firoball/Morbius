@@ -21,7 +21,7 @@ namespace Morbius.Scripts.Events
             if (s_singleton == null)
             {
                 s_singleton = this;
-                //DontDestroyOnLoad(gameObject); -- subscribers may be specific scene instances
+                //DontDestroyOnLoad(gameObject); -- subscribers may be specific scene instances, create configured prefab instead
                 if (m_subscribers == null)
                 {
                     m_subscribers = new List<GameObject>();

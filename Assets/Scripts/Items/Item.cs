@@ -137,5 +137,36 @@ namespace Morbius.Scripts.Items
             if (m_destroyable) str += "[C]";
             return str;
         }
+
+        public bool Combine(Item item)
+        {
+            //TODO handle combination
+            //TODO set .Morphed and .Removed according to result of combination
+            return false;
+        }
+
+        public GameObject Spawn(Transform spawnpoint)
+        {
+            GameObject itemObj = null;
+                if (m_prefab)
+                {
+                    ItemSaveState saveState = new ItemSaveState()
+                    {
+                        Spawned = true
+                    };
+                    ItemDatabase.SetItemStatus(this, saveState);
+                    itemObj = Instantiate(m_prefab, spawnpoint.position, spawnpoint.rotation);
+                    ItemInstance instance = itemObj.AddComponent<ItemInstance>();
+                    instance.Item = this;
+                }
+                else
+                {
+                    Debug.LogWarning("Item: No prefab configured for " + name);
+                }
+
+            return itemObj;
+        }
+
+
     }
 }

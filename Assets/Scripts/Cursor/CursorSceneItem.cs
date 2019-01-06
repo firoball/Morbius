@@ -22,7 +22,7 @@ namespace Morbius.Scripts.Cursor
             }
             else
             {
-                ItemSaveState saveState = ItemManager.GetItemStatus(item);
+                ItemSaveState saveState = ItemDatabase.GetItemStatus(item);
                 CursorInfo info = new CursorInfo()
                 {
                     Label = item.Label,

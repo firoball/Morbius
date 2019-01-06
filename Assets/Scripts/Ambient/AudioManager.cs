@@ -192,15 +192,6 @@ namespace Morbius.Scripts.Ambient
             m_musicTargetVolume = Mathf.Clamp01(volume);
         }
 
-        //todo: remove?
-        /*public static void Play(AudioClip clip)
-        {
-            if (s_singleton != null)
-            {
-                s_singleton.m_audioSource.PlayOneShot(clip);
-            }
-        }*/
-
         public static void ScheduleVoice(AudioClip clip)
         {
             if (s_singleton != null && clip != null)
