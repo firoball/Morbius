@@ -7,3 +7,5 @@
 /meta/*.blend1
 *.bak
 *.bak.meta
+*.sln
+*.csproj
