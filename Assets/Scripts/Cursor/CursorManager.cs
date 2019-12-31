@@ -145,6 +145,10 @@ namespace Morbius.Scripts.Cursor
                 {
                     state = CursorState.INVESTIGATE;
                 }
+                else if (info.IsDialog)
+                {
+                    state = CursorState.TALK;
+                }
                 else if (info.IsPortal)
                 {
                     state = CursorState.LEAVE;
@@ -175,20 +179,6 @@ namespace Morbius.Scripts.Cursor
 
             m_cursorObject = null;
             m_cursorInfo = new CursorInfo();
-        }
-
-        public void OnDialogBegin()
-        {
-            m_locked = true;
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetCursor(CursorState.TALK));
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetText(null));
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(null));
-        }
-
-        public void OnDialogEnd()
-        {
-            m_locked = false;
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(m_icon));
         }
 
     }

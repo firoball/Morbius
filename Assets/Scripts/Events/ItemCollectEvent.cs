@@ -20,11 +20,18 @@ namespace Morbius.Scripts.Events
 
         public override IEnumerator Execute(int eventId)
         {
+            Debug.Log("collect event " + eventId);
             Item item = ItemDatabase.GetItemById(eventId);
-            Inventory.Collect(item);
-            m_audio.Play();
-            //TODO trigger inventory UI event!?
-            yield return new WaitForSeconds(0.01f);
+            ItemSaveState state = ItemDatabase.GetItemStatus(item);
+            if (state != null && item.IsReadyForCollection(state.SequenceIndex) && Inventory.ItemInHand == null)
+            {
+                Inventory.Collect(item);
+
+                state.Collected = true;
+                ItemDatabase.SetItemStatus(item, state);
+                m_audio.Play();
+            }
+            yield return new WaitForEndOfFrame();
         }
     }
 

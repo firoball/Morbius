@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Morbius.Scripts.Events;
 using Morbius.Scripts.UI;
-using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.Items
 {
@@ -15,7 +15,7 @@ namespace Morbius.Scripts.Items
         private static List<Item> s_items;
         private static Item s_itemInHand;
 
-        [SerializeField]
+        //[SerializeField]
         private GameObject m_inventoryUI;
 
         public static Item ItemInHand
@@ -40,6 +40,7 @@ namespace Morbius.Scripts.Items
             }
         }
 
+        //TODO: add morphed items back to inventory!
         private void Update()
         {
             for (int i = s_items.Count - 1; i >= 0; i--)
@@ -58,9 +59,14 @@ namespace Morbius.Scripts.Items
         {
             bool destroy = false;
             ItemSaveState state = ItemDatabase.GetItemStatus(item);
-            if (state.Removed || state.MorphItem)
+            if (state.Destroyed || state.MorphItem)
             {
                 destroy = true;
+                //TODO: move to proper place?
+                if (state.MorphItem != null)
+                {
+                    Add(state.MorphItem);
+                }
             }
             return destroy;
         }
@@ -72,10 +78,6 @@ namespace Morbius.Scripts.Items
                 Add(s_itemInHand);
             }
             s_itemInHand = item;
-            //TODO inform Cursor
-            //CursorManager.UpdateCursorIcon(item.Icon);
-            //when item is taken, inventory object is destroyed, hover exit event does not fire anymore. trigger manually
-            //CursorManager.UpdateCursorText(null);
             Remove(item);
         }
 
@@ -85,8 +87,6 @@ namespace Morbius.Scripts.Items
             {
                 Add(s_itemInHand);
                 s_itemInHand = null;
-                //TODO inform Cursor
-                //CursorManager.UpdateCursorIcon(null);
             }
 
         }
@@ -139,13 +139,19 @@ namespace Morbius.Scripts.Items
                 Item item = s_items.Find(x => x.Icon == sprite);
                 if (s_itemInHand)
                 {
-                    s_itemInHand.Combine(item);
+                    EventManager.RaiseEvent(item.Id);
                 }
                 else
                 {
                     s_singleton.ToHand(item);
                 }
             }
+        }
+
+        public static void RegisterUI(GameObject ui)
+        {
+            if (s_singleton)
+                s_singleton.m_inventoryUI = ui;
         }
 
         public static Item Find(Sprite sprite)

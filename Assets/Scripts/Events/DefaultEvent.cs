@@ -39,7 +39,7 @@ namespace Morbius.Scripts.Events
         public virtual IEnumerator Execute(int id)
         {
             Debug.LogWarning(this + ": Execute not implemented.");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForEndOfFrame();
         }
     }
 

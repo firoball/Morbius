@@ -14,6 +14,7 @@ namespace Morbius.Scripts.Events
         [SerializeField]
         private List<DefaultEvent> m_events;
 
+
         private static EventManager s_singleton;
 
         void Awake()
@@ -53,21 +54,30 @@ namespace Morbius.Scripts.Events
         {
             if (s_singleton)
             {
-                List<DefaultEvent> selectedEvents = s_singleton.m_events.Where(x =>
-                ((x != null) && (eventId >= x.MinId) && (eventId <= x.MaxId))).ToList();
-                s_singleton.StartCoroutine(s_singleton.Execute(selectedEvents, eventId));
+                s_singleton.TriggerEvent(eventId);
             }
         }
 
-        private IEnumerator Execute(List<DefaultEvent> events, int eventId)
+        private void TriggerEvent(int eventId)
+        {
+            List<DefaultEvent> selectedEvents = m_events.Where(x =>
+            ((x != null) && (eventId >= x.MinId) && (eventId <= x.MaxId))).ToList();
+            //StartCoroutine(Execute(selectedEvents, eventId));
+            //event trigger has to be non-blocking otherwise ItemInHand could cause weird behavior
+            foreach (DefaultEvent ev in selectedEvents)
+            {
+                StartCoroutine(ev.Execute(eventId));
+            }
+        }
+
+        /*private IEnumerator Execute(List<DefaultEvent> events, int eventId)
         {
             //TODO: trigger Lock Event
             foreach (DefaultEvent ev in events)
             {
-                //should be started as coroutine here or in event itself
-                yield return s_singleton.StartCoroutine(ev.Execute(eventId));
+                yield return StartCoroutine(ev.Execute(eventId));
             }
             //TODO: trigger Unlock Event
-        }
+        }*/
     }
 }

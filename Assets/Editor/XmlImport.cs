@@ -20,7 +20,10 @@ public class XmlImport : EditorWindow
     {
         DrawAssetList();
         DrawButtons();
-        UpdateAssetList();
+        if (Event.current.type == EventType.Repaint)
+        {
+            UpdateAssetList();
+        }
     }
 
     private void OnEnable()
@@ -51,10 +54,10 @@ public class XmlImport : EditorWindow
             }
         }
 
-        //if last element is not empty, add new element
+        //if last element is not empty, add new empty element
         if (s_assets.Count > 0 && s_assets[s_assets.Count - 1] != null)
         {
-            s_assets.Add(new TextAsset());
+            s_assets.Add(null);
             //take over setting of previous element
             s_xmlTypes.Add(s_xmlTypes[s_xmlTypes.Count - 1]);
         }
@@ -116,7 +119,7 @@ public class XmlImport : EditorWindow
             s_assets = new List<TextAsset>();
             s_xmlTypes = new List<XmlType>();
             Load();
-            s_assets.Add(new TextAsset());
+            s_assets.Add(null);
             s_xmlTypes.Add(XmlType.DEFAULT);
         }
     }

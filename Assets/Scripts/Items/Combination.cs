@@ -2,6 +2,7 @@
 
 namespace Morbius.Scripts.Items
 {
+    [CreateAssetMenu]
     public class Combination : ScriptableObject
     {
         [SerializeField]

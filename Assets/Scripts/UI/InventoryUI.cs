@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Morbius.Scripts.Items;
-using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(UIFader))]
-    public class InventoryUI : MonoBehaviour, IButtonEventTarget, /*IHoverEventTarget, */IInventoryEventTarget
+    public class InventoryUI : MonoBehaviour, IButtonEventTarget, IInventoryEventTarget
     {
         [SerializeField]
         private GameObject m_cursor;
@@ -28,8 +26,13 @@ namespace Morbius.Scripts.UI
         {
             m_items = new List<Image>();
             m_fader = GetComponent<UIFader>();
+        }
+
+        private void Start()
+        {
             Button button = GetComponent<Button>();
             button.onClick.AddListener(() => Inventory.DropHandItem());
+            Inventory.RegisterUI(gameObject);
         }
 
         public void OnButtonNotification(GameObject sender)
@@ -41,29 +44,6 @@ namespace Morbius.Scripts.UI
                 Inventory.Interact(image.sprite);
             }
         }
-
-       /* public void OnHoverBeginNotification(GameObject sender)
-        {
-            Image image = sender.GetComponent<Image>();
-            if (image && m_cursor)
-            {
-                //get name from itemmanager
-                //should not be done here but in manager object
-                //ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(image.name));
-                Inventory.OnHoverEnter(image.sprite);
-            }
-        }
-
-        public void OnHoverEndNotification(GameObject sender)
-        {
-            Image image = sender.GetComponent<Image>();
-            if (image && m_cursor)
-            {
-                //should not be done here but in manager object
-                //ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursor, null, (x, y) => x.OnSetText(null));
-                Inventory.OnHoverExit(image.sprite);
-            }
-        }*/
 
         public void OnAdd(Sprite item)
         {

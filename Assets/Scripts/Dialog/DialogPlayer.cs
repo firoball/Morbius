@@ -14,10 +14,13 @@ namespace Morbius.Scripts.Dialog
         private GameObject m_dialogUI;
 
         private bool m_stopped;
+        private bool m_isPlaying;
         private Dialog m_dialog;
 
         private const float c_minDisplayTime = 1.5f;
         private const float c_dialogPauseTime = 0.5f;
+
+        public bool IsPlaying { get => m_isPlaying; }
 
         private void Awake()
         {
@@ -25,6 +28,8 @@ namespace Morbius.Scripts.Dialog
             GameObject obj = Instantiate(m_dialogObject);
             obj.transform.SetParent(transform);
             m_dialog = obj.GetComponent<Dialog>();
+            m_stopped = true;
+            m_isPlaying = false;
         }
 
         public void Play()
@@ -33,6 +38,7 @@ namespace Morbius.Scripts.Dialog
             {
                 m_dialog.Restart();
                 m_stopped = false;
+                m_isPlaying = true;
                 Execute(m_dialog);
             }
             else
@@ -50,6 +56,8 @@ namespace Morbius.Scripts.Dialog
         {
             if (dialog.IsFinished() || m_stopped)
             {
+                m_isPlaying = false;
+                ExecuteEvents.Execute<IDialogEventTarget>(m_dialogUI, null, (x, y) => x.OnHide());
                 Debug.Log("DialogPlayer: done");
                 return;
             }

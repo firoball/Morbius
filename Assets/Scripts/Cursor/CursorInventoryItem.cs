@@ -28,6 +28,7 @@ namespace Morbius.Scripts.Cursor
                     Label = m_item.Label,
                     Icon = null,
                     IsGrabable = false,
+                    IsDialog = false,
                     IsInteractable = false,
                     IsPortal = false
                 };

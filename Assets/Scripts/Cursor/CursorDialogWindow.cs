@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using Morbius.Scripts.Items;
 
 namespace Morbius.Scripts.Cursor
 {
-    public class CursorScenePortal : MonoBehaviour, ICursorObject
+    public class CursorDialogWindow : MonoBehaviour, ICursorObject
     {
         public CursorInfo GetCursorInfo()
         {
@@ -12,9 +11,9 @@ namespace Morbius.Scripts.Cursor
                 Label = null,
                 Icon = null,
                 IsGrabable = false,
-                IsDialog = false,
+                IsDialog = true,
                 IsInteractable = false,
-                IsPortal = true
+                IsPortal = false
             };
 
             return info;

@@ -8,6 +8,7 @@ namespace Morbius.Scripts.Items
     public class ItemSaveState
     {
         private bool m_removed;
+        private bool m_collected;
         private bool m_spawned;
         private int m_sequenceIndex;
         private Item m_morphItem;
@@ -15,12 +16,13 @@ namespace Morbius.Scripts.Items
         public ItemSaveState()
         {
             m_removed = false;
+            m_collected = false;
             m_spawned = false;
             m_sequenceIndex = 0;
             m_morphItem = null;
         }
 
-        public bool Removed
+        public bool Destroyed
         {
             get
             {
@@ -30,6 +32,19 @@ namespace Morbius.Scripts.Items
             set
             {
                 m_removed = value;
+            }
+        }
+
+        public bool Collected
+        {
+            get
+            {
+                return m_collected;
+            }
+
+            set
+            {
+                m_collected = value;
             }
         }
 

@@ -7,6 +7,7 @@ namespace Morbius.Scripts.Cursor
         bool m_isPortal;
         bool m_isInteractable;
         bool m_isGrabable;
+        bool m_isDialog;
         Sprite m_icon;
         string m_label;
 
@@ -16,6 +17,7 @@ namespace Morbius.Scripts.Cursor
                 info1.IsPortal == info2.IsPortal &&
                 info1.IsInteractable == info2.IsInteractable &&
                 info1.IsGrabable == info2.IsGrabable &&
+                info1.IsDialog == info2.IsDialog &&
                 info1.Icon == info2.Icon &&
                 info1.Label == info2.Label
                 );
@@ -38,7 +40,8 @@ namespace Morbius.Scripts.Cursor
         {
             return m_isPortal.GetHashCode() ^ 
                 m_isInteractable.GetHashCode() ^ 
-                m_isGrabable.GetHashCode() ^ 
+                m_isGrabable.GetHashCode() ^
+                m_isDialog.GetHashCode() ^
                 m_icon.GetHashCode() ^ 
                 m_label.GetHashCode();
         }
@@ -79,6 +82,19 @@ namespace Morbius.Scripts.Cursor
             set
             {
                 m_isGrabable = value;
+            }
+        }
+
+        public bool IsDialog
+        {
+            get
+            {
+                return m_isDialog;
+            }
+
+            set
+            {
+                m_isDialog = value;
             }
         }
 

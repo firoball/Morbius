@@ -91,7 +91,7 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    public static int GetEncodedEventId(Item item)
+    /*public static int GetEncodedEventId(Item item)
     {
         int status = 0;
 
@@ -121,6 +121,6 @@ public class ItemDatabase : MonoBehaviour
         }
 
         return saveState;
-    }
+    }*/
 
 }

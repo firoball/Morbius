@@ -20,7 +20,7 @@ public class AssetBuilder
 
     public void Import(TextAsset asset, XmlType type)
     {
-        if (m_isReady)
+        if (m_isReady && asset != null)
         {
             //string name = GetPrefabName(type);
             string name = GetPrefabName(asset);
@@ -117,7 +117,9 @@ public class AssetBuilder
         {
             //create object in scene, make it a prefab, remove it from scene
             GameObject newPrefab = new GameObject(prefabName);
-            prefab = PrefabUtility.CreatePrefab(prefabPath, newPrefab);
+            //prefab = PrefabUtility.CreatePrefab(prefabPath, newPrefab);
+            bool success;
+            prefab = PrefabUtility.SaveAsPrefabAsset(newPrefab, prefabPath, out success);
             GameObject.DestroyImmediate(newPrefab);
             if (AssetDatabase.Contains(prefab))
             {
@@ -143,7 +145,9 @@ public class AssetBuilder
         if (prefab == null)
         {
             //make GameObject a prefab, remove it from scene
-            prefab = PrefabUtility.CreatePrefab(prefabPath, obj);
+            //prefab = PrefabUtility.CreatePrefab(prefabPath, obj);
+            bool success;
+            prefab = PrefabUtility.SaveAsPrefabAsset(obj, prefabPath, out success);
             GameObject.DestroyImmediate(obj);
             if (AssetDatabase.Contains(prefab))
             {

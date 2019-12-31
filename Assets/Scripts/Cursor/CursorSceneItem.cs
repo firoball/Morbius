@@ -8,13 +8,18 @@ namespace Morbius.Scripts.Cursor
     {
         private ItemInstance m_instance;
 
-        private void Awake()
+        //executing too early, will cause outdated cursor info after item morph
+        /*private void Start()
         {
             m_instance = GetComponent<ItemInstance>();
-        }
+        }*/
 
         public CursorInfo GetCursorInfo()
         {
+            //moved here from Start()
+            if (!m_instance)
+                m_instance = GetComponent<ItemInstance>();
+
             Item item = m_instance.Item;
             if (!item)
             {
@@ -28,6 +33,7 @@ namespace Morbius.Scripts.Cursor
                     Label = item.Label,
                     Icon = null,
                     IsGrabable = item.IsReadyForCollection(saveState.SequenceIndex),
+                    IsDialog = false,
                     IsInteractable = true,
                     IsPortal = false
                 };

@@ -13,7 +13,7 @@ namespace Morbius.Scripts.Debugging
         {
             if (m_scenePortal)
             {
-                if (GUI.Button(new Rect(25, 480, 100, 30), "Load Scene"))
+                if (GUI.Button(new Rect(25, 400, 100, 30), "Load Scene"))
                 {
                     m_scenePortal.Load();
                 }

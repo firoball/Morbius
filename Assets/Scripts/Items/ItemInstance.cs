@@ -105,7 +105,7 @@ namespace Morbius.Scripts.Items
 
             //remove myself if necessary
             if (!m_destroy)
-                m_destroy = m_status.Removed;
+                m_destroy = m_status.Destroyed || m_status.Collected;
 
             UpdateMaterial();
         }
@@ -140,9 +140,10 @@ namespace Morbius.Scripts.Items
             if (morphItem != m_item)
             {
                 //not yet registered or is active - spawn
-                if (morphState == null || !morphState.Removed)
+                if (morphState == null || !(morphState.Destroyed || morphState.Collected))
                 {
-                    morphItem.Spawn(transform);
+                    Debug.Log("UpdateMorphInitial() " + name);
+                    morphItem.Spawn(transform, gameObject);
                 }
                 m_morphed = true;
             }
@@ -151,10 +152,10 @@ namespace Morbius.Scripts.Items
         private void UpdateMorph()
         {
             //if Morphitem was set externally, a morph event was issued. destroy item instance
-            //creating the morph item is handled in ItemManager
             if (m_status.MorphItem != null && !m_morphed)
             {
-                m_status.MorphItem.Spawn(transform);
+                Debug.Log("UpdateMorph() " + name + m_status.MorphItem.Id);
+                m_status.MorphItem.Spawn(transform, gameObject);
                 m_destroy = true;
             }
         }
@@ -167,61 +168,10 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        private void Collect()
-        {
-            EventManager.RaiseEvent(m_item.Id);
-            m_destroy = true;
-        }
-
-        private void ExecuteSequence()
-        {
-            ItemSequence sequence = m_item.GetSequence(m_status.SequenceIndex);
-            //ItemManager.SequenceEvent(sequence);
-            EventManager.RaiseEvent(m_item.Id);
-            EventManager.RaiseEvent(sequence.TriggerId);
-        }
-
-        private void Interact()
-        {
-            if (m_status != null)
-            {
-                if (!m_item.IsLastSequence(m_status.SequenceIndex))
-                {
-                    ExecuteSequence();
-                    m_status.SequenceIndex++;
-                    UpdateMaterial();
-                }
-                else if (m_item.IsReadyForCollection(m_status.SequenceIndex))
-                {
-                    //TODO add trigger region and only collect if player is in region
-                    Collect();
-                }
-                else
-                {
-                    //stuck with end state
-                    ExecuteSequence();
-                }
-            }
-        }
-
         private void TriggerAction()
         {
-            Item handItem = Inventory.ItemInHand;
-            if (handItem != null)
-            {
-                if (m_item.Combine(handItem))
-                {
-                    //TODO this may not be required here and can be handled via ItemSaveState in Combine() directly
-                    if (m_item.Destroyable)
-                    {
-                        m_destroy = true;
-                    }
-                }
-            }
-            else
-            {
-                Interact();
-            }
+            EventManager.RaiseEvent(m_item.Id);
+            UpdateMaterial();
         }
 
         public void OnTriggerEnter(Collider other)
