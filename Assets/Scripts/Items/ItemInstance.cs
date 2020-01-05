@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Morbius.Scripts.Events;
+using Morbius.Scripts.Movement;
 
 namespace Morbius.Scripts.Items
 {
-    public class ItemInstance : MonoBehaviour, IPointerClickHandler
+    public class ItemInstance : MonoBehaviour, IPlayerClickEventTarget
     {
         [SerializeField]
         private Item m_item;
@@ -18,7 +18,6 @@ namespace Morbius.Scripts.Items
         private bool m_spawned;
         private ItemSaveState m_status;
         private bool m_readyForCollection;
-        private bool m_playerNear;
 
         public Item Item
         {
@@ -38,7 +37,6 @@ namespace Morbius.Scripts.Items
             SetupMaterials();
             m_destroy = false;
             m_morphed = false;
-            m_playerNear = false;
             m_readyForCollection = false;
         }
 
@@ -168,41 +166,10 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        private void TriggerAction()
+        public void OnPlayerClick()
         {
             EventManager.RaiseEvent(m_item.Id);
             UpdateMaterial();
         }
-
-        public void OnTriggerEnter(Collider other)
-        {
-            //TODO: check if collider is the one of player
-            m_playerNear = true;
-            //TODO: stop player movement
-
-            //TODO check if item is still the selected one
-            TriggerAction();
-            m_playerNear = false;
-        }
-
-        public void OnTriggerExit(Collider other)
-        {
-            //TODO: check if collider is the one of player
-            m_playerNear = false;
-        }
-
-        public void OnPointerClick(PointerEventData data)
-        {
-            
-            //TODO: store clicked object with Cursormanager and evaluate
-            //evaluation here is required in case player is already in trigger range
-            //if (m_playerNear) //temp
-            {
-                TriggerAction();
-                m_playerNear = false;
-            }
-            //TODO player must be near - add "memory" function for cursormanager
-        }
-
     }
 }

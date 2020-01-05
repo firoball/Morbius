@@ -14,6 +14,7 @@ namespace Morbius.Scripts.Cursor
         [SerializeField]
         private GameObject m_cursorUI;
 
+        [SerializeField]
         private GameObject m_hoveredObject;
         private bool m_hoveredObjectwasNull;
         private bool m_locked;

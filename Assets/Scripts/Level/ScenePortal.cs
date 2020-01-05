@@ -44,7 +44,6 @@ namespace Morbius.Scripts.Level
 
         private void LoadScene()
         {
-            //Debug.Log("Loading Scene...");
             SceneManager.LoadScene(m_sceneId);
         }
 

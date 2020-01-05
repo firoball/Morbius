@@ -43,7 +43,7 @@ namespace Morbius.Scripts.Dialog
             }
             else
             {
-                Debug.Log("DialogPlayer: Dialog Component not found");
+                Debug.LogWarning("DialogPlayer: Dialog Component not found");
             }
         }
 
@@ -58,12 +58,10 @@ namespace Morbius.Scripts.Dialog
             {
                 m_isPlaying = false;
                 ExecuteEvents.Execute<IDialogEventTarget>(m_dialogUI, null, (x, y) => x.OnHide());
-                Debug.Log("DialogPlayer: done");
                 return;
             }
 
             DialogElement element = dialog.CurrentElement;
-            Debug.Log(element.name);
             if (element.IsChoice())
             {
                 DialogChoices choices = element as DialogChoices;
@@ -82,7 +80,6 @@ namespace Morbius.Scripts.Dialog
             AudioManager.ScheduleVoice(text.Clip);
 
             float delay = Mathf.Max(c_minDisplayTime, text.Clip.length + c_dialogPauseTime);
-            //TODO: AudioManager handling
             StartCoroutine(Delay(delay));
         }
 

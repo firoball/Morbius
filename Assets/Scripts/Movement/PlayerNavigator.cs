@@ -1,74 +1,87 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class PlayerNavigator : MonoBehaviour
+namespace Morbius.Scripts.Movement
 {
-    [SerializeField]
-    private float m_walkSpeed = 1.0f;
-    [SerializeField]
-    private float m_runSpeed = 2.0f;
-
-    private NavMeshAgent agent;
-    private Animator animator;
-    private float m_pressedTime;
-
-    void Start()
+    [RequireComponent(typeof(NavMeshAgent))]
+    public class PlayerNavigator : MonoBehaviour
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
-        m_pressedTime = 0.0f;
+        [SerializeField]
+        private float m_walkSpeed = 1.0f;
+        [SerializeField]
+        private float m_runSpeed = 2.0f;
 
-        //compensate different scene scaling
-        m_walkSpeed *= transform.localScale.y;
-        m_runSpeed *= transform.localScale.y;
-    }
+        private NavMeshAgent m_agent;
+        private Animator m_animator;
+        private bool m_isRunning;
+        [SerializeField]
+        private float m_blendFac;
+        private Quaternion m_rotation;
 
-    /*private void OnGUI()
-    {
-        GUI.Label(new Rect(10, 10, 300, 30), m_pressedTime.ToString());
-        GUI.Label(new Rect(10, 50, 300, 30), agent.speed.ToString() + " " + agent.velocity.sqrMagnitude.ToString());
-    }*/
+        [SerializeField]
+        private Vector3 m_destination;
 
-    void Update()
-    {
-        //TODO this code is doubled with CursorManager....
-        //TODO: add touch support
-        if (Input.GetMouseButtonDown(0))
+        void Start()
         {
-            RaycastHit hit;
+            m_agent = GetComponent<NavMeshAgent>();
+            m_animator = GetComponentInChildren<Animator>();
+            m_isRunning = false;
+            m_blendFac = 0.0f;
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000))
-            {
-                agent.destination = hit.point;
-            }
+            //compensate different scene scaling
+            m_walkSpeed *= transform.localScale.y;
+            m_runSpeed *= transform.localScale.y;
         }
 
-        agent.speed = m_walkSpeed;
-        bool isRunning = false;
-
-        if (Input.GetMouseButton(0))
+        void Update()
         {
-            if (m_pressedTime >= 0.3f)
+            if (m_animator)
             {
-                agent.speed = m_runSpeed;
-                isRunning = true;
+                bool isMoving = (m_agent.velocity.sqrMagnitude > 0.05f);
+                m_animator.SetBool("walk", (isMoving && !m_isRunning));
+                m_animator.SetBool("run", (isMoving && m_isRunning));
+            }
+            if (m_agent.isStopped)
+            {
+                m_blendFac = Mathf.Clamp01(m_blendFac + 3.0f * Time.deltaTime);
+                if (m_agent.destination != transform.position)
+                {
+                    Quaternion rotation = Quaternion.LookRotation(m_agent.destination - transform.position);
+                    transform.rotation = Quaternion.Slerp(m_rotation, rotation, m_blendFac);
+                }
             }
             else
             {
-                m_pressedTime += Time.deltaTime;
+                m_blendFac = 0.0f;
+                m_rotation = transform.rotation;
             }
         }
-        else
+
+        public void SetDestination(Vector3 destination)
         {
-            m_pressedTime = 0.0f;
+            m_agent.isStopped = false;
+            m_agent.destination = destination;
+            m_destination = destination;
         }
 
-        if (animator)
+        public void SetRunning(bool run)
         {
-            bool isMoving = (agent.velocity.sqrMagnitude > 0.05f);
-            animator.SetBool("walk", (isMoving && !isRunning));
-            animator.SetBool("run", (isMoving && isRunning));
+
+            if (run)
+            {
+                m_agent.speed = m_runSpeed;
+            }
+            else
+            {
+                m_agent.speed = m_walkSpeed;
+            }
+            m_isRunning = run;
+        }
+
+        public void Stop()
+        {
+            m_agent.isStopped = true;
         }
     }
 }

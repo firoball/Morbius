@@ -23,7 +23,9 @@ namespace Morbius.Scripts.Ambient
 
         private AudioSource m_audioSource;
         private AudioClip m_nextClip;
+        [SerializeField]
         private bool m_audioFadeAndStop;
+        [SerializeField]
         private float m_audioDefaultVolume;
 
         private const float c_musicfadeSpeedDefault = 1.0f;
@@ -122,6 +124,7 @@ namespace Morbius.Scripts.Ambient
                 {
                     m_audioSource.Stop();
                     m_audioSource.volume = m_audioDefaultVolume;
+                    m_audioFadeAndStop = false;
                     if (m_nextClip && !m_delayedStop)
                     {
                         PlayAudio(m_nextClip);
