@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.Movement
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class PlayerNavigator : MonoBehaviour
+    public class PlayerNavigator : MonoBehaviour, ICursorUIEventTarget
     {
         [SerializeField]
         private float m_walkSpeed = 1.0f;
@@ -15,12 +16,11 @@ namespace Morbius.Scripts.Movement
         private NavMeshAgent m_agent;
         private Animator m_animator;
         private bool m_isRunning;
-        [SerializeField]
         private float m_blendFac;
         private Quaternion m_rotation;
-
-        [SerializeField]
         private Vector3 m_destination;
+        [SerializeField]
+        private bool m_enabled;
 
         void Start()
         {
@@ -28,6 +28,7 @@ namespace Morbius.Scripts.Movement
             m_animator = GetComponentInChildren<Animator>();
             m_isRunning = false;
             m_blendFac = 0.0f;
+            m_enabled = true;
 
             //compensate different scene scaling
             m_walkSpeed *= transform.localScale.y;
@@ -60,9 +61,12 @@ namespace Morbius.Scripts.Movement
 
         public void SetDestination(Vector3 destination)
         {
-            m_agent.isStopped = false;
-            m_agent.destination = destination;
-            m_destination = destination;
+            if (m_enabled)
+            {
+                m_agent.isStopped = false;
+                m_agent.destination = destination;
+                m_destination = destination;
+            }
         }
 
         public void SetRunning(bool run)
@@ -83,5 +87,17 @@ namespace Morbius.Scripts.Movement
         {
             m_agent.isStopped = true;
         }
+
+        public void OnUIEnter()
+        {
+            m_enabled = false;
+        }
+
+        public void OnUIExit()
+        {
+            m_enabled = true;
+        }
+
+
     }
 }

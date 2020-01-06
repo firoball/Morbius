@@ -13,9 +13,7 @@ namespace Morbius.Scripts.Movement
         [SerializeField]
         private PlayerNavigator m_navigator;
 
-        [SerializeField]
         private Collider m_target;
-        [SerializeField]
         private Collider m_nearCollider;
         private float m_pressedTime;
         private Vector3 m_point;
@@ -31,6 +29,8 @@ namespace Morbius.Scripts.Movement
         void Update()
         {
             //TODO: add touch support
+            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;

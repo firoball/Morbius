@@ -13,11 +13,12 @@ namespace Morbius.Scripts.Cursor
     {
         [SerializeField]
         private GameObject m_cursorUI;
-
         [SerializeField]
+        private GameObject m_player;
+
         private GameObject m_hoveredObject;
         private bool m_hoveredObjectwasNull;
-        private bool m_locked;
+        private bool m_hoveredObjectWasUI;
         private Sprite m_icon;
         private ICursorObject m_cursorObject;
         private CursorInfo m_cursorInfo;
@@ -26,19 +27,16 @@ namespace Morbius.Scripts.Cursor
         {
             m_hoveredObject = null;
             m_hoveredObjectwasNull = false;
-            m_locked = false;
+            m_hoveredObjectWasUI = false;
         }
 
         private void Update()
         {
-            if (!m_locked)
-            {
-                Raycast();
-                //handle hover
-                UpdateCursorInfo();
-                //handle hand icon 
-                UpdateCursorIcon();
-            }
+            Raycast();
+            //handle hover
+            UpdateCursorInfo();
+            //handle hand icon 
+            UpdateCursorIcon();
         }
 
         private void Raycast()
@@ -51,7 +49,6 @@ namespace Morbius.Scripts.Cursor
 
             List<RaycastResult> results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(pointerData, results);
-
             if (results.Count > 0)
             {
                 //pick topmost object
@@ -73,10 +70,36 @@ namespace Morbius.Scripts.Cursor
                 {
                     SetDefaultCursor();
                 }
+                //Cursor over UI element?
+                DetectUI();
             }
 
             //store null pointer flag in case object is removed next frame.
             m_hoveredObjectwasNull = (m_hoveredObject == null);
+        }
+
+        private void DetectUI()
+        {
+            //hovering UI object
+            if (m_hoveredObject && m_hoveredObject.GetComponent<RectTransform>())
+            {
+                //only trigger if not hovering UI object before
+                if (!m_hoveredObjectWasUI)
+                {
+                    m_hoveredObjectWasUI = true;
+                    ExecuteEvents.Execute<ICursorUIEventTarget>(m_player, null, (x, y) => x.OnUIEnter());
+                }
+            }
+            //hovering no or no UIobject
+            else
+            {
+                //only trigger if hovering UI object before
+                if (m_hoveredObjectWasUI)
+                { 
+                    m_hoveredObjectWasUI = false;
+                    ExecuteEvents.Execute<ICursorUIEventTarget>(m_player, null, (x, y) => x.OnUIExit());
+                }
+            }
         }
 
         private void UpdateCursorInfo()
