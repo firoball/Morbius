@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Morbius.Scripts.Ambient;
-using Morbius.Scripts.Shaders;
-using Morbius.Scripts.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Level
 {
-    public class ScenePortal : MonoBehaviour, IChapterResultTarget
+    public class ScenePortal : MonoBehaviour, IChapterResultMessage
     {
         [SerializeField]
         private int m_sceneId;
@@ -30,6 +29,7 @@ namespace Morbius.Scripts.Level
         {
             m_sceneId = Math.Min(Math.Max(0, m_sceneId), SceneManager.sceneCountInBuildSettings - 1);
             m_started = false;
+            MessageSystem.Register<IChapterResultMessage>(gameObject);
         }
 
         public void Load()
@@ -52,8 +52,10 @@ namespace Morbius.Scripts.Level
             if (m_chapter)
             {
                 AudioManager.FadeAndStop(c_fadeSpeedFast);
-                ExecuteEvents.Execute<IChapterEventTarget>(m_chapterUI, null, (x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
-                ExecuteEvents.Execute<IChapterEventTarget>(m_chapterUI, null, (x, y) => x.OnShow(gameObject));
+                //ExecuteEvents.Execute<IChapterMessage>(m_chapterUI, null, (x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
+                //ExecuteEvents.Execute<IChapterMessage>(m_chapterUI, null, (x, y) => x.OnShow(gameObject));
+                MessageSystem.Execute<IChapterMessage>((x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
+                MessageSystem.Execute<IChapterMessage>((x, y) => x.OnShow(gameObject));
             }
             else
             {
@@ -70,7 +72,8 @@ namespace Morbius.Scripts.Level
         private IEnumerator Pixelate()
         {
             AudioManager.FadeAndStop(c_fadeSpeedSlow);
-            ExecuteEvents.Execute<IPixelProgressEventTarget>(m_camera, null, (x, y) => x.OnPixelate());
+//            ExecuteEvents.Execute<IPixelProgressMessageTarget>(m_camera, null, (x, y) => x.OnPixelate());
+            MessageSystem.Execute<IPixelProgressMessage>((x, y) => x.OnPixelate());
             yield return new WaitForSeconds(c_uiDelay);
             StartTypewriter();
         }

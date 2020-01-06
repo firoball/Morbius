@@ -1,4 +1,4 @@
-﻿using Morbius.Scripts.UI;
+﻿using Morbius.Scripts.Messages;
 using System;
 using System.Linq;
 using UnityEditor;
@@ -25,17 +25,17 @@ namespace Morbius.Scripts.Debugging
         {
             m_infoText = GUI.TextArea(new Rect(235, 400, 205, 120), m_infoText);
 
-            if (GUI.Button(new Rect(235, 530, 100, 30),"Show Info"))
+            if (GUI.Button(new Rect(235, 530, 100, 30), "Show Info"))
             {
                 if (!string.IsNullOrEmpty(m_infoText))
                 {
-                    ExecuteEvents.Execute<IInfoTextEventTarget>(m_infoTarget, null, (x, y) => x.OnShow(m_infoText));
+                    ExecuteEvents.Execute<IInfoTextMessage>(m_infoTarget, null, (x, y) => x.OnShow(m_infoText));
                 }
             }
 
             if (GUI.Button(new Rect(340, 530, 100, 30), "Hide Info"))
             {
-                ExecuteEvents.Execute<IInfoTextEventTarget>(m_infoTarget, null, (x, y) => x.OnHide());
+                ExecuteEvents.Execute<IInfoTextMessage>(m_infoTarget, null, (x, y) => x.OnHide());
             }
 
         }

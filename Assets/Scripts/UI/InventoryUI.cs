@@ -4,12 +4,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Morbius.Scripts.Items;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(UIFader))]
-    public class InventoryUI : MonoBehaviour, IButtonEventTarget, IInventoryEventTarget
+    public class InventoryUI : MonoBehaviour, IButtonEventTarget, IInventoryMessage
     {
         [SerializeField]
         private GameObject m_cursor;
@@ -32,6 +33,8 @@ namespace Morbius.Scripts.UI
         {
             Button button = GetComponent<Button>();
             button.onClick.AddListener(() => Inventory.DropHandItem());
+
+            MessageSystem.Register<IInventoryMessage>(gameObject);
             Inventory.RegisterUI(gameObject);
         }
 

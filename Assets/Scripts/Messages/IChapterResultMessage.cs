@@ -2,9 +2,9 @@
 using UnityEngine.EventSystems;
 
 
-namespace Morbius.Scripts.UI
+namespace Morbius.Scripts.Messages
 {
-    public interface IChapterResultTarget : IEventSystemHandler
+    public interface IChapterResultMessage : IMessageSystemHandler
     {
         void OnChapterDone();
     }

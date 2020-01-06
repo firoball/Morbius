@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Events;
-using Morbius.Scripts.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Items
 {
@@ -97,7 +97,8 @@ namespace Morbius.Scripts.Items
             if (!s_items.Contains(item) && item.Icon)
             {
                 s_items.Add(item);
-                ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
+                //ExecuteEvents.Execute<IInventoryMessage>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
+                MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnAdd(item.Icon));
             }
         }
 
@@ -105,7 +106,8 @@ namespace Morbius.Scripts.Items
         {
             if (s_items.Remove(item) && item.Icon)
             {
-                ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryUI, null, (x, y) => x.OnRemove(item.Icon));
+                //ExecuteEvents.Execute<IInventoryMessage>(m_inventoryUI, null, (x, y) => x.OnRemove(item.Icon));
+                MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnRemove(item.Icon));
             }
 
         }
@@ -115,7 +117,8 @@ namespace Morbius.Scripts.Items
             s_singleton.m_inventoryUI = ui;
             foreach(Item item in s_items)
             {
-                ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
+                //ExecuteEvents.Execute<IInventoryMessage>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
+                MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnAdd(item.Icon));
             }
         }
 

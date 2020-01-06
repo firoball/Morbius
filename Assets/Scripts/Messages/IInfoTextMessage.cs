@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Morbius.Scripts.UI
+namespace Morbius.Scripts.Messages
 {
-    public interface IInfoTextEventTarget : IEventSystemHandler
+    public interface IInfoTextMessage : IMessageSystemHandler
     {
         void OnShow(string text);
         void OnShow(string text, float duration);

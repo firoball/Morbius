@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(UIFader))]
-    public class DialogUI : MonoBehaviour, IDialogEventTarget
+    public class DialogUI : MonoBehaviour, IDialogMessage
     {
         [SerializeField]
         private Text m_speaker;
@@ -25,6 +22,11 @@ namespace Morbius.Scripts.UI
         private void Awake()
         {
             m_fader = GetComponent<UIFader>();
+        }
+
+        private void Start()
+        {
+            MessageSystem.Register<IDialogMessage>(gameObject);
         }
 
         public void OnShowText(string speaker, string text)
@@ -78,10 +80,11 @@ namespace Morbius.Scripts.UI
 
         public void DecisionNotification(int index)
         {
-            if (m_sender)
+/*            if (m_sender)
             {
-                ExecuteEvents.Execute<IDialogResultTarget>(m_sender, null, (x, y) => x.OnDecision(index));
-            }
+                ExecuteEvents.Execute<IDialogResultMessage>(m_sender, null, (x, y) => x.OnDecision(index));
+            }*/
+            MessageSystem.Execute<IDialogResultMessage>((x, y) => x.OnDecision(index));
         }
 
     }

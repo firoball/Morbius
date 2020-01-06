@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Items;
-using Morbius.Scripts.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Events
 {
@@ -31,7 +31,8 @@ namespace Morbius.Scripts.Events
                 if (sequence != null)
                 {
                     m_displayTime = Mathf.Max(sequence.Audio.length + 0.5f, c_minDisplayTime);
-                    ExecuteEvents.Execute<IInfoTextEventTarget>(m_receiver, null, (x, y) => x.OnShow(sequence.Description, m_displayTime));
+                    //ExecuteEvents.Execute<IInfoTextMessage>(m_receiver, null, (x, y) => x.OnShow(sequence.Description, m_displayTime));
+                    MessageSystem.Execute<IInfoTextMessage>((x, y) => x.OnShow(sequence.Description, m_displayTime));
                     AudioManager.ScheduleVoice(sequence.Audio);
                     //sequence may trigger additional events
                     EventManager.RaiseEvent(sequence.TriggerId);

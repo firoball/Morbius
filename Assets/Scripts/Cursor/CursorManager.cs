@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Items;
-using Morbius.Scripts.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Cursor
 {
@@ -87,7 +87,8 @@ namespace Morbius.Scripts.Cursor
                 if (!m_hoveredObjectWasUI)
                 {
                     m_hoveredObjectWasUI = true;
-                    ExecuteEvents.Execute<ICursorUIEventTarget>(m_player, null, (x, y) => x.OnUIEnter());
+//                    ExecuteEvents.Execute<ICursorUIMessage>(m_player, null, (x, y) => x.OnUIEnter());
+                    MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIEnter());
                 }
             }
             //hovering no or no UIobject
@@ -97,7 +98,8 @@ namespace Morbius.Scripts.Cursor
                 if (m_hoveredObjectWasUI)
                 { 
                     m_hoveredObjectWasUI = false;
-                    ExecuteEvents.Execute<ICursorUIEventTarget>(m_player, null, (x, y) => x.OnUIExit());
+//                    ExecuteEvents.Execute<ICursorUIMessage>(m_player, null, (x, y) => x.OnUIExit());
+                    MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIExit());
                 }
             }
         }
@@ -136,7 +138,8 @@ namespace Morbius.Scripts.Cursor
             if (icon != m_icon)
             {
                 m_icon = icon;
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(icon));
+//                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetIcon(icon));
+                MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetIcon(icon));
             }
         }
 
@@ -182,24 +185,30 @@ namespace Morbius.Scripts.Cursor
                     state = CursorState.DEFAULT;
                 }
             }
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetCursor(state));
+            //ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetCursor(state));
+            MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetCursor(state));
 
             //Icon
             if (info.Icon)
             {
                 m_icon = info.Icon;
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(info.Icon));
+//                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetIcon(info.Icon));
+                MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetIcon(info.Icon));
             }
 
             //Text
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetText(info.Label));
+//            ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetText(info.Label));
+            MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetText(info.Label));
         }
 
         private void SetDefaultCursor()
         {
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetCursor(CursorState.DEFAULT));
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetText(null));
-            ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorUI, null, (x, y) => x.OnSetIcon(m_icon));
+            //ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetCursor(CursorState.DEFAULT));
+            //ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetText(null));
+            //ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorUI, null, (x, y) => x.OnSetIcon(m_icon));
+            MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetCursor(CursorState.DEFAULT));
+            MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetText(null));
+            MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetIcon(m_icon));
 
             m_cursorObject = null;
             m_cursorInfo = new CursorInfo();

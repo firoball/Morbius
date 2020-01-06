@@ -3,12 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(UIFader))]
     [RequireComponent(typeof(AudioSource))]
-    public class ChapterUI : MonoBehaviour, IPointerClickHandler, IChapterEventTarget
+    public class ChapterUI : MonoBehaviour, IPointerClickHandler, IChapterMessage
     {
         [SerializeField]
         private AudioClip m_letter;
@@ -37,6 +38,8 @@ namespace Morbius.Scripts.UI
             m_textStr = new string[] { "", "", "" };
             m_fader = GetComponent<UIFader>();
             m_audio = GetComponent<AudioSource>();
+
+            MessageSystem.Register<IChapterMessage>(gameObject);
         }
 
         private void Update()
@@ -83,7 +86,8 @@ namespace Morbius.Scripts.UI
             yield return new WaitForSeconds(c_doneDelay);
             m_fader.Hide(false);
             yield return new WaitForSeconds(c_fadeDelay);
-            ExecuteEvents.Execute<IChapterResultTarget>(m_sender, null, (x, y) => x.OnChapterDone());
+//            ExecuteEvents.Execute<IChapterResultMessage>(m_sender, null, (x, y) => x.OnChapterDone());
+            MessageSystem.Execute<IChapterResultMessage>((x, y) => x.OnChapterDone());
         }
 
         private IEnumerator AssembleTitle(string source)

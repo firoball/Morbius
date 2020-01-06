@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using Morbius.Scripts.Cursor;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Movement
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class PlayerNavigator : MonoBehaviour, ICursorUIEventTarget
+    public class PlayerNavigator : MonoBehaviour, ICursorUIMessage
     {
         [SerializeField]
         private float m_walkSpeed = 1.0f;
@@ -33,6 +33,8 @@ namespace Morbius.Scripts.Movement
             //compensate different scene scaling
             m_walkSpeed *= transform.localScale.y;
             m_runSpeed *= transform.localScale.y;
+
+            MessageSystem.Register<ICursorUIMessage>(gameObject);
         }
 
         void Update()

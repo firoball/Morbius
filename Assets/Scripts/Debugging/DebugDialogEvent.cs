@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Debugging
 {
-    public class DebugDialogEvent : MonoBehaviour, IDialogResultTarget
+    public class DebugDialogEvent : MonoBehaviour, IDialogResultMessage
     {
         [SerializeField]
         private GameObject m_dialogTarget;
@@ -54,25 +55,25 @@ namespace Morbius.Scripts.Debugging
                     if (content.ChoiceItems.Count > 0)
                     {
                         string[] decisions = content.ChoiceItems.Select(x => x.Text).ToArray();
-                        ExecuteEvents.Execute<IDialogEventTarget>(m_dialogTarget, null, (x, y) => x.OnShowDecision(gameObject, decisions));
+                        ExecuteEvents.Execute<IDialogMessage>(m_dialogTarget, null, (x, y) => x.OnShowDecision(gameObject, decisions));
                     }
                     //just text
                     else if (!string.IsNullOrEmpty(content.Name) && !string.IsNullOrEmpty(content.Text))
                     {
-                        ExecuteEvents.Execute<IDialogEventTarget>(m_dialogTarget, null, (x, y) => x.OnShowText(content.Name, content.Text));
+                        ExecuteEvents.Execute<IDialogMessage>(m_dialogTarget, null, (x, y) => x.OnShowText(content.Name, content.Text));
                     }
                     //something else
                     else
                     {
                         EditorUtility.DisplayDialog("DebugDialogEvent", "Selected Element does not contain data", "Ok");
                     }*/
-                    ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryTarget, null, (x, y) => x.OnHide());
+                    ExecuteEvents.Execute<IInventoryMessage>(m_inventoryTarget, null, (x, y) => x.OnHide());
                 }
 
                 if (GUI.Button(new Rect(130, 530, 100, 30), "Hide Dialog"))
                 {
-                    ExecuteEvents.Execute<IDialogEventTarget>(m_dialogTarget, null, (x, y) => x.OnHide());
-                    ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryTarget, null, (x, y) => x.OnShow());
+                    ExecuteEvents.Execute<IDialogMessage>(m_dialogTarget, null, (x, y) => x.OnHide());
+                    ExecuteEvents.Execute<IInventoryMessage>(m_inventoryTarget, null, (x, y) => x.OnShow());
                 }
             }
 

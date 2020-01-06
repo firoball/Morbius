@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(UIFader))]
-    public class InfoTextUI : MonoBehaviour, IInfoTextEventTarget
+    public class InfoTextUI : MonoBehaviour, IInfoTextMessage
     {
         [SerializeField]
         private Text m_text;
@@ -17,6 +18,11 @@ namespace Morbius.Scripts.UI
         {
             m_fader = GetComponent<UIFader>();
             m_timer = 0.0f;
+        }
+
+        private void Start()
+        {
+            MessageSystem.Register<IInfoTextMessage>(gameObject);
         }
 
         private void Update()

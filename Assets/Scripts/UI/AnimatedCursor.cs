@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Morbius.Scripts.Cursor;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.UI
 {
-    public class AnimatedCursor : MonoBehaviour, IAnimatedCursorEventTarget
+    public class AnimatedCursor : MonoBehaviour, IAnimatedCursorMessage
     {
         private Vector2 m_localPoint;
 
@@ -17,14 +18,19 @@ namespace Morbius.Scripts.UI
         [SerializeField]
         private bool m_hideCursor;
 
-        void Awake()
+        private void Awake()
         {
             SetCursorState(CursorState.DEFAULT);
             SetIcon(null);
             SetText(null);
         }
 
-        void Update()
+        private void Start()
+        {
+            MessageSystem.Register<IAnimatedCursorMessage>(gameObject);
+        }
+
+        private void Update()
         {
             UnityEngine.Cursor.visible = !m_hideCursor;
             Position();

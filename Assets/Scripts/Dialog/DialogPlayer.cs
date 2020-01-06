@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Ambient;
-using Morbius.Scripts.UI;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Dialog
 {
-    public class DialogPlayer : MonoBehaviour, IDialogResultTarget
+    public class DialogPlayer : MonoBehaviour, IDialogResultMessage
     {
         [SerializeField]
         private GameObject m_dialogObject;
@@ -30,6 +30,11 @@ namespace Morbius.Scripts.Dialog
             m_dialog = obj.GetComponent<Dialog>();
             m_stopped = true;
             m_isPlaying = false;
+        }
+
+        private void Start()
+        {
+            MessageSystem.Register<IDialogResultMessage>(gameObject);
         }
 
         public void Play()
@@ -57,7 +62,8 @@ namespace Morbius.Scripts.Dialog
             if (dialog.IsFinished() || m_stopped)
             {
                 m_isPlaying = false;
-                ExecuteEvents.Execute<IDialogEventTarget>(m_dialogUI, null, (x, y) => x.OnHide());
+                //ExecuteEvents.Execute<IDialogMessage>(m_dialogUI, null, (x, y) => x.OnHide());
+                MessageSystem.Execute<IDialogMessage>((x, y) => x.OnHide());
                 return;
             }
 
@@ -76,7 +82,8 @@ namespace Morbius.Scripts.Dialog
 
         private void ShowText(DialogText text)
         {
-            ExecuteEvents.Execute<IDialogEventTarget>(m_dialogUI, null, (x, y) => x.OnShowText(text.Speaker, text.Text));
+            //ExecuteEvents.Execute<IDialogMessage>(m_dialogUI, null, (x, y) => x.OnShowText(text.Speaker, text.Text));
+            MessageSystem.Execute<IDialogMessage>((x, y) => x.OnShowText(text.Speaker, text.Text));
             AudioManager.ScheduleVoice(text.Clip);
 
             float delay = Mathf.Max(c_minDisplayTime, text.Clip.length + c_dialogPauseTime);
@@ -86,7 +93,8 @@ namespace Morbius.Scripts.Dialog
         private void ShowChoices (DialogChoices choices)
         {
             string[] decisions = choices.GetChoices();
-            ExecuteEvents.Execute<IDialogEventTarget>(m_dialogUI, null, (x, y) => x.OnShowDecision(gameObject, decisions));
+            //ExecuteEvents.Execute<IDialogMessage>(m_dialogUI, null, (x, y) => x.OnShowDecision(gameObject, decisions));
+            MessageSystem.Execute<IDialogMessage>((x, y) => x.OnShowDecision(gameObject, decisions));
         }
 
         private void Proceed()

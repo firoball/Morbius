@@ -2,9 +2,9 @@
 using UnityEngine.EventSystems;
 using Morbius.Scripts.Cursor;
 
-namespace Morbius.Scripts.UI
+namespace Morbius.Scripts.Messages
 {
-    public interface IAnimatedCursorEventTarget : IEventSystemHandler
+    public interface IAnimatedCursorMessage : IMessageSystemHandler
     {
         void OnSetText(string text);
         void OnSetIcon(Sprite icon);

@@ -1,5 +1,6 @@
 ﻿using Morbius.Scripts.UI;
 using Morbius.Scripts.Cursor;
+using Morbius.Scripts.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,21 +52,21 @@ namespace Morbius.Scripts.Debugging
                 {
                     if (m_itemSelection == m_items.Length)
                     {
-                        ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetIcon(null));
+                        ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetIcon(null));
                     }
                     else
                     {
-                        ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetIcon(m_items[m_itemSelection]));
+                        ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetIcon(m_items[m_itemSelection]));
                     }
                 }
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetText(m_cursorText));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetCursor((CursorState)m_cursorSelection));
+                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetText(m_cursorText));
+                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetCursor((CursorState)m_cursorSelection));
             }
             if (GUI.Button(new Rect(130, 350, 100, 30), "Reset Cursor"))
             {
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetIcon(null));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetText(null));
-                ExecuteEvents.Execute<IAnimatedCursorEventTarget>(m_cursorTarget, null, (x, y) => x.OnSetCursor(CursorState.DEFAULT));
+                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetIcon(null));
+                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetText(null));
+                ExecuteEvents.Execute<IAnimatedCursorMessage>(m_cursorTarget, null, (x, y) => x.OnSetCursor(CursorState.DEFAULT));
             }
             if (GUI.Button(new Rect(235, 350, 100, 30), "Add Item"))
             {
@@ -74,11 +75,11 @@ namespace Morbius.Scripts.Debugging
                 {
                     if (m_itemSelection == m_items.Length)
                     {
-                        ExecuteEvents.Execute<IInventoryEventTarget>(m_itemTarget, null, (x, y) => x.OnAdd(null));
+                        ExecuteEvents.Execute<IInventoryMessage>(m_itemTarget, null, (x, y) => x.OnAdd(null));
                     }
                     else
                     {
-                        ExecuteEvents.Execute<IInventoryEventTarget>(m_itemTarget, null, (x, y) => x.OnAdd(m_items[m_itemSelection]));
+                        ExecuteEvents.Execute<IInventoryMessage>(m_itemTarget, null, (x, y) => x.OnAdd(m_items[m_itemSelection]));
                     }
                 }
             }
@@ -88,11 +89,11 @@ namespace Morbius.Scripts.Debugging
                 {
                     if (m_itemSelection == m_items.Length)
                     {
-                        ExecuteEvents.Execute<IInventoryEventTarget>(m_itemTarget, null, (x, y) => x.OnRemove(null));
+                        ExecuteEvents.Execute<IInventoryMessage>(m_itemTarget, null, (x, y) => x.OnRemove(null));
                     }
                     else
                     {
-                        ExecuteEvents.Execute<IInventoryEventTarget>(m_itemTarget, null, (x, y) => x.OnRemove(m_items[m_itemSelection]));
+                        ExecuteEvents.Execute<IInventoryMessage>(m_itemTarget, null, (x, y) => x.OnRemove(m_items[m_itemSelection]));
                     }
                 }
             }

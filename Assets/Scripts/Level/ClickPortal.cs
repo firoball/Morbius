@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Morbius.Scripts.Events;
 using Morbius.Scripts.Movement;
 
 namespace Morbius.Scripts.Level

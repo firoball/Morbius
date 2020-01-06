@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Morbius.Scripts.UI
+namespace Morbius.Scripts.Messages
 {
-    public interface IDialogEventTarget : IEventSystemHandler
+    public interface IDialogMessage : IMessageSystemHandler
     {
         void OnShowText(string speaker, string text);
         void OnShowDecision(GameObject sender, string[] decisions);

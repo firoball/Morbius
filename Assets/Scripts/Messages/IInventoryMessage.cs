@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Morbius.Scripts.UI
+namespace Morbius.Scripts.Messages
 {
-    public interface IInventoryEventTarget : IEventSystemHandler
+    public interface IInventoryMessage : IMessageSystemHandler
     {
         void OnShow();
         void OnHide();

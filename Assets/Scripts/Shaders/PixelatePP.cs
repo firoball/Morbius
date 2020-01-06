@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Shaders
 {
     [RequireComponent(typeof(Camera))]
     [ExecuteInEditMode]
-    public class PixelatePP : MonoBehaviour, IPixelProgressEventTarget
+    public class PixelatePP : MonoBehaviour, IPixelProgressMessage
     {
         [SerializeField]
         private Material m_material;
@@ -24,6 +25,8 @@ namespace Morbius.Scripts.Shaders
             }
             if (Application.isPlaying)
                 m_material.SetFloat("_Factor", m_factor);
+
+            MessageSystem.Register<IPixelProgressMessage>(gameObject);
         }
 
         private void Update()
