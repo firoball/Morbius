@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Messages;
@@ -14,10 +13,6 @@ namespace Morbius.Scripts.Level
         private int m_sceneId;
         [SerializeField]
         private Chapter m_chapter;
-        [SerializeField]
-        private GameObject m_camera;
-        [SerializeField]
-        private GameObject m_chapterUI;
 
         private bool m_started;
 
@@ -52,10 +47,8 @@ namespace Morbius.Scripts.Level
             if (m_chapter)
             {
                 AudioManager.FadeAndStop(c_fadeSpeedFast);
-                //ExecuteEvents.Execute<IChapterMessage>(m_chapterUI, null, (x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
-                //ExecuteEvents.Execute<IChapterMessage>(m_chapterUI, null, (x, y) => x.OnShow(gameObject));
                 MessageSystem.Execute<IChapterMessage>((x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
-                MessageSystem.Execute<IChapterMessage>((x, y) => x.OnShow(gameObject));
+                MessageSystem.Execute<IChapterMessage>((x, y) => x.OnShow());
             }
             else
             {
@@ -72,7 +65,6 @@ namespace Morbius.Scripts.Level
         private IEnumerator Pixelate()
         {
             AudioManager.FadeAndStop(c_fadeSpeedSlow);
-//            ExecuteEvents.Execute<IPixelProgressMessageTarget>(m_camera, null, (x, y) => x.OnPixelate());
             MessageSystem.Execute<IPixelProgressMessage>((x, y) => x.OnPixelate());
             yield return new WaitForSeconds(c_uiDelay);
             StartTypewriter();

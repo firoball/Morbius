@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Messages;
 
@@ -10,8 +9,6 @@ namespace Morbius.Scripts.Dialog
     {
         [SerializeField]
         private GameObject m_dialogObject;
-        [SerializeField]
-        private GameObject m_dialogUI;
 
         private bool m_stopped;
         private bool m_isPlaying;
@@ -62,7 +59,6 @@ namespace Morbius.Scripts.Dialog
             if (dialog.IsFinished() || m_stopped)
             {
                 m_isPlaying = false;
-                //ExecuteEvents.Execute<IDialogMessage>(m_dialogUI, null, (x, y) => x.OnHide());
                 MessageSystem.Execute<IDialogMessage>((x, y) => x.OnHide());
                 return;
             }
@@ -82,7 +78,6 @@ namespace Morbius.Scripts.Dialog
 
         private void ShowText(DialogText text)
         {
-            //ExecuteEvents.Execute<IDialogMessage>(m_dialogUI, null, (x, y) => x.OnShowText(text.Speaker, text.Text));
             MessageSystem.Execute<IDialogMessage>((x, y) => x.OnShowText(text.Speaker, text.Text));
             AudioManager.ScheduleVoice(text.Clip);
 
@@ -93,8 +88,7 @@ namespace Morbius.Scripts.Dialog
         private void ShowChoices (DialogChoices choices)
         {
             string[] decisions = choices.GetChoices();
-            //ExecuteEvents.Execute<IDialogMessage>(m_dialogUI, null, (x, y) => x.OnShowDecision(gameObject, decisions));
-            MessageSystem.Execute<IDialogMessage>((x, y) => x.OnShowDecision(gameObject, decisions));
+            MessageSystem.Execute<IDialogMessage>((x, y) => x.OnShowDecision(decisions));
         }
 
         private void Proceed()

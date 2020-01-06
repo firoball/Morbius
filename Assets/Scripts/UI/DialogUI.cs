@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Morbius.Scripts.Messages;
 
@@ -15,7 +14,6 @@ namespace Morbius.Scripts.UI
         [SerializeField]
         private DialogDecisionHandler m_decisions;
 
-        private GameObject m_sender;
         private UIFader m_fader;
 
 
@@ -46,7 +44,7 @@ namespace Morbius.Scripts.UI
             }
         }
 
-        public void OnShowDecision(GameObject sender, string[] decisions)
+        public void OnShowDecision(string[] decisions)
         {
             if (m_speaker)
             {
@@ -66,7 +64,6 @@ namespace Morbius.Scripts.UI
                     m_decisions.AddDecision(decision);
                 }
                 m_fader.Show(false);
-                m_sender = sender;
             }
         }
 
@@ -80,10 +77,6 @@ namespace Morbius.Scripts.UI
 
         public void DecisionNotification(int index)
         {
-/*            if (m_sender)
-            {
-                ExecuteEvents.Execute<IDialogResultMessage>(m_sender, null, (x, y) => x.OnDecision(index));
-            }*/
             MessageSystem.Execute<IDialogResultMessage>((x, y) => x.OnDecision(index));
         }
 

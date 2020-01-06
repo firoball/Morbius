@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Items;
 using Morbius.Scripts.Messages;
@@ -13,9 +12,6 @@ namespace Morbius.Scripts.Events
     [Serializable]
     public class ItemSequenceEvent : DefaultEvent
     {
-        [SerializeField]
-        private GameObject m_receiver;
-
         private float m_displayTime;
 
         private const float c_minDisplayTime = 1.5f;
@@ -31,7 +27,6 @@ namespace Morbius.Scripts.Events
                 if (sequence != null)
                 {
                     m_displayTime = Mathf.Max(sequence.Audio.length + 0.5f, c_minDisplayTime);
-                    //ExecuteEvents.Execute<IInfoTextMessage>(m_receiver, null, (x, y) => x.OnShow(sequence.Description, m_displayTime));
                     MessageSystem.Execute<IInfoTextMessage>((x, y) => x.OnShow(sequence.Description, m_displayTime));
                     AudioManager.ScheduleVoice(sequence.Audio);
                     //sequence may trigger additional events

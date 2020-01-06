@@ -27,7 +27,6 @@ namespace Morbius.Scripts.UI
         private string[] m_textStr;
         private UIFader m_fader;
         private AudioSource m_audio;
-        private GameObject m_sender;
 
         private const float c_typeDelay = 0.25f;
         private const float c_doneDelay = 1.0f;
@@ -58,9 +57,8 @@ namespace Morbius.Scripts.UI
             }
         }
 
-        public void OnShow(GameObject sender)
+        public void OnShow()
         {
-            m_sender = sender;
             m_text.text = "";
             m_title.text = "";
             m_fader.Show(true);
@@ -86,7 +84,6 @@ namespace Morbius.Scripts.UI
             yield return new WaitForSeconds(c_doneDelay);
             m_fader.Hide(false);
             yield return new WaitForSeconds(c_fadeDelay);
-//            ExecuteEvents.Execute<IChapterResultMessage>(m_sender, null, (x, y) => x.OnChapterDone());
             MessageSystem.Execute<IChapterResultMessage>((x, y) => x.OnChapterDone());
         }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Morbius.Scripts.Events;
 using Morbius.Scripts.Messages;
 
@@ -14,9 +13,6 @@ namespace Morbius.Scripts.Items
         private static Inventory s_singleton;
         private static List<Item> s_items;
         private static Item s_itemInHand;
-
-        //[SerializeField]
-        private GameObject m_inventoryUI;
 
         public static Item ItemInHand
         {
@@ -97,7 +93,6 @@ namespace Morbius.Scripts.Items
             if (!s_items.Contains(item) && item.Icon)
             {
                 s_items.Add(item);
-                //ExecuteEvents.Execute<IInventoryMessage>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
                 MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnAdd(item.Icon));
             }
         }
@@ -106,18 +101,15 @@ namespace Morbius.Scripts.Items
         {
             if (s_items.Remove(item) && item.Icon)
             {
-                //ExecuteEvents.Execute<IInventoryMessage>(m_inventoryUI, null, (x, y) => x.OnRemove(item.Icon));
                 MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnRemove(item.Icon));
             }
 
         }
 
-        private void UpdateUI(GameObject ui)
+        private void UpdateUI()
         {
-            s_singleton.m_inventoryUI = ui;
             foreach(Item item in s_items)
             {
-                //ExecuteEvents.Execute<IInventoryMessage>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
                 MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnAdd(item.Icon));
             }
         }
@@ -161,11 +153,12 @@ namespace Morbius.Scripts.Items
             }
         }
 
+        //TODO handle via sceneManagement? UI needs to update once after scene was loaded (after "Start")
         public static void RegisterUI(GameObject ui)
         {
             if (s_singleton)
             {
-                s_singleton.UpdateUI(ui);
+                s_singleton.UpdateUI();
             }
         }
 

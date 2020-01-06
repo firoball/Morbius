@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Items;
 using Morbius.Scripts.Messages;
@@ -14,9 +13,6 @@ namespace Morbius.Scripts.Events
     [Serializable]
     public class ItemCombineEvent : DefaultEvent
     {
-        [SerializeField]
-        private GameObject m_receiver;
-
         private float m_displayTime;
         private AudioSource m_audio;
 
@@ -35,7 +31,6 @@ namespace Morbius.Scripts.Events
             if (failure.Audio != null)
             {
                 m_displayTime = Mathf.Max(failure.Audio.length + 0.5f, c_minDisplayTime);
-//                ExecuteEvents.Execute<IInfoTextMessage>(m_receiver, null, (x, y) => x.OnShow(failure.Description, m_displayTime));
                 MessageSystem.Execute<IInfoTextMessage>((x, y) => x.OnShow(failure.Description, m_displayTime));
                 AudioManager.ScheduleVoice(failure.Audio);
             }
@@ -68,7 +63,6 @@ namespace Morbius.Scripts.Events
             if (combination.Audio != null)
             {
                 m_displayTime = Mathf.Max(combination.Audio.length + 0.5f, c_minDisplayTime);
-//                ExecuteEvents.Execute<IInfoTextMessage>(m_receiver, null, (x, y) => x.OnShow(combination.Description, m_displayTime));
                 MessageSystem.Execute<IInfoTextMessage>((x, y) => x.OnShow(combination.Description, m_displayTime));
                 AudioManager.ScheduleVoice(combination.Audio);
             }
