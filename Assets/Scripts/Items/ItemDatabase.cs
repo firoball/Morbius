@@ -91,36 +91,4 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    /*public static int GetEncodedEventId(Item item)
-    {
-        int status = 0;
-
-        if (s_itemStates.ContainsKey(item))
-        {
-            status = 100000 + (s_itemStates[item].SequenceIndex * 10000) + item.Id;
-        }
-
-        return status;
-    }
-
-    public static ItemSaveState DecodeEventId(int status, out Item item)
-    {
-        ItemSaveState saveState;
-        int identifier = status / 100000;
-        if (identifier == 1)
-        {
-            int sequenceIndex = (status - (identifier * 100000)) / 10000;
-            int itemId = status - (identifier * 100000) - (sequenceIndex * 10000);
-            item = GetItemById(itemId);
-            saveState = GetItemStatus(item);
-        }
-        else
-        {
-            item = null;
-            saveState = new ItemSaveState();
-        }
-
-        return saveState;
-    }*/
-
 }

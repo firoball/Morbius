@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Morbius.Scripts.Ambient;
+using Morbius.Scripts.Cursor;
 
 namespace Morbius.Scripts.Items
 {
@@ -147,6 +150,13 @@ namespace Morbius.Scripts.Items
             if (m_prefab)
             {
                 itemObj = Spawn(spawnpoint, m_prefab);
+                //this is somewhat clumsy... better would be a separate "builder" prefab
+                //if item was cloned from scene object these components are already available
+                BoxCollider collider = itemObj.AddComponent<BoxCollider>();
+                collider.isTrigger = true;
+                itemObj.AddComponent<CursorSceneItem>();
+                itemObj.AddComponent<ItemEditorVisualizer>();
+                itemObj.AddComponent<PointOfInterest>();
             }
             else
             {
@@ -184,8 +194,8 @@ namespace Morbius.Scripts.Items
                 itemObj.name = m_label;
                 
                 //in case prefab was based on scene object... clean it up (narf).
-                ItemInstance old = itemObj.GetComponent<ItemInstance>();
-                Destroy(old);
+                ItemInstance oldInstance = itemObj.GetComponent<ItemInstance>();
+                Destroy(oldInstance);
 
                 ItemInstance instance = itemObj.AddComponent<ItemInstance>();
                 instance.Item = this;

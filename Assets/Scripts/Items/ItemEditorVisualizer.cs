@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Rendering;
+#if UNITY_EDITOR
 using UnityEditor;
-using Morbius.Scripts.Items;
-
+#endif
 namespace Morbius.Scripts.Items
 {
     [ExecuteInEditMode]
     public class ItemEditorVisualizer : MonoBehaviour
     {
+#if UNITY_EDITOR
         private Collider m_collider;
         private ItemInstance m_instance;
         private Item m_item;
@@ -115,5 +116,6 @@ namespace Morbius.Scripts.Items
 
             }
         }
+#endif
     }
 }

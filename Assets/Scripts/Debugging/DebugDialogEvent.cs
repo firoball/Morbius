@@ -1,9 +1,10 @@
 ﻿using Morbius.Scripts.Dialog;
 using Morbius.Scripts.UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Morbius.Scripts.Debugging
 {
@@ -79,7 +80,9 @@ namespace Morbius.Scripts.Debugging
 
         public void OnDecision(int index)
         {
+#if UNITY_EDITOR
             EditorUtility.DisplayDialog("DebugDialogEvent", "Decision index: " + index, "Ok");
+#endif
         }
     }
 }

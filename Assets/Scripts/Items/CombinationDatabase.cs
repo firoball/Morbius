@@ -42,7 +42,7 @@ public class CombinationDatabase : MonoBehaviour
         if (s_singleton == null)
         {
             s_singleton = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {

@@ -9,7 +9,6 @@ using Morbius.Scripts.Items;
 namespace Morbius.Scripts.Events
 {
     [RequireComponent(typeof(DialogPlayer))]
-    [Serializable]
     public class DialogTriggerEvent : DefaultEvent
     {
         private DialogPlayer m_dialogPlayer;

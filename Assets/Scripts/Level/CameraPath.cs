@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace Morbius.Scripts.Level
 {
@@ -38,6 +40,7 @@ namespace Morbius.Scripts.Level
             }
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (Application.isEditor)
@@ -46,6 +49,7 @@ namespace Morbius.Scripts.Level
                 DrawLines();
             }
         }
+#endif
 
         private void Setup()
         {
@@ -69,6 +73,7 @@ namespace Morbius.Scripts.Level
             }
         }
 
+#if UNITY_EDITOR
         private void DrawLines()
         {
             for (int i = 1; i < m_points.Length; i++)
@@ -91,6 +96,7 @@ namespace Morbius.Scripts.Level
                 Gizmos.DrawSphere(point, 0.2f);
             }
         }
+#endif
 
         private Vector3 GetNearestPosition(Vector3 target)
         {

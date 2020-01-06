@@ -32,6 +32,7 @@ namespace Morbius.Scripts.Items
             {
                 s_singleton = this;
                 s_items = new List<Item>();
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -109,6 +110,15 @@ namespace Morbius.Scripts.Items
 
         }
 
+        private void UpdateUI(GameObject ui)
+        {
+            s_singleton.m_inventoryUI = ui;
+            foreach(Item item in s_items)
+            {
+                ExecuteEvents.Execute<IInventoryEventTarget>(m_inventoryUI, null, (x, y) => x.OnAdd(item.Icon));
+            }
+        }
+
         public static void Collect(Item item)
         {
             if (s_singleton)
@@ -151,7 +161,9 @@ namespace Morbius.Scripts.Items
         public static void RegisterUI(GameObject ui)
         {
             if (s_singleton)
-                s_singleton.m_inventoryUI = ui;
+            {
+                s_singleton.UpdateUI(ui);
+            }
         }
 
         public static Item Find(Sprite sprite)

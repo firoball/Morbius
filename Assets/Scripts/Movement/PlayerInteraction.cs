@@ -1,7 +1,9 @@
 ﻿using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Morbius.Scripts.Movement
 {
@@ -82,7 +84,8 @@ namespace Morbius.Scripts.Movement
             Collider collider;
 
             //any interactive object requires to have a trigger collider
-            Collider[] colliders = target.GetComponents<Collider>();
+            GameObject root = target.transform.root.gameObject;
+            Collider[] colliders = root.GetComponents<Collider>();
             collider = colliders.Where(x => x.isTrigger).FirstOrDefault();
 
             return collider;
@@ -91,11 +94,13 @@ namespace Morbius.Scripts.Movement
         private void OnTriggerExit(Collider other)
         {
             // make sure exit fires only for collider which is marked as near for player
-            Collider collider = other.gameObject.GetComponents<Collider>().Where(x => x.isTrigger).FirstOrDefault();
+            GameObject root = other.transform.root.gameObject;
+
+            Collider collider = root.GetComponents<Collider>().Where(x => x.isTrigger).FirstOrDefault();
             if (m_nearCollider != null && collider == m_nearCollider)
             {
                 m_nearCollider = null;
-                ExecuteEvents.Execute<IPlayerExitEventTarget>(other.gameObject, null, (x, y) => x.OnPlayerExit());
+                ExecuteEvents.Execute<IPlayerExitEventTarget>(root, null, (x, y) => x.OnPlayerExit());
             }
         }
 
@@ -105,7 +110,8 @@ namespace Morbius.Scripts.Movement
              * pick correct collider instead. Awesome, Unity!
              * in case no trigger collider is found, keep last one
              */
-            Collider collider = other.gameObject.GetComponents<Collider>().Where(x => x.isTrigger).FirstOrDefault();
+            GameObject root = other.transform.root.gameObject;
+            Collider collider = root.GetComponents<Collider>().Where(x => x.isTrigger).FirstOrDefault();
             if (collider != null)
             {
                 m_nearCollider = collider;
@@ -114,16 +120,19 @@ namespace Morbius.Scripts.Movement
             if (m_target != null && other == m_target)
             {
                 m_navigator?.Stop();
-                ExecuteEvents.Execute<IPlayerClickEventTarget>(other.gameObject, null, (x, y) => x.OnPlayerClick());
+                ExecuteEvents.Execute<IPlayerClickEventTarget>(root, null, (x, y) => x.OnPlayerClick());
             }
-            ExecuteEvents.Execute<IPlayerEnterEventTarget>(other.gameObject, null, (x, y) => x.OnPlayerEnter());
+            ExecuteEvents.Execute<IPlayerEnterEventTarget>(root, null, (x, y) => x.OnPlayerEnter());
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(m_point, 0.1f);
             Handles.Label(m_point, "Target");
         }
+#endif
+
     }
 }
