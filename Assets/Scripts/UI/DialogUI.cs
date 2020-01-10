@@ -20,10 +20,6 @@ namespace Morbius.Scripts.UI
         private void Awake()
         {
             m_fader = GetComponent<UIFader>();
-        }
-
-        private void Start()
-        {
             MessageSystem.Register<IDialogMessage>(gameObject);
         }
 

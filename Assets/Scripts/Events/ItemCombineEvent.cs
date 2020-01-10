@@ -38,26 +38,42 @@ namespace Morbius.Scripts.Events
 
         private void Combine(Combination combination, IEnumerable<Item> items)
         {
+            Inventory.DropHandItem();
+
             foreach (Item item in items)
             {
                 ItemSaveState state = ItemDatabase.GetItemStatus(item);
-                //does this item morph?
-                if (combination.MorphId == item.Id)
-                    state.MorphItem = ItemDatabase.GetItemById(combination.TriggerId);
+                if (state != null)
+                {
+                    //will this item be destroyed?
+                    if (item.Destroyable)
+                        state.Destroyed = true;
 
-                //will this item be destroyed?
-                if (item.Destroyable)
-                    state.Destroyed = true;
-
-                ItemDatabase.SetItemStatus(item, state);
+                    ItemDatabase.SetItemStatus(item, state);
+                }
             }
 
-            Inventory.DropHandItem();
 
             //when no morph id was given, trigger event
-            if (combination.MorphId == 0)
-                EventManager.RaiseEvent(combination.TriggerId);
-
+            //if (combination.MorphId == 0)
+            //{
+            //EventManager.RaiseEvent(combination.TriggerId);
+            //}
+            //otherwise morph item with morphId to triggerId
+            //this is not nice, but that's how it was done in the original game
+            //else
+            if (combination.MorphId > 0)
+            {
+                Item item = ItemDatabase.GetItemById(combination.MorphId);
+                ItemSaveState state = ItemDatabase.GetItemStatus(item);
+                if (state != null)
+                {
+                    state.MorphItem = ItemDatabase.GetItemById(combination.TriggerId);
+                    ItemDatabase.SetItemStatus(item, state);
+                }
+            }
+            //only custom events may be triggered as combination result
+            EventManager.RaiseCustomEvent(combination.TriggerId);
             m_audio.Play();
 
             if (combination.Audio != null)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Morbius.Scripts.Game;
 
 namespace Morbius.Scripts.Events
 {
@@ -9,6 +10,8 @@ namespace Morbius.Scripts.Events
         private int m_minId;
         [SerializeField]
         private int m_maxId;
+        [SerializeField]
+        private bool m_singleEvent = false;
 
         public int MinId
         {
@@ -41,6 +44,25 @@ namespace Morbius.Scripts.Events
             Debug.LogWarning(this + ": Execute not implemented.");
             yield return new WaitForEndOfFrame();
         }
+
+        public bool AllowExecution()
+        {
+            bool retval = true;
+
+            if(m_singleEvent)
+            {
+                if (!GameStatus.IsSet(name))
+                {
+                    GameStatus.Set(name);
+                }
+                else
+                {
+                    retval = false;
+                }
+            }
+            return retval;
+        }
+
     }
 
 }

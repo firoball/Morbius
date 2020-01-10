@@ -12,7 +12,7 @@ namespace Morbius.Scripts.Cursor
         private void Start()
         {
             Image image = GetComponent<Image>();
-            m_item = Inventory.Find(image.sprite);
+            m_item = ItemDatabase.GetItemBySprite(image.sprite);
         }
 
         public CursorInfo GetCursorInfo()

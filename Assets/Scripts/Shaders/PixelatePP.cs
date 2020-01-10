@@ -15,7 +15,12 @@ namespace Morbius.Scripts.Shaders
         private bool m_entry = true;
         private bool m_exit = false;
 
-        void Start()
+        private void Awake()
+        {
+            MessageSystem.Register<IPixelProgressMessage>(gameObject);
+        }
+
+        private void Start()
         {
             if (!SystemInfo.supportsImageEffects || null == m_material ||
                null == m_material.shader || !m_material.shader.isSupported)
@@ -25,8 +30,6 @@ namespace Morbius.Scripts.Shaders
             }
             if (Application.isPlaying)
                 m_material.SetFloat("_Factor", m_factor);
-
-            MessageSystem.Register<IPixelProgressMessage>(gameObject);
         }
 
         private void Update()

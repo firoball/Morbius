@@ -4,11 +4,12 @@ using UnityEngine.EventSystems;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Movement
 {
 
-    public class PlayerInteraction : MonoBehaviour
+    public class PlayerInteraction : MonoBehaviour, ICursorUIMessage
     {
         [SerializeField]
         private PlayerNavigator m_navigator;
@@ -17,21 +18,26 @@ namespace Morbius.Scripts.Movement
         private Collider m_nearCollider;
         private float m_pressedTime;
         private Vector3 m_point;
+        [SerializeField]
+        private bool m_enabled;
 
-        void Start()
+        private void Awake()
         {
             m_target = null;
             m_nearCollider = null;
             m_pressedTime = 0.0f;
             m_point = Vector3.zero;
+            m_enabled = true;
+            MessageSystem.Register<ICursorUIMessage>(gameObject);
+
         }
 
-        void Update()
+        private void Update()
         {
             //TODO: add touch support
             //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && m_enabled)
             {
                 RaycastHit hit;
 
@@ -133,6 +139,16 @@ namespace Morbius.Scripts.Movement
             Handles.Label(m_point, "Target");
         }
 #endif
+
+        public void OnUIEnter()
+        {
+            m_enabled = false;
+        }
+
+        public void OnUIExit()
+        {
+            m_enabled = true;
+        }
 
     }
 }

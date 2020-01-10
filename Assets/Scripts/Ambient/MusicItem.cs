@@ -7,20 +7,20 @@ namespace Morbius.Scripts.Ambient
     public class MusicItem
     {
         [SerializeField]
-        private int m_sceneId;
+        private string m_sceneName;
         [SerializeField]
         private AudioClip m_music;
 
-        public int SceneId
+        public string SceneName
         {
             get
             {
-                return m_sceneId;
+                return m_sceneName;
             }
 
             set
             {
-                m_sceneId = value;
+                m_sceneName = value;
             }
         }
 

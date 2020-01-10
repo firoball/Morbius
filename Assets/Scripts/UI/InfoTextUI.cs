@@ -18,10 +18,6 @@ namespace Morbius.Scripts.UI
         {
             m_fader = GetComponent<UIFader>();
             m_timer = 0.0f;
-        }
-
-        private void Start()
-        {
             MessageSystem.Register<IInfoTextMessage>(gameObject);
         }
 

@@ -3,14 +3,13 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Morbius.Scripts.Ambient;
 using Morbius.Scripts.UI;
 
 namespace Morbius.Scripts.Level
 {
     [RequireComponent(typeof(UIFader))]
-    public class CreditsScroller : MonoBehaviour//, IPointerDownHandler, ICancelHandler
+    public class CreditsScroller : MonoBehaviour
     {
         [SerializeField]
         private float m_scrollSpeed;
@@ -38,8 +37,8 @@ namespace Morbius.Scripts.Level
             if (m_creditsUI)
             {
                 m_height = m_creditsUI.rect.height;
-                m_creditsUI.offsetMax = new Vector2(m_creditsUI.offsetMax.x, m_creditsUI.offsetMax.y);
-                m_creditsUI.offsetMin = new Vector2(m_creditsUI.offsetMin.x, m_creditsUI.offsetMin.y);
+                //m_creditsUI.offsetMax = new Vector2(m_creditsUI.offsetMax.x, m_creditsUI.offsetMax.y);
+                //m_creditsUI.offsetMin = new Vector2(m_creditsUI.offsetMin.x, m_creditsUI.offsetMin.y);
                 m_minY = m_creditsUI.offsetMax.y;
                 m_maxY = m_height + m_minY;
                 m_y = m_minY;
@@ -92,22 +91,6 @@ namespace Morbius.Scripts.Level
             }
             m_fastScrollOld = m_fastScroll;
         }
-
-        /*public void OnPointerDown(PointerEventData data)
-        {
-            m_fastScroll = true;
-        }
-
-        public void OnPointerUp(PointerEventData data)
-        {
-            m_fastScroll = false;
-        }
-
-        public void OnCancel(BaseEventData data)
-        {
-            Debug.Log("cancel");
-            TriggerDone();
-        }*/
 
         private void TriggerDone()
         {

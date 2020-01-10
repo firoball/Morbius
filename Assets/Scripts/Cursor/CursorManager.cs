@@ -53,7 +53,6 @@ namespace Morbius.Scripts.Cursor
             {
                 m_hoveredObject = null;
             }
-
             //initiate hover events, if any
             if (lastHoveredObject != m_hoveredObject || (lastHoveredObject == null && !m_hoveredObjectwasNull))
             {
@@ -75,25 +74,37 @@ namespace Morbius.Scripts.Cursor
 
         private void DetectUI()
         {
-            //hovering UI object
-            if (m_hoveredObject && m_hoveredObject.GetComponent<RectTransform>())
+            if (m_hoveredObject)
             {
-                //only trigger if not hovering UI object before
-                if (!m_hoveredObjectWasUI)
+                //hovering UI object
+                if (m_hoveredObject.GetComponent<RectTransform>())
                 {
-                    m_hoveredObjectWasUI = true;
-                    MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIEnter());
+                    //only trigger if not hovering UI object before
+                    if (!m_hoveredObjectWasUI)
+                    {
+                        m_hoveredObjectWasUI = true;
+                        //Debug.Log("enter UI");
+                        MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIEnter());
+                    }
+                }
+                //not hovering UIobject
+                else
+                {
+                    //only trigger if hovering UI object before
+                    if (m_hoveredObjectWasUI)
+                    {
+                        m_hoveredObjectWasUI = false;
+                        //Debug.Log("exit UI");
+                        MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIExit());
+                    }
                 }
             }
-            //hovering no or no UIobject
+            //hovering no object at all (= pointer offscreen)
             else
             {
-                //only trigger if hovering UI object before
-                if (m_hoveredObjectWasUI)
-                { 
-                    m_hoveredObjectWasUI = false;
-                    MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIExit());
-                }
+                m_hoveredObjectWasUI = true; //hovering no object equals to hovering UI object
+                //Debug.Log("offscreen");
+                MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIEnter());
             }
         }
 

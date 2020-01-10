@@ -27,15 +27,13 @@ namespace Morbius.Scripts.UI
         {
             m_items = new List<Image>();
             m_fader = GetComponent<UIFader>();
+            MessageSystem.Register<IInventoryMessage>(gameObject);
         }
 
         private void Start()
         {
             Button button = GetComponent<Button>();
             button.onClick.AddListener(() => Inventory.DropHandItem());
-
-            MessageSystem.Register<IInventoryMessage>(gameObject);
-            Inventory.RegisterUI(gameObject);
         }
 
         public void OnButtonNotification(GameObject sender)

@@ -12,13 +12,9 @@ namespace Morbius.Scripts.UI
         private List<GameObject> m_decisions;
         private DialogUI m_parentUI;
 
-        private void Start()
-        {
-            m_decisions = new List<GameObject>();
-        }
-
         private void Awake()
         {
+            m_decisions = new List<GameObject>();
             m_parentUI = GetComponentInParent<DialogUI>();
         }
 

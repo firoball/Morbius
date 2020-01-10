@@ -23,6 +23,7 @@ namespace Morbius.Scripts.Events
             ItemSaveState state = ItemDatabase.GetItemStatus(item);
             if (state != null && item.Sequences != null && Inventory.ItemInHand == null)
             {
+                Debug.Log("execute sequence");
                 ItemSequence sequence = item.GetSequence(state.SequenceIndex);
                 if (sequence != null)
                 {

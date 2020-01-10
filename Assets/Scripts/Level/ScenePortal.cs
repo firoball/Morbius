@@ -10,7 +10,7 @@ namespace Morbius.Scripts.Level
     public class ScenePortal : MonoBehaviour, IChapterResultMessage
     {
         [SerializeField]
-        private int m_sceneId;
+        private string m_sceneName;
         [SerializeField]
         private Chapter m_chapter;
 
@@ -20,17 +20,23 @@ namespace Morbius.Scripts.Level
         private const float c_fadeSpeedSlow = 0.4f;
         private const float c_fadeSpeedFast = 3.0f;
 
+        private void Awake()
+        {
+            MessageSystem.Register<IChapterResultMessage>(gameObject);
+        }
+
         private void Start()
         {
-            m_sceneId = Math.Min(Math.Max(0, m_sceneId), SceneManager.sceneCountInBuildSettings - 1);
             m_started = false;
-            MessageSystem.Register<IChapterResultMessage>(gameObject);
+            
         }
 
         public void Load()
         {
+            if (string.IsNullOrWhiteSpace(m_sceneName)) return;
+
             //only load different scenes
-            if (!m_started && SceneManager.GetActiveScene().buildIndex != m_sceneId)
+            if (!m_started && SceneManager.GetActiveScene().name != m_sceneName)
             {
                 m_started = true;
                 StartCoroutine(Pixelate());
@@ -39,7 +45,8 @@ namespace Morbius.Scripts.Level
 
         private void LoadScene()
         {
-            SceneManager.LoadScene(m_sceneId);
+            if (m_started)
+                SceneManager.LoadScene(m_sceneName);
         }
 
         private void StartTypewriter()

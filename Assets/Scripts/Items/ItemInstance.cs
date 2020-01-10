@@ -142,6 +142,7 @@ namespace Morbius.Scripts.Items
                 {
                     Debug.Log("UpdateMorphInitial() " + name);
                     morphItem.Spawn(transform, gameObject);
+                    m_destroy = true;
                 }
                 m_morphed = true;
             }

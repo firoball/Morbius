@@ -32,12 +32,11 @@ namespace Morbius.Scripts.UI
         private const float c_doneDelay = 1.0f;
         private const float c_fadeDelay = 0.3f;
 
-        private void Start()
+        private void Awake()
         {
             m_textStr = new string[] { "", "", "" };
             m_fader = GetComponent<UIFader>();
             m_audio = GetComponent<AudioSource>();
-
             MessageSystem.Register<IChapterMessage>(gameObject);
         }
 
@@ -49,6 +48,7 @@ namespace Morbius.Scripts.UI
             }
         }
 
+        //TODO: is this really needed? Likely covered with Input.anykey
         public void OnPointerClick(PointerEventData data)
         {
             if (m_fader.IsEnabled())

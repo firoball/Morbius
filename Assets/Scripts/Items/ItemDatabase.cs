@@ -52,6 +52,18 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
+    public static Item GetItemBySprite(Sprite sprite)
+    {
+        if (s_singleton)
+        {
+            return s_singleton.m_items.Find(x => x.Icon == sprite);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     private static void RegisterItem(Item item)
     {
         ItemSaveState state = new ItemSaveState();

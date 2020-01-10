@@ -23,10 +23,6 @@ namespace Morbius.Scripts.UI
             SetCursorState(CursorState.DEFAULT);
             SetIcon(null);
             SetText(null);
-        }
-
-        private void Start()
-        {
             MessageSystem.Register<IAnimatedCursorMessage>(gameObject);
         }
 

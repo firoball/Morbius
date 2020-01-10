@@ -14,6 +14,8 @@ namespace Morbius.Scripts.Items
         private static List<Item> s_items;
         private static Item s_itemInHand;
 
+        private bool m_initialized;
+
         public static Item ItemInHand
         {
             get
@@ -28,6 +30,7 @@ namespace Morbius.Scripts.Items
             {
                 s_singleton = this;
                 s_items = new List<Item>();
+                m_initialized = false;
                 DontDestroyOnLoad(gameObject);
             }
             else
@@ -40,6 +43,12 @@ namespace Morbius.Scripts.Items
         //TODO: add morphed items back to inventory!
         private void Update()
         {
+            if (!m_initialized)
+            {
+                UpdateUI();
+                m_initialized = true;
+            }
+
             for (int i = s_items.Count - 1; i >= 0; i--)
             {
                 Item item = s_items[i];
@@ -130,12 +139,6 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        public static void Clear()
-        {
-            s_items.Clear();
-            s_itemInHand = null;
-        }
-
         //TODO use event system? this should not be exposed to everyone but just to UI
         public static void Interact(Sprite sprite)
         {
@@ -153,21 +156,12 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        //TODO handle via sceneManagement? UI needs to update once after scene was loaded (after "Start")
-        public static void RegisterUI(GameObject ui)
+        public static void Setup()
         {
             if (s_singleton)
             {
-                s_singleton.UpdateUI();
+                s_singleton.m_initialized = false;
             }
-        }
-
-        public static Item Find(Sprite sprite)
-        {
-            if (sprite == null)
-                return null;
-            else
-                return s_items.Find(x => x.Icon == sprite);
         }
 
     }

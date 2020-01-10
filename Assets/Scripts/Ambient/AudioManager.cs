@@ -23,14 +23,12 @@ namespace Morbius.Scripts.Ambient
 
         private AudioSource m_audioSource;
         private AudioClip m_nextClip;
-        [SerializeField]
         private bool m_audioFadeAndStop;
-        [SerializeField]
         private float m_audioDefaultVolume;
 
         private const float c_musicfadeSpeedDefault = 1.0f;
         private const float c_musicfadeDelayTime = 1.0f;
-        private const float c_audiofadeSpeedDefault = 2.5f;
+        private const float c_audiofadeSpeedDefault = 2.0f;
         private const float c_musicBackgroundVolumeFac = 0.3f;
 
         private const float c_pitchLimit = 5.0f;
@@ -68,7 +66,7 @@ namespace Morbius.Scripts.Ambient
                 m_musicSource.loop = true;
                 m_delayedStop = false;
                 m_fadeSpeed = c_musicfadeSpeedDefault;
-                AudioClip music = FindMusicClip(SceneManager.GetActiveScene().buildIndex);
+                AudioClip music = FindMusicClip(SceneManager.GetActiveScene().name);
                 PlayMusic(music);
             }
 
@@ -139,9 +137,9 @@ namespace Morbius.Scripts.Ambient
             m_musicSource.volume = volume;
         }
 
-        private AudioClip FindMusicClip(int sceneId)
+        private AudioClip FindMusicClip(string sceneName)
         {
-            MusicItem item = m_musicList.Find(x => x.SceneId == sceneId);
+            MusicItem item = m_musicList.Find(x => x.SceneName == sceneName);
             if (item != null)
             {
                 return item.Music;
@@ -186,8 +184,9 @@ namespace Morbius.Scripts.Ambient
 
         private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
         {
-            AudioClip music = FindMusicClip(scene.buildIndex);
-            PlayMusic(music);
+            AudioClip music = FindMusicClip(scene.name);
+            if (music != null)
+                PlayMusic(music);
         }
 
         private void FadeMusicInternal(float volume)
@@ -208,6 +207,14 @@ namespace Morbius.Scripts.Ambient
                 {
                     s_singleton.PlayAudio(clip);
                 }
+            }
+        }
+
+        public static void StopAudio()
+        {
+            if (s_singleton != null)
+            {
+                s_singleton.m_audioFadeAndStop = true;
             }
         }
 
