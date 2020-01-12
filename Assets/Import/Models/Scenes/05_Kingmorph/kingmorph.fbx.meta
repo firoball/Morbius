@@ -725,6 +725,150 @@ ModelImporter:
     4300282: Group141
     4300284: Group142
     4300286: Group143
+    6400000: Group000
+    6400002: Group001
+    6400004: Group002
+    6400006: Group003
+    6400008: Group004
+    6400010: Group005
+    6400012: Group006
+    6400014: Group007
+    6400016: Group008
+    6400018: Group009
+    6400020: Group010
+    6400022: Group011
+    6400024: Group012
+    6400026: Group013
+    6400028: Group014
+    6400030: Group015
+    6400032: Group016
+    6400034: Group017
+    6400036: Group018
+    6400038: Group019
+    6400040: Group020
+    6400042: Group021
+    6400044: Group022
+    6400046: Group023
+    6400048: Group024
+    6400050: Group025
+    6400052: Group026
+    6400054: Group027
+    6400056: Group028
+    6400058: Group029
+    6400060: Group030
+    6400062: Group031
+    6400064: Group032
+    6400066: Group033
+    6400068: Group034
+    6400070: Group035
+    6400072: Group036
+    6400074: Group037
+    6400076: Group038
+    6400078: Group039
+    6400080: Group040
+    6400082: Group041
+    6400084: Group042
+    6400086: Group043
+    6400088: Group044
+    6400090: Group045
+    6400092: Group046
+    6400094: Group047
+    6400096: Group048
+    6400098: Group049
+    6400100: Group050
+    6400102: Group051
+    6400104: Group052
+    6400106: Group053
+    6400108: Group054
+    6400110: Group055
+    6400112: Group056
+    6400114: Group057
+    6400116: Group058
+    6400118: Group059
+    6400120: Group060
+    6400122: Group061
+    6400124: Group062
+    6400126: Group063
+    6400128: Group064
+    6400130: Group065
+    6400132: Group066
+    6400134: Group067
+    6400136: Group068
+    6400138: Group069
+    6400140: Group070
+    6400142: Group071
+    6400144: Group072
+    6400146: Group073
+    6400148: Group074
+    6400150: Group075
+    6400152: Group076
+    6400154: Group077
+    6400156: Group078
+    6400158: Group079
+    6400160: Group080
+    6400162: Group081
+    6400164: Group082
+    6400166: Group083
+    6400168: Group084
+    6400170: Group085
+    6400172: Group086
+    6400174: Group087
+    6400176: Group088
+    6400178: Group089
+    6400180: Group090
+    6400182: Group091
+    6400184: Group092
+    6400186: Group093
+    6400188: Group094
+    6400190: Group095
+    6400192: Group096
+    6400194: Group097
+    6400196: Group098
+    6400198: Group099
+    6400200: Group100
+    6400202: Group101
+    6400204: Group102
+    6400206: Group103
+    6400208: Group104
+    6400210: Group105
+    6400212: Group106
+    6400214: Group107
+    6400216: Group108
+    6400218: Group109
+    6400220: Group110
+    6400222: Group111
+    6400224: Group112
+    6400226: Group113
+    6400228: Group114
+    6400230: Group115
+    6400232: Group116
+    6400234: Group117
+    6400236: Group118
+    6400238: Group119
+    6400240: Group120
+    6400242: Group121
+    6400244: Group122
+    6400246: Group123
+    6400248: Group124
+    6400250: Group125
+    6400252: Group126
+    6400254: Group127
+    6400256: Group128
+    6400258: Group129
+    6400260: Group130
+    6400262: Group131
+    6400264: Group132
+    6400266: Group133
+    6400268: Group134
+    6400270: Group135
+    6400272: Group136
+    6400274: Group137
+    6400276: Group138
+    6400278: Group139
+    6400280: Group140
+    6400282: Group141
+    6400284: Group142
+    6400286: Group143
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -970,7 +1114,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Group108Mat
-    second: {fileID: 2100000, guid: a9e42aa5cb5be05479524ae8cc4767e6, type: 2}
+    second: {fileID: 2100000, guid: 7a3e4651a0ff97e4a84cbcd6ec558ff8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -1053,7 +1197,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
@@ -1082,7 +1226,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

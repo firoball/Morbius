@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 namespace Morbius.Scripts.Level
 {
@@ -13,5 +13,6 @@ namespace Morbius.Scripts.Level
             if (m_target != null)
                 transform.LookAt(m_target);
         }
+
     }
 }

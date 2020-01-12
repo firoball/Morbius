@@ -229,6 +229,18 @@ namespace Morbius.Scripts.Ambient
             }
         }
 
+        public static void Fade(bool fade, float fadeSpeed)
+        {
+            if (s_singleton != null)
+            {
+                s_singleton.m_fadeSpeed = Mathf.Max(0.0f, fadeSpeed);
+                if (fade)
+                    s_singleton.FadeMusicInternal(0.0f);
+                else
+                    s_singleton.FadeMusicInternal(s_singleton.m_musicDefaultVolume);
+            }
+        }
+
         public static void PitchMusic(float factor)
         {
             if (s_singleton != null && s_singleton.m_musicSource)

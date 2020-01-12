@@ -11,12 +11,11 @@ namespace Morbius.Scripts.Cursor
 {
     public class CursorManager : MonoBehaviour
     {
+        [SerializeField]
         private GameObject m_hoveredObject;
         private bool m_hoveredObjectwasNull;
         private bool m_hoveredObjectWasUI;
-        [SerializeField]
         private Sprite m_icon;
-        [SerializeField]
         private bool m_lastIconWasNull;
         private bool m_iconHasChanged;
         private ICursorObject m_cursorObject;

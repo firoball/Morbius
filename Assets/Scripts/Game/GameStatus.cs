@@ -9,14 +9,17 @@ namespace Morbius.Scripts.Game
 {
     public static class GameStatus
     {
-        private static List<string> s_data = new List<string>();
+        private static List<string> s_status = new List<string>();
+        private static GameData s_data;
+
+        public static GameData Data { get => s_data; }
 
         public static void Set(string identifier)
         {
             if (!string.IsNullOrWhiteSpace(identifier))
             {
                 string value = SceneManager.GetActiveScene().buildIndex.ToString() + "_" + identifier;
-                s_data.Add(value);
+                s_status.Add(value);
             }
         }
 
@@ -26,14 +29,15 @@ namespace Morbius.Scripts.Game
             if (!string.IsNullOrWhiteSpace(identifier))
             {
                 string value = SceneManager.GetActiveScene().buildIndex.ToString() + "_" + identifier;
-                result = s_data.Contains(value);
+                result = s_status.Contains(value);
             }
             return result;
         }
 
         public static void Initialize()
         {
-            s_data.Clear();
+            s_status.Clear();
+            s_data.Initialize();
         }
     }
 }

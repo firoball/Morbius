@@ -43,6 +43,11 @@ namespace Morbius.Scripts.Dialog
             Play(0);
         }
 
+        public int Count()
+        {
+            return m_dialogs.Length;
+        }
+
         public void Play(int index)
         {
             if (index < 0 || index >= m_dialogs.Length)

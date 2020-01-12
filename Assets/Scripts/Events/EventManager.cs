@@ -13,6 +13,8 @@ namespace Morbius.Scripts.Events
 
         private static EventManager s_singleton;
 
+        private bool m_cancel;
+
         void Awake()
         {
             if (s_singleton == null)
@@ -46,8 +48,17 @@ namespace Morbius.Scripts.Events
             }
         }
 
+        public static void CancelEvents()
+        {
+            if (s_singleton)
+            {
+                s_singleton.m_cancel = true;
+            }
+        }
+
         private void TriggerEvent(int eventId, int eventGroupId)
         {
+            m_cancel = false;
             if (eventGroupId >= 0 && eventGroupId < m_eventGroups.Count)
             {
                 List<DefaultEvent> sourceEvents = m_eventGroups[eventGroupId].Events;
@@ -56,7 +67,7 @@ namespace Morbius.Scripts.Events
                 ((x != null) && (eventId >= x.MinId) && (eventId <= x.MaxId))).ToList();
                 foreach (DefaultEvent ev in selectedEvents)
                 {
-                    if (ev.AllowExecution())
+                    if (ev.AllowExecution() && !m_cancel)
                     {
                         StartCoroutine(ev.Execute(eventId));
                     }

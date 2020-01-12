@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using Morbius.Scripts.Game;
 using Morbius.Scripts.Items;
+using Morbius.Scripts.Messages;
 using Morbius.Scripts.Movement;
 
 namespace Morbius.Scripts.Level
 {
-    public abstract class BaseTrigger : MonoBehaviour, IPlayerEnterEventTarget, IPlayerClickEventTarget
+    public abstract class BaseTrigger : MonoBehaviour, IPlayerEnterEventTarget, IPlayerClickEventTarget, IUnlockTriggerMessage
     {
         [SerializeField]
         private Item m_requiredItem;
@@ -17,9 +18,12 @@ namespace Morbius.Scripts.Level
         private bool m_autoPlay = true;
         [SerializeField]
         private bool m_singleEvent = true;
+        [SerializeField]
+        private bool m_isLocked = false;
 
         private void Start()
         {
+            MessageSystem.Register<IUnlockTriggerMessage>(gameObject);
             if (m_autoPlay && UpdateStatus())
             {
                 AutoPlay();
@@ -47,7 +51,8 @@ namespace Morbius.Scripts.Level
         private bool CheckAccess()
         {
             ItemSaveState status = ItemDatabase.GetItemStatus(m_requiredItem);
-            return (status == null || status.Collected);
+            bool itemAccess = (status == null || status.Collected);
+            return (itemAccess && !m_isLocked);
         }
 
         public void OnPlayerEnter()
@@ -64,6 +69,11 @@ namespace Morbius.Scripts.Level
             {
                 Clicked();
             }
+        }
+
+        public void OnUnlock()
+        {
+            m_isLocked = false;
         }
 
         protected virtual void Entered()

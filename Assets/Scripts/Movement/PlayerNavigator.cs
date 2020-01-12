@@ -59,6 +59,12 @@ namespace Morbius.Scripts.Movement
             }
         }
 
+        private void LateUpdate()
+        {
+            float rotY = transform.eulerAngles.y;
+            transform.eulerAngles = new Vector3(0, rotY, 0);
+        }
+
         public void SetDestination(Vector3 destination)
         {
             m_agent.isStopped = false;

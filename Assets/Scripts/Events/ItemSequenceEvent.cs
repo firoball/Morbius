@@ -26,9 +26,16 @@ namespace Morbius.Scripts.Events
                 ItemSequence sequence = item.GetSequence(state.SequenceIndex);
                 if (sequence != null)
                 {
-                    m_displayTime = Mathf.Max(sequence.Audio.length + 0.5f, c_minDisplayTime);
+                    if (sequence.Audio != null)
+                    {
+                        m_displayTime = Mathf.Max(sequence.Audio.length + 0.5f, c_minDisplayTime);
+                        AudioManager.ScheduleVoice(sequence.Audio);
+                    }
+                    else
+                    {
+                        m_displayTime = c_minDisplayTime;
+                    }
                     MessageSystem.Execute<IInfoTextMessage>((x, y) => x.OnShow(sequence.Description, m_displayTime));
-                    AudioManager.ScheduleVoice(sequence.Audio);
                     //sequence may trigger additional events
                     EventManager.RaiseEvent(sequence.TriggerId);
 

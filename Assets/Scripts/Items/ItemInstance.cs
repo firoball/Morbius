@@ -15,7 +15,6 @@ namespace Morbius.Scripts.Items
         private Material[] m_materials;
         private bool m_destroy;
         private bool m_morphed;
-        [SerializeField]
         private bool m_spawned;
         private ItemSaveState m_status;
         private bool m_readyForCollection;
