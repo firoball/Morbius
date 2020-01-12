@@ -28,7 +28,6 @@ namespace Morbius.Scripts.Events
                 Inventory.Collect(item);
 
                 state.Collected = true;
-                ItemDatabase.SetItemStatus(item, state);
                 m_audio.Play();
             }
             yield return new WaitForEndOfFrame();

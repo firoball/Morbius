@@ -71,6 +71,7 @@ namespace Morbius.Scripts.Items
             }
             else if (m_collider is BoxCollider)
             {
+                //this implementation is not really bulletproof and there may be simpler ways to do this...
                 BoxCollider box = m_collider as BoxCollider;
                 Vector3 distance = Vector3.Scale(box.size, transform.localScale) / 2.0f;
                 Vector3[] p = new Vector3[8];
@@ -93,16 +94,19 @@ namespace Morbius.Scripts.Items
 
                 //take the 4 points with lowest y pos
                 Vector3[] vertLower = p.Take(4).ToArray();
-                //sort by x position
+                //sort by z and x position
+                vertLower = vertLower.OrderBy(x => x.z).ToArray();
                 vertLower = vertLower.OrderBy(x => x.x).ToArray();
 
                 Vector3[] vertUpper = p.Skip(4).ToArray();
-                //sort by x position
+                //sort by z and x position
+                vertUpper = vertUpper.OrderBy(x => x.z).ToArray();
                 vertUpper = vertUpper.OrderBy(x => x.x).ToArray();
 
                 //get middle plane
-                vertLower = vertLower.Select((x, i) => (x + vertUpper[i]) * 0.5f).ToArray();
-
+                float y = transform.position.y;
+                vertLower = vertLower.Select(x => new Vector3(x.x, y, x.z)).ToArray();
+                //                vertLower = vertLower.Select((x, i) => (x + vertUpper[i]) * 0.5f).ToArray();
                 Handles.zTest = CompareFunction.LessEqual;
                 Color transCol = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.1f);
 

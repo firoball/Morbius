@@ -14,7 +14,11 @@ namespace Morbius.Scripts.Cursor
         private GameObject m_hoveredObject;
         private bool m_hoveredObjectwasNull;
         private bool m_hoveredObjectWasUI;
+        [SerializeField]
         private Sprite m_icon;
+        [SerializeField]
+        private bool m_lastIconWasNull;
+        private bool m_iconHasChanged;
         private ICursorObject m_cursorObject;
         private CursorInfo m_cursorInfo;
 
@@ -23,15 +27,17 @@ namespace Morbius.Scripts.Cursor
             m_hoveredObject = null;
             m_hoveredObjectwasNull = false;
             m_hoveredObjectWasUI = false;
+            m_lastIconWasNull = false;
+            m_iconHasChanged = true;
         }
 
         private void Update()
         {
             Raycast();
-            //handle hover
-            UpdateCursorInfo();
             //handle hand icon 
             UpdateCursorIcon();
+            //handle hover
+            UpdateCursorInfo();
         }
 
         private void Raycast()
@@ -116,7 +122,7 @@ namespace Morbius.Scripts.Cursor
             if (m_cursorObject != null)
             {
                 CursorInfo info = m_cursorObject.GetCursorInfo();
-                if (info != m_cursorInfo)
+                if (info != m_cursorInfo || m_iconHasChanged)
                 {
                     m_cursorInfo = info;
                     UpdateCursor(info);
@@ -139,11 +145,18 @@ namespace Morbius.Scripts.Cursor
             {
                 icon = null;
             }
-            if (icon != m_icon)
+            if (icon != m_icon || (icon == null && !m_lastIconWasNull))
             {
+                m_iconHasChanged = true;
                 m_icon = icon;
                 MessageSystem.Execute<IAnimatedCursorMessage>((x, y) => x.OnSetIcon(icon));
             }
+            else
+            {
+                m_iconHasChanged = false;
+            }
+            //store null pointer flag in case icon is removed next frame.
+            m_lastIconWasNull = (icon == null);
         }
 
         private void GetCursorObject(GameObject target)

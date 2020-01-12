@@ -13,6 +13,9 @@
 
 			#pragma vertex vert
 			#pragma fragment frag
+			#pragma multi_compile_fog
+
+			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
 			half _Glossiness;
@@ -33,13 +36,15 @@
 				float2 tex : TEXCOORD0;
 				float4 worldtex : TEXCOORD1;
 				float3 normal : NORMAL;
+				UNITY_FOG_COORDS(2)
 			};
 
 			vs_out vert(vs_in IN)
 			{
 				vs_out OUT;
 				OUT.pos = UnityObjectToClipPos(IN.pos);
-				OUT.normal = normalize(mul(IN.normal, UNITY_MATRIX_M));
+				UNITY_TRANSFER_FOG(OUT, OUT.pos);
+				OUT.normal = normalize(mul(UNITY_MATRIX_M, IN.normal));
 				OUT.tex = IN.tex;
 				OUT.worldtex = OUT.pos;// mul(UNITY_MATRIX_M, IN.pos);
 				return OUT;
@@ -65,6 +70,7 @@
 				// Metallic and smoothness come from slider variables
 				//o.Metallic = _Metallic;
 				//o.Smoothness = _Glossiness;
+				UNITY_APPLY_FOG(IN.fogCoord, color);
 				return color;
 			}
 			ENDCG

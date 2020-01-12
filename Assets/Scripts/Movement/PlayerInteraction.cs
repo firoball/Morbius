@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 #if UNITY_EDITOR
@@ -15,16 +16,15 @@ namespace Morbius.Scripts.Movement
         private PlayerNavigator m_navigator;
 
         private Collider m_target;
-        private Collider m_nearCollider;
+        private List<Collider> m_nearColliders;
         private float m_pressedTime;
         private Vector3 m_point;
-        [SerializeField]
         private bool m_enabled;
 
         private void Awake()
         {
             m_target = null;
-            m_nearCollider = null;
+            m_nearColliders = new List<Collider>();
             m_pressedTime = 0.0f;
             m_point = Vector3.zero;
             m_enabled = true;
@@ -34,34 +34,40 @@ namespace Morbius.Scripts.Movement
 
         private void Update()
         {
-            //TODO: add touch support
-            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-
-            if (Input.GetMouseButtonDown(0) && m_enabled)
+            if (m_enabled)
             {
-                RaycastHit hit;
-
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000))
+                //TODO: add touch support
+                //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    m_navigator?.SetDestination(hit.point);
-                    if (hit.transform != null)
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 10000))
                     {
-                        m_target = GetTargetCollider(hit.transform.gameObject);
-                        /* trigger click event in case player is still near to target. 
-                         * Otherwise player would have to move out of trigger range again first
-                         */
-                        if (m_target == m_nearCollider && m_target != null)
+                        m_navigator?.SetDestination(hit.point);
+                        if (hit.transform != null)
                         {
-                            m_navigator?.Stop();
-                            ExecuteEvents.Execute<IPlayerClickEventTarget>(m_target.gameObject, null, (x, y) => x.OnPlayerClick());
+                            m_target = GetTargetCollider(hit.transform.gameObject);
+                            /* trigger click event in case player is still near to target. 
+                             * Otherwise player would have to move out of trigger range again first
+                             */
+                            if (m_target != null && m_nearColliders.Contains(m_target))
+                            {
+                                m_navigator?.Stop();
+                                ExecuteEvents.Execute<IPlayerClickEventTarget>(m_target.gameObject, null, (x, y) => x.OnPlayerClick());
+                            }
                         }
+                        else
+                        {
+                            m_target = null;
+                        }
+                        m_point = hit.point;
                     }
-                    else
-                    {
-                        m_target = null;
-                    }
-                    m_point = hit.point;
                 }
+            }
+            else
+            {
+                m_navigator?.Stop();
             }
 
             bool isRunning = false;
@@ -83,6 +89,9 @@ namespace Morbius.Scripts.Movement
             }
 
             m_navigator?.SetRunning(isRunning);
+
+            //cleanup of collider log (collectable items may get removed while player is near)
+            m_nearColliders.RemoveAll(x => x == null);
         }
 
         private Collider GetTargetCollider(GameObject target)
@@ -103,9 +112,9 @@ namespace Morbius.Scripts.Movement
             GameObject root = other.transform.root.gameObject;
 
             Collider collider = root.GetComponents<Collider>().Where(x => x.isTrigger).FirstOrDefault();
-            if (m_nearCollider != null && collider == m_nearCollider)
+            if (collider != null && m_nearColliders.Contains(collider))
             {
-                m_nearCollider = null;
+                m_nearColliders.Remove(collider);
                 ExecuteEvents.Execute<IPlayerExitEventTarget>(root, null, (x, y) => x.OnPlayerExit());
             }
         }
@@ -118,9 +127,9 @@ namespace Morbius.Scripts.Movement
              */
             GameObject root = other.transform.root.gameObject;
             Collider collider = root.GetComponents<Collider>().Where(x => x.isTrigger).FirstOrDefault();
-            if (collider != null)
+            if (collider != null && !m_nearColliders.Contains(collider))
             {
-                m_nearCollider = collider;
+                m_nearColliders.Add(collider);
             }
 
             if (m_target != null && other == m_target)

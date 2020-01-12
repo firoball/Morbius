@@ -75,6 +75,8 @@ public class ItemDatabase : MonoBehaviour
 
     public static ItemSaveState GetItemStatus(Item item)
     {
+        if (item == null) return null;
+
         ItemSaveState saveState;
         if (s_itemStates.TryGetValue(item, out saveState))
         {

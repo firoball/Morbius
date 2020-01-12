@@ -33,7 +33,11 @@ namespace Morbius.Scripts.Level
 
         public void Load()
         {
-            if (string.IsNullOrWhiteSpace(m_sceneName)) return;
+            if (string.IsNullOrWhiteSpace(m_sceneName) || !SceneManager.GetSceneByName(m_sceneName).IsValid())
+            {
+                Debug.LogWarning("ScenePortal.Load: <" + m_sceneName + "> is not a valid scene.");
+                return;
+            }
 
             //only load different scenes
             if (!m_started && SceneManager.GetActiveScene().name != m_sceneName)

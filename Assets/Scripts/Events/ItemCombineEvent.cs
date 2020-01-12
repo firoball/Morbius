@@ -17,7 +17,7 @@ namespace Morbius.Scripts.Events
         private AudioSource m_audio;
 
         private const float c_minDisplayTime = 1.5f;
-
+        private const int c_eventGroup = 1;
 
         private void Awake()
         {
@@ -38,8 +38,6 @@ namespace Morbius.Scripts.Events
 
         private void Combine(Combination combination, IEnumerable<Item> items)
         {
-            Inventory.DropHandItem();
-
             foreach (Item item in items)
             {
                 ItemSaveState state = ItemDatabase.GetItemStatus(item);
@@ -48,20 +46,10 @@ namespace Morbius.Scripts.Events
                     //will this item be destroyed?
                     if (item.Destroyable)
                         state.Destroyed = true;
-
-                    ItemDatabase.SetItemStatus(item, state);
                 }
             }
 
 
-            //when no morph id was given, trigger event
-            //if (combination.MorphId == 0)
-            //{
-            //EventManager.RaiseEvent(combination.TriggerId);
-            //}
-            //otherwise morph item with morphId to triggerId
-            //this is not nice, but that's how it was done in the original game
-            //else
             if (combination.MorphId > 0)
             {
                 Item item = ItemDatabase.GetItemById(combination.MorphId);
@@ -69,11 +57,10 @@ namespace Morbius.Scripts.Events
                 if (state != null)
                 {
                     state.MorphItem = ItemDatabase.GetItemById(combination.TriggerId);
-                    ItemDatabase.SetItemStatus(item, state);
                 }
             }
             //only custom events may be triggered as combination result
-            EventManager.RaiseCustomEvent(combination.TriggerId);
+            EventManager.RaiseEvent(combination.TriggerId, c_eventGroup);
             m_audio.Play();
 
             if (combination.Audio != null)
@@ -93,6 +80,8 @@ namespace Morbius.Scripts.Events
                 items[0] = ItemDatabase.GetItemById(eventId);
                 items[1] = Inventory.ItemInHand;
                 Combination combination = CombinationDatabase.GetCombination(items[0].Id, items[1].Id);
+
+                Inventory.DropHandItem();
 
                 if (combination != null)
                 {

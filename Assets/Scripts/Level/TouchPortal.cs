@@ -6,7 +6,7 @@ using Morbius.Scripts.Movement;
 namespace Morbius.Scripts.Level
 {
     [RequireComponent(typeof(ScenePortal))]
-    public class TouchPortal : MonoBehaviour, IPlayerEnterEventTarget
+    public class TouchPortal : BaseTrigger
     {
         private ScenePortal m_portal;
 
@@ -15,7 +15,7 @@ namespace Morbius.Scripts.Level
             m_portal = GetComponent<ScenePortal>();
         }
 
-        public void OnPlayerEnter()
+        protected override void Entered()
         {
             m_portal.Load();
         }

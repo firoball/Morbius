@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using Morbius.Scripts.Game;
+using Morbius.Scripts.Items;
 using Morbius.Scripts.Movement;
 
 namespace Morbius.Scripts.Level
 {
     public abstract class BaseTrigger : MonoBehaviour, IPlayerEnterEventTarget, IPlayerClickEventTarget
     {
+        [SerializeField]
+        private Item m_requiredItem;
         [SerializeField]
         private bool m_onEnter = false;
         [SerializeField]
@@ -17,7 +20,7 @@ namespace Morbius.Scripts.Level
 
         private void Start()
         {
-            if(m_autoPlay && UpdateStatus())
+            if (m_autoPlay && UpdateStatus())
             {
                 AutoPlay();
             }
@@ -41,9 +44,15 @@ namespace Morbius.Scripts.Level
             return retval;
         }
 
+        private bool CheckAccess()
+        {
+            ItemSaveState status = ItemDatabase.GetItemStatus(m_requiredItem);
+            return (status == null || status.Collected);
+        }
+
         public void OnPlayerEnter()
         {
-            if (m_onEnter && UpdateStatus())
+            if (m_onEnter && CheckAccess() && UpdateStatus())
             {
                 Entered();
             }
@@ -51,7 +60,7 @@ namespace Morbius.Scripts.Level
 
         public void OnPlayerClick()
         {
-            if (m_onClick && UpdateStatus())
+            if (m_onClick && CheckAccess() && UpdateStatus())
             {
                 Clicked();
             }
@@ -59,7 +68,7 @@ namespace Morbius.Scripts.Level
 
         protected virtual void Entered()
         {
-            Debug.LogWarning("PlayerEntered() not implemented.");
+            Debug.LogWarning("Entered() not implemented.");
         }
 
         protected virtual void Clicked()

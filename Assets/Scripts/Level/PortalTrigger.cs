@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using Morbius.Scripts.Events;
-using Morbius.Scripts.Movement;
 
 namespace Morbius.Scripts.Level
 {
     [RequireComponent(typeof(ScenePortal))]
-    public class ClickPortal : MonoBehaviour, IPlayerClickEventTarget
+    public class PortalTrigger : BaseTrigger
     {
         private ScenePortal m_portal;
 
@@ -19,7 +17,13 @@ namespace Morbius.Scripts.Level
             m_portal = GetComponent<ScenePortal>();
         }
 
-        public void OnPlayerClick()
+        protected override void Clicked()
+        {
+            PortalInfo.Identifier = m_identifier;
+            m_portal.Load();
+        }
+
+        protected override void Entered()
         {
             PortalInfo.Identifier = m_identifier;
             m_portal.Load();

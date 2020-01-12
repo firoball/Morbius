@@ -43,7 +43,6 @@ namespace Morbius.Scripts.Events
             if (state != null)
             {
                 state.Destroyed = true;
-                ItemDatabase.SetItemStatus(m_destroyItem, state);
             }
 
             m_audio.PlayOneShot(m_audio1);
