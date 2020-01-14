@@ -43,7 +43,10 @@ namespace Morbius.Scripts.Items
         private void Start()
         {
             if (!m_item)
+            {
+                Debug.LogWarning("ItemInstance: <" + name + "> has no item assigned!");
                 return;
+            }
 
             m_status = ItemDatabase.GetItemStatus(m_item);
             if (m_spawnOnAwake)
@@ -169,8 +172,11 @@ namespace Morbius.Scripts.Items
 
         public void OnPlayerClick()
         {
-            EventManager.RaiseEvent(m_item.Id);
-            UpdateMaterial();
+            if (m_item)
+            {
+                EventManager.RaiseEvent(m_item.Id);
+                UpdateMaterial();
+            }
         }
     }
 }
