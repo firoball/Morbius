@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Morbius.Scripts.Game;
 using Morbius.Scripts.Items;
 using Morbius.Scripts.Messages;
@@ -26,7 +27,7 @@ namespace Morbius.Scripts.Level
             MessageSystem.Register<IUnlockTriggerMessage>(gameObject);
             if (m_autoPlay && UpdateStatus())
             {
-                AutoPlay();
+                StartCoroutine(DelayedAutoPlay());
             }
         }
 
@@ -55,6 +56,13 @@ namespace Morbius.Scripts.Level
             return (itemAccess && !m_isLocked);
         }
 
+        private IEnumerator DelayedAutoPlay()
+        {
+            yield return new WaitForSeconds(1.0f);
+            AutoPlay();
+            yield return new WaitForEndOfFrame();
+        }
+
         public void OnPlayerEnter()
         {
             if (m_onEnter && CheckAccess() && UpdateStatus())
@@ -74,6 +82,11 @@ namespace Morbius.Scripts.Level
         public void OnUnlock()
         {
             m_isLocked = false;
+        }
+
+        public void OnLock()
+        {
+            m_isLocked = true;
         }
 
         protected virtual void Entered()

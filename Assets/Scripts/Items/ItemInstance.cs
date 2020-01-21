@@ -8,7 +8,7 @@ namespace Morbius.Scripts.Items
     public class ItemInstance : MonoBehaviour, IPlayerClickEventTarget
     {
         [SerializeField]
-        private Item m_item;
+        protected Item m_item;
         [SerializeField]
         private bool m_spawnOnAwake = true;
 
@@ -16,7 +16,7 @@ namespace Morbius.Scripts.Items
         private bool m_destroy;
         private bool m_morphed;
         private bool m_spawned;
-        private ItemSaveState m_status;
+        protected ItemSaveState m_status;
         private bool m_readyForCollection;
 
         public Item Item
@@ -40,7 +40,7 @@ namespace Morbius.Scripts.Items
             m_readyForCollection = false;
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             if (!m_item)
             {
@@ -60,7 +60,7 @@ namespace Morbius.Scripts.Items
             //UpdateStatus();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!m_item)
                 return;

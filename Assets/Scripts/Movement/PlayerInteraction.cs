@@ -19,6 +19,7 @@ namespace Morbius.Scripts.Movement
         private List<Collider> m_nearColliders;
         private float m_pressedTime;
         private Vector3 m_point;
+        [SerializeField]
         private bool m_enabled;
 
         private void Awake()
@@ -115,8 +116,8 @@ namespace Morbius.Scripts.Movement
             if (collider != null && m_nearColliders.Contains(collider))
             {
                 m_nearColliders.Remove(collider);
-                ExecuteEvents.Execute<IPlayerExitEventTarget>(root, null, (x, y) => x.OnPlayerExit());
             }
+            ExecuteEvents.Execute<IPlayerExitEventTarget>(root, null, (x, y) => x.OnPlayerExit());
         }
 
         private void OnTriggerEnter(Collider other)

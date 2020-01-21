@@ -33,7 +33,7 @@ namespace Morbius.Scripts.Level
 
         public void Load()
         {
-            if (string.IsNullOrWhiteSpace(m_sceneName) || !SceneManager.GetSceneByName(m_sceneName).IsValid())
+            if (string.IsNullOrWhiteSpace(m_sceneName) || !Application.CanStreamedLevelBeLoaded(m_sceneName))//!SceneManager.GetSceneByName(m_sceneName).IsValid())
             {
                 Debug.LogWarning("ScenePortal.Load: <" + m_sceneName + "> is not a valid scene.");
                 return;
@@ -60,6 +60,7 @@ namespace Morbius.Scripts.Level
                 AudioManager.FadeAndStop(c_fadeSpeedFast);
                 MessageSystem.Execute<IChapterMessage>((x, y) => x.OnSetText(m_chapter.Title, m_chapter.Text));
                 MessageSystem.Execute<IChapterMessage>((x, y) => x.OnShow());
+                MessageSystem.Execute<IInfoTextMessage>((x, y) => x.OnHide());
             }
             else
             {

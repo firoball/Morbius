@@ -29,6 +29,11 @@ namespace Morbius.Scripts.Events
             m_isLocked = false;
         }
 
+        public void OnLock()
+        {
+            m_isLocked = true;
+        }
+
         public override IEnumerator Execute(int eventId)
         {
             Inventory.DropHandItem();

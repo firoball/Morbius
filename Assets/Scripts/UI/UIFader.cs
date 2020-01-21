@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace Morbius.Scripts.UI
 {
+    [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasGroup))]
     class UIFader : MonoBehaviour
     {
@@ -11,6 +12,7 @@ namespace Morbius.Scripts.UI
         [SerializeField]
         private bool m_showOnStart = false;
 
+        private Canvas m_canvas;
         private CanvasGroup m_canvasGroup;
         private bool m_fadeOut = false;
         private bool m_fadeIn = false;
@@ -18,9 +20,11 @@ namespace Morbius.Scripts.UI
 
         void Awake()
         {
+            m_canvas = GetComponent<Canvas>();
             m_canvasGroup = GetComponent<CanvasGroup>();
             if (m_showOnStart)
             {
+                m_canvas.enabled = true;
                 Enable();
             }
             else
@@ -63,6 +67,7 @@ namespace Morbius.Scripts.UI
 
         private void Disable()
         {
+            m_canvas.enabled = false;
             m_canvasGroup.alpha = 0.0f;
             //m_canvasGroup.blocksRaycasts = false;
             //m_canvasGroup.interactable = false;
@@ -75,6 +80,7 @@ namespace Morbius.Scripts.UI
                 return;
             //m_canvasGroup.blocksRaycasts = false;
             //m_canvasGroup.interactable = false;
+            m_canvas.enabled = true;
             m_fadeOut = false;
             if (immediately)
             {
