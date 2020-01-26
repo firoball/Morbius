@@ -40,6 +40,17 @@ public class ItemDatabase : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            foreach (KeyValuePair<Item, ItemSaveState> kvp in s_itemStates)
+            {
+                Debug.Log(kvp.Key.Id + ":" + kvp.Key.name + " D:" + kvp.Value.Destroyed + " C:" + kvp.Value.Collected + " M:" + kvp.Value.MorphItem);
+            }
+        }
+    }
+
     public static Item GetItemById(int id)
     {
         if (s_singleton)
@@ -66,9 +77,9 @@ public class ItemDatabase : MonoBehaviour
 
     private static void RegisterItem(Item item)
     {
-        ItemSaveState state = new ItemSaveState();
         if (!s_itemStates.ContainsKey(item))
         {
+            ItemSaveState state = new ItemSaveState();
             s_itemStates.Add(item, state);
         }
     }
@@ -96,12 +107,15 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    public void Initialize()
+    public static void Initialize()
     {
         s_itemStates.Clear();
-        foreach (Item item in m_items)
+        if (s_singleton)
         {
-            RegisterItem(item);
+            foreach (Item item in s_singleton.m_items)
+            {
+                RegisterItem(item);
+            }
         }
     }
 

@@ -80,6 +80,7 @@ namespace Morbius.Scripts.Level
             MessageSystem.Execute<IPixelProgressMessage>((x, y) => x.OnPixelate());
             yield return new WaitForSeconds(c_uiDelay);
             StartTypewriter();
+            yield return null;
         }
 
     }

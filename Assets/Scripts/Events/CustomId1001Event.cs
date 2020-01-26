@@ -21,6 +21,8 @@ namespace Morbius.Scripts.Events
         [SerializeField]
         private Transform m_sitPosition;
         [SerializeField]
+        private Transform m_standPosition;
+        [SerializeField]
         private Sprite m_sprite;
 
         private void Awake()
@@ -29,22 +31,16 @@ namespace Morbius.Scripts.Events
             m_audio = GetComponent<AudioSource>();
         }
 
-        private void Start()
-        {
-            //Autostart Event
-            EventManager.RaiseEvent(1001);
-        }
-
         public override IEnumerator Execute(int eventId)
         {
             MessageSystem.Execute<IInputBlockerMessage>((x, y) => x.OnBlock());
 
             MessageSystem.Execute<ISitMessage>((x, y) => x.OnSit(m_sitPosition));
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
             MessageSystem.Execute<IPanelMessage>((x, y) => x.OnShow(m_sprite));
 
             yield return new WaitForSeconds(1.5f);
-            yield return new WaitForSecondsAnyKey(10.0f);
+            yield return new WaitForSecondsAnyKey(30.0f);
             MessageSystem.Execute<IPanelMessage>((x, y) => x.OnHide());
             yield return new WaitForSeconds(2.0f);
 
@@ -62,9 +58,10 @@ namespace Morbius.Scripts.Events
             yield return new WaitWhile(() => m_dialogPlayer.IsPlaying);
 
             yield return new WaitForSeconds(0.5f);
-            MessageSystem.Execute<ISitMessage>((x, y) => x.OnStand());
+            MessageSystem.Execute<ISitMessage>((x, y) => x.OnStand(m_standPosition));
 
             MessageSystem.Execute<IInputBlockerMessage>((x, y) => x.OnUnblock());
+            yield return null;
         }
     }
 

@@ -33,11 +33,16 @@ namespace Morbius.Scripts.UI
 
         public void OnShow(Sprite sprite)
         {
+            OnShow(sprite, false);
+        }
+
+        public void OnShow(Sprite sprite, bool nospin)
+        {
             if (m_image != null && sprite != null)
             {
                 m_image.sprite = sprite;
                 m_fader.Show(false);
-                m_spinner.Show(false);
+                m_spinner.Show(nospin);
             }
         }
 

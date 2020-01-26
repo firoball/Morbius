@@ -14,11 +14,11 @@ namespace Morbius.Scripts.Events
     public class PortalTriggerEvent : DefaultEvent, IUnlockTriggerMessage
     {
         [SerializeField]
-        private bool m_isLocked;
+        protected bool m_isLocked;
 
         private ScenePortal m_scenePortal;
 
-        private void Awake()
+        protected void Awake()
         {
             MessageSystem.Register<IUnlockTriggerMessage>(gameObject);
             m_scenePortal = GetComponent<ScenePortal>();

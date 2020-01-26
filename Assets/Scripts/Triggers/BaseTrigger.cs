@@ -5,7 +5,7 @@ using Morbius.Scripts.Items;
 using Morbius.Scripts.Messages;
 using Morbius.Scripts.Movement;
 
-namespace Morbius.Scripts.Level
+namespace Morbius.Scripts.Triggers
 {
     public abstract class BaseTrigger : MonoBehaviour, IPlayerEnterEventTarget, IPlayerClickEventTarget, IUnlockTriggerMessage
     {
@@ -18,9 +18,13 @@ namespace Morbius.Scripts.Level
         [SerializeField]
         private bool m_autoPlay = true;
         [SerializeField]
-        private bool m_singleEvent = true;
+        private float m_autoStartDelay = 1.0f;
         [SerializeField]
         private bool m_isLocked = false;
+        [SerializeField]
+        private bool m_singleEvent = true;
+        [SerializeField]
+        private bool m_global = false;
 
         private void Start()
         {
@@ -37,9 +41,9 @@ namespace Morbius.Scripts.Level
 
             if (m_singleEvent)
             {
-                if (!GameStatus.IsSet(name))
+                if (!GameStatus.IsSet(name, m_global))
                 {
-                    GameStatus.Set(name);
+                    GameStatus.Set(name, m_global);
                 }
                 else
                 {
@@ -58,7 +62,7 @@ namespace Morbius.Scripts.Level
 
         private IEnumerator DelayedAutoPlay()
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(m_autoStartDelay);
             AutoPlay();
             yield return new WaitForEndOfFrame();
         }

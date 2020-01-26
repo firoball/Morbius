@@ -41,6 +41,7 @@ namespace Morbius.Scripts.Events
             m_audio.PlayOneShot(m_audio2);
             yield return new WaitWhile(() => m_audio.isPlaying);
             MessageSystem.Execute<IInputBlockerMessage>((x, y) => x.OnUnblock());
+            yield return null;
         }
     }
 

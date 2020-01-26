@@ -40,7 +40,6 @@ namespace Morbius.Scripts.Items
             }
         }
 
-        //TODO: add morphed items back to inventory!
         private void Update()
         {
             if (!m_initialized)
@@ -51,30 +50,30 @@ namespace Morbius.Scripts.Items
 
             for (int i = s_items.Count - 1; i >= 0; i--)
             {
-                Item item = s_items[i];
-                bool destroy;
-                destroy = UpdateStatus(item);
-                if (destroy)
-                {
-                    Remove(item);
-                }
+                UpdateStatus(s_items[i]);
             }
         }
 
-        private bool UpdateStatus(Item item)
+        private void UpdateStatus(Item item)
         {
-            bool destroy = false;
             ItemSaveState state = ItemDatabase.GetItemStatus(item);
-            if (state.Destroyed || state.MorphItem)
+            if (state.MorphItem != null)
             {
-                destroy = true;
-                //TODO: move to proper place?
-                if (state.MorphItem != null)
-                {
-                    Add(state.MorphItem);
-                }
+                Remove(item);
+                Add(state.MorphItem);
             }
-            return destroy;
+            else if (state.Destroyed)
+            {
+                Remove(item);
+            }
+            else if (state.Collected)
+            {
+                Add(item);
+            }
+            else
+            {
+
+            }
         }
 
         private void ToHand(Item item)
@@ -164,5 +163,13 @@ namespace Morbius.Scripts.Items
             }
         }
 
+        public static void Initialize()
+        {
+            if (s_singleton)
+            {
+                s_items.Clear();
+                s_itemInHand = null;
+            }
+        }
     }
 }

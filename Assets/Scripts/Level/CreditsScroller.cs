@@ -108,6 +108,7 @@ namespace Morbius.Scripts.Level
             m_fader.Hide(false);
             yield return new WaitForSeconds(2.0f);
             m_scenePortal.Load();
+            yield return null;
         }
 
     }

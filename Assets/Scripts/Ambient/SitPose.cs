@@ -12,9 +12,6 @@ namespace Morbius.Scripts.Ambient
         private Transform m_rightLegBone;
 
         private bool m_sitting;
-        private Transform m_originalTransform;
-        private Vector3 m_originalPosition;
-        private Quaternion m_originalRotation;
         private Vector3 m_targetPosition;
         private Quaternion m_targetRotation;
 
@@ -41,22 +38,15 @@ namespace Morbius.Scripts.Ambient
 
         public void OnSit(Transform target)
         {
-            OnSit();
             m_targetPosition = target.position;
             m_targetRotation = target.rotation;
-        }
-
-        public void OnSit()
-        {
-            m_originalPosition = transform.position;
-            m_originalRotation = transform.rotation;
             m_sitting = true;
         }
 
-        public void OnStand()
+        public void OnStand(Transform target)
         {
-            transform.position = m_originalPosition;
-            transform.rotation = m_originalRotation;
+            transform.position = target.position;
+            transform.rotation = target.rotation;
             m_sitting = false;
         }
     }

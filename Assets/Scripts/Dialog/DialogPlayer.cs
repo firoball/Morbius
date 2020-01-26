@@ -140,6 +140,7 @@ namespace Morbius.Scripts.Dialog
             yield return new WaitForSecondsAnyKey(delay);
             AudioManager.StopAudio();
             Proceed();
+            yield return null;
         }
 
     }

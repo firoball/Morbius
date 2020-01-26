@@ -8,7 +8,7 @@ namespace Morbius.Scripts.Level
         [SerializeField]
         private Transform m_target;
 
-        private void Update()
+        private void LateUpdate()
         {
             if (m_target != null)
                 transform.LookAt(m_target);

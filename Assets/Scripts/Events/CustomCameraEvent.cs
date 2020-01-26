@@ -32,6 +32,7 @@ namespace Morbius.Scripts.Events
             yield return new WaitForSeconds(1.0f);
 
             MessageSystem.Execute<IInputBlockerMessage>((x, y) => x.OnUnblock());
+            yield return null;
         }
     }
 

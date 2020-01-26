@@ -58,6 +58,7 @@ namespace Morbius.Scripts.Events
             yield return new WaitWhile(() => m_dialogPlayer.IsPlaying);
             m_portal.Load();
             MessageSystem.Execute<IInputBlockerMessage>((x, y) => x.OnUnblock());
+            yield return null;
         }
     }
 

@@ -20,7 +20,6 @@ namespace Morbius.Scripts.Events
 
         public override IEnumerator Execute(int eventId)
         {
-            Debug.Log("dialog event " + eventId);
             Inventory.DropHandItem();
             m_dialogPlayer.Play();
             yield return new WaitForEndOfFrame();

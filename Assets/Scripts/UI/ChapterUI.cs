@@ -85,6 +85,7 @@ namespace Morbius.Scripts.UI
             m_fader.Hide(false);
             yield return new WaitForSeconds(c_fadeDelay);
             MessageSystem.Execute<IChapterResultMessage>((x, y) => x.OnChapterDone());
+            yield return null;
         }
 
         private IEnumerator AssembleTitle(string source)
@@ -111,6 +112,7 @@ namespace Morbius.Scripts.UI
                 m_audio.PlayOneShot(m_newline);
                 yield return new WaitForSeconds(c_typeDelay);
             }
+            yield return null;
         }
 
         private IEnumerator AssembleText(string[] source)
@@ -148,6 +150,7 @@ namespace Morbius.Scripts.UI
             {
                 m_text.text = String.Join("\n", source);
             }
+            yield return null;
         }
 
     }

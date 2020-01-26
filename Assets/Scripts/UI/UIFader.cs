@@ -119,8 +119,10 @@ namespace Morbius.Scripts.UI
         private IEnumerator DelayedDisable()
         {
             m_canvasGroup.blocksRaycasts = false;
-            yield return new WaitForSeconds(0.01f);
+//            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForEndOfFrame();
             m_canvasGroup.interactable = false;
+            yield return null;
         }
     }
 }

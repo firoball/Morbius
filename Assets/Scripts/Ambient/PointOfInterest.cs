@@ -15,5 +15,15 @@ namespace Morbius.Scripts.Ambient
             PointOfInterestWatcher.UnRegister(transform);
         }
 
+        private void OnDisable()
+        {
+            PointOfInterestWatcher.UnRegister(transform);
+        }
+
+        private void OnEnable()
+        {
+            PointOfInterestWatcher.Register(transform);
+        }
+
     }
 }

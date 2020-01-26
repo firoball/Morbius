@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Morbius.Scripts.Level;
 
-namespace Morbius.Scripts.Level
+namespace Morbius.Scripts.Triggers
 {
     [RequireComponent(typeof(ScenePortal))]
     public class PortalTrigger : BaseTrigger

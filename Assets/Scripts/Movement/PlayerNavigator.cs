@@ -18,11 +18,13 @@ namespace Morbius.Scripts.Movement
         private float m_blendFac;
         private Quaternion m_rotation;
         private Vector3 m_destination;
+        private bool m_autoPilot;
 
         private void Awake()
         {
             m_isRunning = false;
             m_blendFac = 0.0f;
+            m_autoPilot = false;
 
             //compensate different scene scaling
             m_walkSpeed *= transform.localScale.y;
@@ -45,6 +47,7 @@ namespace Morbius.Scripts.Movement
             }
             if (m_agent.isStopped)
             {
+                m_autoPilot = false;
                 m_blendFac = Mathf.Clamp01(m_blendFac + 3.0f * Time.deltaTime);
                 if (m_agent.destination != transform.position)
                 {
@@ -63,6 +66,12 @@ namespace Morbius.Scripts.Movement
         {
             float rotY = transform.eulerAngles.y;
             transform.eulerAngles = new Vector3(0, rotY, 0);
+        }
+
+        public void SetDestination(Vector3 destination, bool autopilot)
+        {
+            m_autoPilot = autopilot;
+            SetDestination(destination);
         }
 
         public void SetDestination(Vector3 destination)
@@ -88,7 +97,16 @@ namespace Morbius.Scripts.Movement
 
         public void Stop()
         {
-            m_agent.isStopped = true;
+            if (!m_autoPilot)
+            {
+                m_agent.isStopped = true;
+            }
+        }
+
+        public bool IsMoving()
+        {
+            bool reached = (m_agent.remainingDistance != Mathf.Infinity) && (m_agent.remainingDistance < 0.1f);
+            return !reached;
         }
 
     }

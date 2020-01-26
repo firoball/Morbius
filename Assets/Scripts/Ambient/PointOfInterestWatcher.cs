@@ -75,7 +75,7 @@ namespace Morbius.Scripts.Ambient
                     float limiterZ = m_neckBone.localEulerAngles.z;
                     while (limiterY >= 180.0f) limiterY -= 360.0f;
                     while (limiterY < -180.0f) limiterY += 360.0f;
-                    if (Mathf.Abs(limiterY) > 70.0f || Mathf.Abs(limiterZ) > 55.0f)
+                    if (Mathf.Abs(limiterY) > 70.0f || Mathf.Abs(limiterZ) > 65.0f)
                     {
                         //head rotation limits reached - reduce blend factor
                         m_blendFactor = Mathf.Clamp01(m_blendFactor - 3.0f * Time.deltaTime);

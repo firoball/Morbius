@@ -144,6 +144,21 @@ namespace Morbius.Scripts.Items
             return str;
         }
 
+        public void Morph(Item morphItem)
+        {
+            if (morphItem)
+            {
+                ItemSaveState targetState = ItemDatabase.GetItemStatus(this);
+                ItemSaveState morphState = ItemDatabase.GetItemStatus(morphItem);
+                if (targetState != null && morphState != null)
+                {
+                    targetState.MorphItem = morphItem;
+                    //if old item was collected, also morphed one will be...
+                    morphState.Collected = targetState.Collected;
+                }
+            }
+        }
+
         public GameObject Spawn(Transform spawnpoint)
         {
             GameObject itemObj = null;
@@ -178,21 +193,29 @@ namespace Morbius.Scripts.Items
              * ItemInstance class has to take care of providing proper prefab. This function will patch it accordingly. 
              * This is failure by design...
              */
-            if (m_prefab != null)
+            /*if (m_prefab != null)
             {
                 prefab = m_prefab;
-            }
+            }*/
 
             if (prefab)
             {
-                ItemSaveState saveState = new ItemSaveState()
-                {
-                    Spawned = true
-                };
-                ItemDatabase.SetItemStatus(this, saveState);
+                ItemSaveState saveState = ItemDatabase.GetItemStatus(this);
+                saveState.Spawned = true;
                 itemObj = Instantiate(prefab, spawnpoint.position, spawnpoint.rotation);
                 itemObj.name = m_label;
-                
+
+                //if item prefab is given, remove all previous item prefabs and parent it
+                if (m_prefab)
+                {
+                    for (int i = prefab.transform.childCount - 1; i >= 0; i--)
+                    {
+                        Destroy(itemObj.transform.GetChild(i).gameObject);
+                    }
+                    GameObject child = Instantiate(m_prefab, spawnpoint.position, spawnpoint.rotation);
+                    child.transform.SetParent(itemObj.transform);
+                }
+
                 //in case prefab was based on scene object... clean it up (narf).
                 ItemInstance oldInstance = itemObj.GetComponent<ItemInstance>();
                 Destroy(oldInstance);

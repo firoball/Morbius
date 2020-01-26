@@ -6,7 +6,7 @@ Add "Main Camera" prefab to scene
 	Assign gameobject "Morbius" to "Target"
 Add "Items", "Combinations", "Inventory" and "AudioManager" prefabs to scene. 
 Add "Controllers" prefab to scene. 
-	Add further scene specific event objects here as children and reference in "Controllers/EventManager"
+	Add further scene specific event objects here as children to "EventManager" and reference in "Controllers/EventManager"
 
 
 Adding new item/object:

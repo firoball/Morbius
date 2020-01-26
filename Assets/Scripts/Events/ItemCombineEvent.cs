@@ -59,7 +59,9 @@ namespace Morbius.Scripts.Events
             {
                 //morph it
                 Item item = ItemDatabase.GetItemById(combination.MorphId);
-                ItemSaveState state = ItemDatabase.GetItemStatus(item);
+                Item morphItem = ItemDatabase.GetItemById(combination.TriggerId);
+                item.Morph(morphItem);
+                /*ItemSaveState state = ItemDatabase.GetItemStatus(item);
                 if (state != null)
                 {
                     state.MorphItem = ItemDatabase.GetItemById(combination.TriggerId);
@@ -69,7 +71,7 @@ namespace Morbius.Scripts.Events
                         ItemSaveState morphItemstate = ItemDatabase.GetItemStatus(state.MorphItem);
                         morphItemstate.Collected = state.Collected;
                     }
-                }
+                }*/
             }
             else
             {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Morbius.Scripts.Dialog;
 
-namespace Morbius.Scripts.Level
+namespace Morbius.Scripts.Triggers
 {
     [RequireComponent(typeof(DialogPlayer))]
     public class DialogTrigger : BaseTrigger

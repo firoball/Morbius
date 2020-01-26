@@ -12,6 +12,8 @@ namespace Morbius.Scripts.Events
         private int m_maxId;
         [SerializeField]
         private bool m_singleEvent = false;
+        [SerializeField]
+        private bool m_global = false;
 
         public int MinId
         {
@@ -51,9 +53,9 @@ namespace Morbius.Scripts.Events
 
             if(m_singleEvent)
             {
-                if (!GameStatus.IsSet(name))
+                if (!GameStatus.IsSet(name, m_global))
                 {
-                    GameStatus.Set(name);
+                    GameStatus.Set(name, m_global);
                 }
                 else
                 {

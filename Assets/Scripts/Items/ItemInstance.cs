@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using UnityEngine;
+using Morbius.Scripts.Ambient;
 using Morbius.Scripts.Events;
 using Morbius.Scripts.Movement;
 
 namespace Morbius.Scripts.Items
 {
+    [RequireComponent(typeof(PointOfInterest))]
     public class ItemInstance : MonoBehaviour, IPlayerClickEventTarget
     {
         [SerializeField]
@@ -18,6 +20,7 @@ namespace Morbius.Scripts.Items
         private bool m_spawned;
         protected ItemSaveState m_status;
         private bool m_readyForCollection;
+        private PointOfInterest m_poi;
 
         public Item Item
         {
@@ -38,6 +41,7 @@ namespace Morbius.Scripts.Items
             m_destroy = false;
             m_morphed = false;
             m_readyForCollection = false;
+            m_poi = GetComponent<PointOfInterest>();
         }
 
         protected virtual void Start()
@@ -49,6 +53,7 @@ namespace Morbius.Scripts.Items
             }
 
             m_status = ItemDatabase.GetItemStatus(m_item);
+            ResetMaterial();
             if (m_spawnOnAwake)
             {
                 m_status.Spawned = true;
@@ -83,6 +88,7 @@ namespace Morbius.Scripts.Items
             {
                 collider.enabled = enable;
             }
+            m_poi.enabled = enable;
         }
 
         private void SetupMaterials()
@@ -101,7 +107,8 @@ namespace Morbius.Scripts.Items
             {
                 SetActive(true);
                 m_spawned = true;
-                UpdateMorphInitial();
+                if (!m_status.Destroyed && !m_status.Collected)
+                    UpdateMorphInitial();
             }
 
             //remove myself if necessary
@@ -124,6 +131,16 @@ namespace Morbius.Scripts.Items
             }
         }
 
+        private void ResetMaterial()
+        {
+            m_readyForCollection = false;
+
+            foreach (Material mat in m_materials)
+            {
+                mat.SetFloat("_HighLightFac", 0.0f);
+            }
+        }
+
         private void UpdateMorphInitial()
         {
             //iterate through all morph activities and only spawn last object, if required
@@ -141,9 +158,9 @@ namespace Morbius.Scripts.Items
             if (morphItem != m_item)
             {
                 //not yet registered or is active - spawn
-                if (morphState == null || !(morphState.Destroyed || morphState.Collected))
+                //if (morphState == null) || !(morphState.Destroyed || morphState.Collected))
                 {
-                    Debug.Log("UpdateMorphInitial() " + name);
+                    //Debug.Log("UpdateMorphInitial() " + name);
                     morphItem.Spawn(transform, gameObject);
                     m_destroy = true;
                 }
@@ -156,7 +173,7 @@ namespace Morbius.Scripts.Items
             //if Morphitem was set externally, a morph event was issued. destroy item instance
             if (m_status.MorphItem != null && !m_morphed)
             {
-                Debug.Log("UpdateMorph() " + name + m_status.MorphItem.Id);
+                //Debug.Log("UpdateMorph() " + name + m_status.MorphItem.Id);
                 m_status.MorphItem.Spawn(transform, gameObject);
                 m_destroy = true;
             }
