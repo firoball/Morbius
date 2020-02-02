@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Morbius.Scripts.Messages;
 
@@ -9,7 +8,7 @@ namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(UIFader))]
     [RequireComponent(typeof(AudioSource))]
-    public class ChapterUI : MonoBehaviour, IPointerClickHandler, IChapterMessage
+    public class ChapterUI : MonoBehaviour, IChapterMessage
     {
         [SerializeField]
         private AudioClip m_letter;
@@ -43,15 +42,6 @@ namespace Morbius.Scripts.UI
         private void Update()
         {
             if (Input.anyKey && m_fader.IsEnabled())
-            {
-                m_fastType = true;
-            }
-        }
-
-        //TODO: is this really needed? Likely covered with Input.anykey
-        public void OnPointerClick(PointerEventData data)
-        {
-            if (m_fader.IsEnabled())
             {
                 m_fastType = true;
             }

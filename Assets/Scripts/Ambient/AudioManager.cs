@@ -9,6 +9,7 @@ namespace Morbius.Scripts.Ambient
     {
 
         private static AudioManager s_singleton;
+        private static float s_musicVolumeScaler = 1.0f;
 
         [SerializeField]
         private List<MusicItem> m_musicList;
@@ -32,6 +33,19 @@ namespace Morbius.Scripts.Ambient
         private const float c_musicBackgroundVolumeFac = 0.3f;
 
         private const float c_pitchLimit = 5.0f;
+
+        public static float MusicVolume
+        {
+            get
+            {
+                return s_musicVolumeScaler;
+            }
+
+            set
+            {
+                s_musicVolumeScaler = Mathf.Clamp01(value);
+            }
+        }
 
         void Awake()
         {
@@ -60,7 +74,7 @@ namespace Morbius.Scripts.Ambient
             if (m_musicSource)
             {
                 m_musicDefaultVolume = m_musicSource.volume;
-                m_musicTargetVolume = m_musicSource.volume;
+                //m_musicTargetVolume = m_musicSource.volume;
                 //SetMusicVolume(m_musicDefaultVolume);
                 SetMusicVolume(0.0f);
                 m_musicSource.loop = true;
@@ -94,7 +108,7 @@ namespace Morbius.Scripts.Ambient
                 m_musicFadeDelay = Mathf.Max(m_musicFadeDelay - Time.deltaTime, 0.0f);
                 targetVolume *= c_musicBackgroundVolumeFac;
             }
-
+            targetVolume *= s_musicVolumeScaler;
             if (m_musicSource)
             {
                 if (targetVolume < m_musicSource.volume)

@@ -61,17 +61,6 @@ namespace Morbius.Scripts.Events
                 Item item = ItemDatabase.GetItemById(combination.MorphId);
                 Item morphItem = ItemDatabase.GetItemById(combination.TriggerId);
                 item.Morph(morphItem);
-                /*ItemSaveState state = ItemDatabase.GetItemStatus(item);
-                if (state != null)
-                {
-                    state.MorphItem = ItemDatabase.GetItemById(combination.TriggerId);
-                    //if old item was collected, also morphed one will be...
-                    if (state.MorphItem != null)
-                    {
-                        ItemSaveState morphItemstate = ItemDatabase.GetItemStatus(state.MorphItem);
-                        morphItemstate.Collected = state.Collected;
-                    }
-                }*/
             }
             else
             {
@@ -92,7 +81,7 @@ namespace Morbius.Scripts.Events
 
         public override IEnumerator Execute(int eventId)
         {
-            Debug.Log("combine event " + eventId);
+//            Debug.Log("combine event " + eventId);
             if (Inventory.ItemInHand != null)
             {
                 Item[] items = new Item[2];

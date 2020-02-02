@@ -5,7 +5,7 @@ namespace Morbius.Scripts.UI
 {
     [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasGroup))]
-    class UIFader : MonoBehaviour
+    public class UIFader : MonoBehaviour
     {
         [SerializeField]
         private float m_fadeSpeed = 4.0f;

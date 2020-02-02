@@ -106,6 +106,10 @@ namespace Morbius.Scripts.Movement
         public bool IsMoving()
         {
             bool reached = (m_agent.remainingDistance != Mathf.Infinity) && (m_agent.remainingDistance < 0.1f);
+            if (reached) //required for proper char animation
+            {
+                m_agent.isStopped = true;
+            }
             return !reached;
         }
 

@@ -18,14 +18,17 @@ namespace Morbius.Scripts.Game
         private void Awake()
         {
             m_portal = GetComponent<ScenePortal>();
+            GameStatus.Initialize();
+            //TODO find proper place for this
+            GameStatus.ApplySettings();
         }
 
         // Use this for initialization
         void Start()
         {
-            GameStatus.Initialize();
             Inventory.Initialize();
             ItemDatabase.Initialize();
+
         }
 
         // Update is called once per frame

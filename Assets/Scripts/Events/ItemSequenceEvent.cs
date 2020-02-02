@@ -18,7 +18,7 @@ namespace Morbius.Scripts.Events
 
         public override IEnumerator Execute(int eventId)
         {
-            Debug.Log("sequence event " + eventId);
+            //Debug.Log("sequence event " + eventId);
             Item item = ItemDatabase.GetItemById(eventId);
             ItemSaveState state = ItemDatabase.GetItemStatus(item);
             if (state != null && item.Sequences != null && Inventory.ItemInHand == null)
