@@ -98,7 +98,7 @@ namespace Morbius.Scripts.Items
 
         private void Add(Item item)
         {
-            if (!s_items.Contains(item) && item.Icon)
+            if (!s_items.Contains(item) && item && item.Icon)
             {
                 s_items.Add(item);
                 MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnAdd(item.Icon));
@@ -107,7 +107,7 @@ namespace Morbius.Scripts.Items
 
         private void Remove(Item item)
         {
-            if (s_items.Remove(item) && item.Icon)
+            if (s_items.Remove(item) && item && item.Icon)
             {
                 MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnRemove(item.Icon));
             }
@@ -116,7 +116,7 @@ namespace Morbius.Scripts.Items
 
         private void UpdateUI()
         {
-            foreach(Item item in s_items)
+            foreach (Item item in s_items)
             {
                 MessageSystem.Execute<IInventoryMessage>((x, y) => x.OnAdd(item.Icon));
             }
@@ -169,6 +169,44 @@ namespace Morbius.Scripts.Items
             {
                 s_items.Clear();
                 s_itemInHand = null;
+            }
+        }
+
+        public static void Save(int slot)
+        {
+            DropHandItem();
+            if (s_items != null)
+            {
+                PlayerPrefs.SetInt("Morbius.IN." + slot + ".C", s_items.Count);
+                for (int i = 0; i < s_items.Count; i++)
+                {
+                    PlayerPrefs.SetInt("Morbius.IN." + slot + "." + i, s_items[i].Id);
+                }
+            }
+        }
+
+        public static void Load(int slot)
+        {
+            Initialize();
+            if (s_items != null)
+            {
+                int count = PlayerPrefs.GetInt("Morbius.IN." + slot + ".C", 0);
+                for (int i = 0; i < count; i++)
+                {
+                    int id = PlayerPrefs.GetInt("Morbius.IN." + slot + "." + i, 0);
+                    Item item = ItemDatabase.GetItemById(id);
+                    s_items.Add(item);
+                }
+            }
+        }
+
+        public static void Delete(int slot)
+        {
+            int count = PlayerPrefs.GetInt("Morbius.IN." + slot + ".C", 0);
+            PlayerPrefs.DeleteKey("Morbius.IN." + slot + ".C");
+            for (int i = 0; i < count; i++)
+            {
+                PlayerPrefs.DeleteKey("Morbius.IN." + slot + "." + i);
             }
         }
     }

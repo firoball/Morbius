@@ -40,7 +40,7 @@ public class ItemDatabase : MonoBehaviour
 
     }
 
-    private void Update()
+    /*private void Update()
     {
         if(Input.GetMouseButtonDown(1))
         {
@@ -49,7 +49,7 @@ public class ItemDatabase : MonoBehaviour
                 Debug.Log(kvp.Key.Id + ":" + kvp.Key.name + " D:" + kvp.Value.Destroyed + " C:" + kvp.Value.Collected + " M:" + kvp.Value.MorphItem);
             }
         }
-    }
+    }*/
 
     public static Item GetItemById(int id)
     {
@@ -115,6 +115,45 @@ public class ItemDatabase : MonoBehaviour
             foreach (Item item in s_singleton.m_items)
             {
                 RegisterItem(item);
+            }
+        }
+    }
+
+    public static void Save(int slot)
+    {
+        if (s_singleton)
+        {
+            foreach (Item item in s_singleton.m_items)
+            {
+                ItemSaveState itemState = GetItemStatus(item);
+                PlayerPrefs.SetString("Morbius.ID." + slot + "." + item.Id, itemState.ToString());
+            }
+        }
+    }
+
+    public static void Load(int slot)
+    {
+        if (s_singleton)
+        {
+            foreach (Item item in s_singleton.m_items)
+            {
+                ItemSaveState itemState = GetItemStatus(item);
+                string data = PlayerPrefs.GetString("Morbius.ID." + slot + "." + item.Id, null);
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    itemState.ReadFromString(data);
+                }
+            }
+        }
+    }
+
+    public static void Delete(int slot)
+    {
+        if (s_singleton)
+        {
+            foreach (Item item in s_singleton.m_items)
+            {
+                PlayerPrefs.DeleteKey("Morbius.ID." + slot + "." + item.Id);
             }
         }
     }

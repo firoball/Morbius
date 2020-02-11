@@ -160,7 +160,6 @@ namespace Morbius.Scripts.Items
                 //not yet registered or is active - spawn
                 //if (morphState == null) || !(morphState.Destroyed || morphState.Collected))
                 {
-                    //Debug.Log("UpdateMorphInitial() " + name);
                     morphItem.Spawn(transform, gameObject);
                     m_destroy = true;
                 }
@@ -173,7 +172,6 @@ namespace Morbius.Scripts.Items
             //if Morphitem was set externally, a morph event was issued. destroy item instance
             if (m_status.MorphItem != null && !m_morphed)
             {
-                //Debug.Log("UpdateMorph() " + name + m_status.MorphItem.Id);
                 m_status.MorphItem.Spawn(transform, gameObject);
                 m_destroy = true;
             }

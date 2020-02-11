@@ -7,16 +7,19 @@ namespace Morbius.Scripts.Level
 {
     public class LevelStarter : MonoBehaviour
     {
-        void Awake()
+        private void Awake()
         {
+            PortalInfo.Identifier = "";
             MessageSystem.Clear();
             Inventory.Setup();
         }
 
-        private void Update()
+        private void Start()
         {
-            //if (Input.GetMouseButtonDown(1))
-                GameStatus.DebugPrint();
+            //GameStatus requires awake phase to be ready
+            GameStatus.Options.Load();
+            GameStatus.ApplySettings();
         }
+
     }
 }

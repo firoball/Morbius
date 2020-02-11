@@ -87,5 +87,29 @@ namespace Morbius.Scripts.Items
             }
         }
 
+        public override string ToString()
+        {
+            string id = m_morphItem? Convert.ToString(m_morphItem.Id) : "0";
+            
+            return Convert.ToString(Convert.ToByte(m_removed)) + "#" +
+                Convert.ToString(Convert.ToByte(m_collected)) + "#" +
+                Convert.ToString(Convert.ToByte(m_spawned)) + "#" +
+                Convert.ToString(m_sequenceIndex) + "#" +
+                id;
+        }
+
+        public void ReadFromString(string data)
+        {
+            string[] elements = data.Split('#');
+            if (elements != null && elements.Length == 5)
+            { 
+                m_removed = Convert.ToBoolean(Convert.ToByte(elements[0]));
+                m_collected = Convert.ToBoolean(Convert.ToByte(elements[1]));
+                m_spawned = Convert.ToBoolean(Convert.ToByte(elements[2]));
+                m_sequenceIndex = Convert.ToInt32(elements[3]);
+                int id = Convert.ToInt32(elements[4]);
+                m_morphItem = ItemDatabase.GetItemById(id);
+            }
+        }
     }
 }

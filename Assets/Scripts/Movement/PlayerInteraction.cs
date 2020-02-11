@@ -30,7 +30,6 @@ namespace Morbius.Scripts.Movement
             m_point = Vector3.zero;
             m_enabled = true;
             MessageSystem.Register<ICursorUIMessage>(gameObject);
-
         }
 
         private void Update()

@@ -88,7 +88,6 @@ namespace Morbius.Scripts.Cursor
                     if (!m_hoveredObjectWasUI)
                     {
                         m_hoveredObjectWasUI = true;
-                        //Debug.Log("enter UI");
                         MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIEnter());
                     }
                 }
@@ -99,7 +98,6 @@ namespace Morbius.Scripts.Cursor
                     if (m_hoveredObjectWasUI)
                     {
                         m_hoveredObjectWasUI = false;
-                        //Debug.Log("exit UI");
                         MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIExit());
                     }
                 }
@@ -108,7 +106,6 @@ namespace Morbius.Scripts.Cursor
             else
             {
                 m_hoveredObjectWasUI = true; //hovering no object equals to hovering UI object
-                //Debug.Log("offscreen");
                 MessageSystem.Execute<ICursorUIMessage>((x, y) => x.OnUIEnter());
             }
         }

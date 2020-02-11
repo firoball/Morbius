@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Morbius.Scripts.Ambient;
+using Morbius.Scripts.Game;
 using Morbius.Scripts.Messages;
 
 namespace Morbius.Scripts.Level
@@ -31,6 +32,13 @@ namespace Morbius.Scripts.Level
             
         }
 
+        public void Load(string scene)
+        {
+            m_sceneName = scene;
+            m_chapter = null; //custom scene loader must not display any configured chapter screen
+            Load();
+        }
+
         public void Load()
         {
             if (string.IsNullOrWhiteSpace(m_sceneName) || !Application.CanStreamedLevelBeLoaded(m_sceneName))//!SceneManager.GetSceneByName(m_sceneName).IsValid())
@@ -40,7 +48,7 @@ namespace Morbius.Scripts.Level
             }
 
             //only load different scenes
-            if (!m_started && SceneManager.GetActiveScene().name != m_sceneName)
+            if (!m_started )//&& SceneManager.GetActiveScene().name != m_sceneName)
             {
                 m_started = true;
                 StartCoroutine(Pixelate());
@@ -50,7 +58,9 @@ namespace Morbius.Scripts.Level
         private void LoadScene()
         {
             if (m_started)
+            {
                 SceneManager.LoadScene(m_sceneName);
+            }
         }
 
         private void StartTypewriter()
