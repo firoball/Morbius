@@ -9,7 +9,6 @@ namespace Morbius.Scripts.Level
     {
         private void Awake()
         {
-            PortalInfo.Identifier = "";
             MessageSystem.Clear();
             Inventory.Setup();
         }

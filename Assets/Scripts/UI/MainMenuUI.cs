@@ -18,7 +18,7 @@ namespace Morbius.Scripts.UI
             m_fader = GetComponent<UIFader>();
             if (Application.platform == RuntimePlatform.WebGLPlayer && m_quitButton)
             {
-                Destroy(m_quitButton);
+                Destroy(m_quitButton.gameObject);
             }
         }
 
