@@ -1,4 +1,5 @@
-﻿/***
+﻿```
+/***
  *                       _     _
  *      /\/\   ___  _ __| |__ (_)_   _ ___
  *     /    \ / _ \| '__| '_ \| | | | / __|
@@ -14,6 +15,7 @@
  *
  *                                                                                 v2.0 Unity WebGL edition
  */
+```
 
 Mike Morbius is facing a brand new detective adventure taking place in the LOTTERVERSE of Frankfurt/M.
 Beware! This time we stick to the language of the location: German.
@@ -55,8 +57,9 @@ If you can make good use of it and create something new out of it, my task was s
 
 ### Unity Port
 
-Copyright (c) 2020 - Robert Jäger (firoball)
-http://firoball.de
+Copyright (c) 2020 - Robert Jäger (Firoball)
+
+[http://firoball.de] (http://firoball.de)
 
 ### Original Game
 
@@ -87,6 +90,9 @@ Please respect [license.txt](license.txt) (MIT)
 ## Links
 
 Play Online: [http://firoball.de/unity/morbius/webgl/](http://firoball.de/unity/morbius/webgl/)
+
 GitHub Unity Port: [https://github.com/firoball/Morbius](https://github.com/firoball/Morbius)
+
 GitHub Acknex Original: [https://github.com/Acknex/morbius](https://github.com/Acknex/morbius)
+
 AckCon: [https://ackcon.de](https://ackcon.de)
