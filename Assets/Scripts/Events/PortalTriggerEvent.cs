@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Morbius.Scripts.Dialog;
+using Morbius.Scripts.Game;
 using Morbius.Scripts.Items;
 using Morbius.Scripts.Level;
 using Morbius.Scripts.Messages;
@@ -22,16 +20,25 @@ namespace Morbius.Scripts.Events
         {
             MessageSystem.Register<IUnlockTriggerMessage>(gameObject);
             m_scenePortal = GetComponent<ScenePortal>();
+            if (GameStatus.IsSet(name, false))
+            {
+                m_isLocked = false;
+            }
         }
 
         public void OnUnlock()
         {
             m_isLocked = false;
+            if (!GameStatus.IsSet(name, false))
+            {
+                GameStatus.Set(name, false);
+            }
         }
 
         public void OnLock()
         {
             m_isLocked = true;
+            GameStatus.Unset(name, false);
         }
 
         public override IEnumerator Execute(int eventId)

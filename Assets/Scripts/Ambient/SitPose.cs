@@ -10,6 +10,8 @@ namespace Morbius.Scripts.Ambient
         private Transform m_leftLegBone;
         [SerializeField]
         private Transform m_rightLegBone;
+        [SerializeField]
+        private bool m_always = false;
 
         private bool m_sitting;
         private Vector3 m_targetPosition;
@@ -19,8 +21,17 @@ namespace Morbius.Scripts.Ambient
 
         private void Awake()
         {
-            MessageSystem.Register<ISitMessage>(gameObject);
-            m_sitting = false;
+            if (!m_always)
+            {
+                MessageSystem.Register<ISitMessage>(gameObject);
+                m_sitting = false;
+            }
+            else
+            {
+                m_targetPosition = transform.position;
+                m_targetRotation = transform.rotation;
+                m_sitting = true;
+            }
         }
 
         private void LateUpdate()
@@ -28,8 +39,8 @@ namespace Morbius.Scripts.Ambient
             if (m_sitting && m_leftLegBone && m_rightLegBone)
             {
                 Vector3 euler = new Vector3(0, 0, c_sitAngle);
-                m_leftLegBone.eulerAngles = euler;
-                m_rightLegBone.eulerAngles = euler;
+                m_leftLegBone.eulerAngles = m_leftLegBone.TransformDirection(euler);
+                m_rightLegBone.eulerAngles = m_rightLegBone.TransformDirection(euler);
 
                 transform.position = m_targetPosition;
                 transform.rotation = m_targetRotation;

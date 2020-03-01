@@ -7,6 +7,10 @@ public class VideoStreamer : MonoBehaviour
 {
     [SerializeField]
     private string m_videoAsset;
+    [SerializeField]
+    private AudioSource m_audio;
+    [SerializeField]
+    private AudioClip m_clip;
 
     private void Awake()
     {
@@ -16,6 +20,13 @@ public class VideoStreamer : MonoBehaviour
             player.source = VideoSource.Url;
             string url = Application.streamingAssetsPath;
             player.url = Path.Combine(url, m_videoAsset);
+            player.audioOutputMode = VideoAudioOutputMode.None;
+            if (m_clip && m_audio)
+            {
+                m_audio.clip = m_clip;
+                m_audio.loop = true;
+                m_audio.Play();
+            }
         }
 
     }

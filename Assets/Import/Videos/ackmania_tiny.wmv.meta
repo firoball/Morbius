@@ -36,13 +36,13 @@ VideoClipImporter:
       spatialQuality: 2
     13:
       enableTranscoding: 1
-      codec: 1
+      codec: 0
       resizeFormat: 3
       aspectRatio: 0
       customWidth: 320
       customHeight: 240
-      bitrateMode: 0
-      spatialQuality: 0
+      bitrateMode: 2
+      spatialQuality: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 

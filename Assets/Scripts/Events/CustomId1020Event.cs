@@ -45,7 +45,7 @@ namespace Morbius.Scripts.Events
 
             MessageSystem.Execute<IPanelMessage>((x, y) => x.OnShow(m_spriteEmail, true));
             yield return new WaitForSeconds(1.5f);
-            yield return new WaitForSecondsAnyKey(30.0f);
+            yield return new WaitForSecondsAnyKey(50.0f);
             MessageSystem.Execute<IPanelMessage>((x, y) => x.OnHide());
             yield return new WaitForSeconds(2.0f);
 

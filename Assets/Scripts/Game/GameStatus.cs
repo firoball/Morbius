@@ -29,6 +29,14 @@ namespace Morbius.Scripts.Game
             }
         }
 
+        public static void Unset(string identifier, bool global)
+        {
+            if (IsSet(identifier, global))
+            {
+                string value = GetIdentifier(identifier, global);
+                s_status.Remove(value);
+            }
+        }
         public static bool IsSet(string identifier, bool global)
         {
             bool result = false;
