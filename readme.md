@@ -42,14 +42,15 @@ Dance game was not ported due to the challenging code base of the original game.
 So which engine is more efficient?
 
 As developer of the Unity port I cannot answer this. As this project was not done as part of a game jam, the time invested into this task was spent in a very different way.
-The main scope of this project was trying to import Acknex assets into Unity, progressing in Unity skills and perform some applying with design patterns.
-Throughout the progress of this project there were many lessonslearned, many parts of the code base were refactored, discarded, reimplemented.
-By no means the end result is perfect. Some approaches turned out to be not the optimum solution, other implementation appear to be over-engineered. 
-After testing the final game I decided to leave the code base as is.
+The main scope of this project was trying to import Acknex assets into Unity, progressing in Unity skills and perform some utilization of design patterns.
+Throughout the progress of this project there were many lessons learned, several parts of the code base were refactored, discarded, reimplemented.
+
+By no means the end result is perfect. Some approaches turned out to be not the optimum solution, other implementations appear to be over-engineered for this project. 
+After testing the final game, I decided to leave the code base as is.
 
 In the end, the code base of this port is cleaner, better abstracted and more modular than the original Acknex code. The time invested was a lot more, though.
 
-Take it, learn from it, modify it, us it as a base for new projects.
+Take it, learn from it, modify it, use it as a base for new projects.
 If you can make good use of it and create something new out of it, my task was successful.
 
 
@@ -81,10 +82,12 @@ Copyright (c) 2015 - AckCon'15 Team, as follows:
 Game is loosely based on the books "Meister des Feuers" and "Downtown",
 written by J. C. Lotter and R. Wissdorf
 
+Reference to characters appearing in these books was generously granted by J. C. Lotter.
+
 
 ## License
 
-Please respect [license.txt](license.txt) (MIT)
+Please respect [license.txt](license.txt) (MIT and additional 3rd party licenses)
 
 
 ## Links
