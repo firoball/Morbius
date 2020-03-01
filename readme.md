@@ -21,10 +21,10 @@ Mike Morbius is facing a brand new detective adventure taking place in the LOTTE
 Beware! This time we stick to the language of the location: German.
 You don't speak German? Sorry about that.
 
-How to play:
+## How to play
 
-Left Mouse Button - walk / investigate / item interaction
-Esc               - Menu
+* Left Mouse Button - walk / investigate / item interaction
+* Esc               - Menu
 
 CAN YOU GET THIS TO A GOOD END?
 
@@ -65,18 +65,18 @@ Copyright (c) 2020 - Robert Jäger (Firoball)
 
 Copyright (c) 2015 - AckCon'15 Team, as follows:
 
-Christian Behrenberg (HeelX)
-Jonas Freiknecht (PadMalcolm)
-Kitsune Horstmann (Kitsu)
-Robert Jäger (Firoball)
-Marius Kappes (mk.1)
-Korbinian Kaulfuß
-Felix Pohl (Superku)
-Felix Queißner (MasterQ32)
-Andreas Schmidt (Lemming)
-Michael Schwarz (Michael_Schwarz)
-Simon Trümpler
-Ali Yüklet (Alibaba)
+* Christian Behrenberg (HeelX)
+* Jonas Freiknecht (PadMalcolm)
+* Kitsune Horstmann (Kitsu)
+* Robert Jäger (Firoball)
+* Marius Kappes (mk.1)
+* Korbinian Kaulfuß
+* Felix Pohl (Superku)
+* Felix Queißner (MasterQ32)
+* Andreas Schmidt (Lemming)
+* Michael Schwarz (Michael_Schwarz)
+* Simon Trümpler
+* Ali Yüklet (Alibaba)
 
 Game is loosely based on the books "Meister des Feuers" and "Downtown",
 written by J. C. Lotter and R. Wissdorf
