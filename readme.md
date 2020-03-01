@@ -59,7 +59,7 @@ If you can make good use of it and create something new out of it, my task was s
 
 Copyright (c) 2020 - Robert Jäger (Firoball)
 
-[http://firoball.de] (http://firoball.de)
+[http://firoball.de](http://firoball.de)
 
 ### Original Game
 
